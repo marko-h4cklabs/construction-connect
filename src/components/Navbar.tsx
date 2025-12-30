@@ -49,9 +49,6 @@ const Navbar = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <Button variant="ghost" className="text-foreground">
-              Log In
-            </Button>
             <Button variant="accent">Start Free Trial</Button>
           </div>
 
@@ -87,9 +84,6 @@ const Navbar = () => {
                 FAQ
               </button>
               <div className="flex flex-col gap-2 pt-4 border-t border-border">
-                <Button variant="ghost" className="justify-start">
-                  Log In
-                </Button>
                 <Button variant="accent">Start Free Trial</Button>
               </div>
             </div>

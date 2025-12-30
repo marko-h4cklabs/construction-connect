@@ -6,13 +6,6 @@ const HeroSection = () => {
     <section className="pt-24 pb-16 md:pt-32 md:pb-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-accent/10 border border-accent/20 rounded-full px-4 py-2 mb-6 animate-fade-up">
-            <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-            <span className="text-sm font-medium text-foreground">
-              Trusted by 500+ Construction Companies
-            </span>
-          </div>
 
           {/* Headline */}
           <h1 
