@@ -7,44 +7,44 @@ import {
 
 const faqs = [
   {
-    question: "How long does it take to set up BuildPro?",
+    question: "Koliko vremena treba za postavljanje BuildPro-a?",
     answer:
-      "Most construction companies are up and running within 2 hours. Our onboarding team will help you import your existing projects and train your crew. We also offer on-site training for Enterprise customers.",
+      "Većina građevinskih tvrtki je spremna za rad unutar 2 sata. Naš tim za onboarding pomoći će vam uvesti postojeće projekte i obučiti vašu ekipu. Također nudimo obuku na licu mjesta za Poslovne korisnike.",
   },
   {
-    question: "Do I need to be tech-savvy to use this?",
+    question: "Moram li biti tehnički potkovan za korištenje?",
     answer:
-      "Not at all! BuildPro is designed specifically for construction professionals. If you can use a smartphone, you can use BuildPro. Our interface is simple and intuitive, with no complicated menus or technical jargon.",
+      "Nikako! BuildPro je dizajniran posebno za građevinske profesionalce. Ako znate koristiti pametni telefon, znate koristiti BuildPro. Naše sučelje je jednostavno i intuitivno, bez kompliciranih izbornika ili tehničkog žargona.",
   },
   {
-    question: "Can my crew use it on their phones?",
+    question: "Može li moja ekipa koristiti aplikaciju na mobitelima?",
     answer:
-      "Yes! BuildPro works on any device - smartphones, tablets, or computers. Your crew can clock in, update job progress, and submit photos right from the job site using our mobile app, available for both iOS and Android.",
+      "Da! BuildPro radi na bilo kojem uređaju - pametnim telefonima, tabletima ili računalima. Vaša ekipa može se prijaviti, ažurirati napredak posla i slati fotografije direktno s gradilišta koristeći našu mobilnu aplikaciju, dostupnu za iOS i Android.",
   },
   {
-    question: "What happens to my data if I cancel?",
+    question: "Što se događa s mojim podacima ako otkažem?",
     answer:
-      "Your data belongs to you. If you decide to cancel, you'll have 30 days to export all your project data, documents, and reports. We can also provide data exports in common formats compatible with other software.",
+      "Vaši podaci pripadaju vama. Ako odlučite otkazati, imat ćete 30 dana za izvoz svih podataka o projektima, dokumenata i izvještaja. Također možemo pružiti izvoz podataka u uobičajenim formatima kompatibilnim s drugim softverom.",
   },
   {
-    question: "Is there a contract or can I cancel anytime?",
+    question: "Postoji li ugovor ili mogu otkazati bilo kada?",
     answer:
-      "There are no long-term contracts. All plans are month-to-month, and you can cancel anytime from your account settings. If you cancel, you'll have access until the end of your current billing period.",
+      "Nema dugoročnih ugovora. Svi planovi su na mjesečnoj bazi i možete otkazati bilo kada iz postavki računa. Ako otkažete, imat ćete pristup do kraja trenutnog obračunskog razdoblja.",
   },
   {
-    question: "Does BuildPro integrate with QuickBooks?",
+    question: "Integrira li se BuildPro s QuickBooks-om?",
     answer:
-      "Yes! Our Professional and Enterprise plans include direct integration with QuickBooks Online and QuickBooks Desktop. You can sync invoices, expenses, and customer data automatically, saving hours of double-entry work.",
+      "Da! Naši Profesionalni i Poslovni planovi uključuju direktnu integraciju s QuickBooks Online i QuickBooks Desktop. Možete automatski sinkronizirati račune, troškove i podatke o klijentima, štedeći sate dvostrukog unosa.",
   },
   {
-    question: "What kind of support do you offer?",
+    question: "Kakvu podršku nudite?",
     answer:
-      "We offer email support for all plans, priority phone support for Professional plans, and a dedicated account manager for Enterprise customers. Our average response time is under 2 hours during business hours.",
+      "Nudimo email podršku za sve planove, prioritetnu telefonsku podršku za Profesionalne planove i posvećenog voditelja računa za Poslovne korisnike. Naše prosječno vrijeme odgovora je manje od 2 sata tijekom radnog vremena.",
   },
   {
-    question: "Can I try BuildPro before committing?",
+    question: "Mogu li isprobati BuildPro prije nego se obvežem?",
     answer:
-      "Absolutely! Every plan comes with a 14-day free trial, no credit card required. You'll have full access to all features so you can see exactly how BuildPro will work for your business.",
+      "Apsolutno! Svaki plan dolazi s 14-dnevnim besplatnim probnim razdobljem, bez potrebe za kreditnom karticom. Imat ćete puni pristup svim značajkama kako biste vidjeli točno kako će BuildPro raditi za vaše poslovanje.",
   },
 ];
 
@@ -55,12 +55,12 @@ const FAQSection = () => {
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Frequently Asked Questions
+            Često Postavljana Pitanja
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Got questions? We've got answers. If you can't find what you're looking for,{" "}
+            Imate pitanja? Imamo odgovore. Ako ne možete pronaći ono što tražite,{" "}
             <button className="text-accent hover:underline font-medium">
-              contact our team
+              kontaktirajte naš tim
             </button>
             .
           </p>

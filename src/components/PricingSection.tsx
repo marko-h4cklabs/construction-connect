@@ -3,46 +3,46 @@ import { Check, ArrowRight } from "lucide-react";
 
 const plans = [
   {
-    name: "Starter",
-    description: "Perfect for small crews",
+    name: "Početni",
+    description: "Savršeno za male ekipe",
     price: 49,
     features: [
-      "Up to 5 team members",
-      "10 active projects",
-      "Basic reporting",
-      "Email support",
-      "Mobile app access",
+      "Do 5 članova tima",
+      "10 aktivnih projekata",
+      "Osnovno izvještavanje",
+      "Email podrška",
+      "Pristup mobilnoj aplikaciji",
     ],
     popular: false,
   },
   {
-    name: "Professional",
-    description: "For growing companies",
+    name: "Profesionalni",
+    description: "Za tvrtke u rastu",
     price: 99,
     features: [
-      "Up to 20 team members",
-      "Unlimited projects",
-      "Advanced reporting & analytics",
-      "Priority phone support",
-      "Client portal",
-      "Custom branding",
-      "QuickBooks integration",
+      "Do 20 članova tima",
+      "Neograničeni projekti",
+      "Napredno izvještavanje i analitika",
+      "Prioritetna telefonska podrška",
+      "Portal za klijente",
+      "Prilagođeni branding",
+      "QuickBooks integracija",
     ],
     popular: true,
   },
   {
-    name: "Enterprise",
-    description: "For large operations",
+    name: "Poslovni",
+    description: "Za velike operacije",
     price: 199,
     features: [
-      "Unlimited team members",
-      "Unlimited projects",
-      "Custom reporting",
-      "Dedicated account manager",
-      "API access",
-      "Advanced integrations",
-      "On-site training",
-      "SLA guarantee",
+      "Neograničeni članovi tima",
+      "Neograničeni projekti",
+      "Prilagođeno izvještavanje",
+      "Posvećeni voditelj računa",
+      "API pristup",
+      "Napredne integracije",
+      "Obuka na licu mjesta",
+      "SLA jamstvo",
     ],
     popular: false,
   },
@@ -55,10 +55,10 @@ const PricingSection = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Simple, Transparent Pricing
+            Jednostavne, Transparentne Cijene
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Choose the plan that fits your business. All plans include a 14-day free trial.
+            Odaberite plan koji odgovara vašem poslovanju. Svi planovi uključuju 14 dana besplatnog probnog razdoblja.
           </p>
         </div>
 
@@ -78,7 +78,7 @@ const PricingSection = () => {
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                   <span className="bg-accent-gradient text-accent-foreground text-sm font-semibold px-4 py-1 rounded-full shadow-accent">
-                    Most Popular
+                    Najpopularniji
                   </span>
                 </div>
               )}
@@ -93,10 +93,10 @@ const PricingSection = () => {
                 </p>
                 <div className="flex items-baseline justify-center gap-1">
                   <span className={`text-5xl font-extrabold ${plan.popular ? "text-primary-foreground" : "text-foreground"}`}>
-                    ${plan.price}
+                    €{plan.price}
                   </span>
                   <span className={plan.popular ? "text-primary-foreground/70" : "text-muted-foreground"}>
-                    /month
+                    /mjesečno
                   </span>
                 </div>
               </div>
@@ -119,7 +119,7 @@ const PricingSection = () => {
                 className="w-full"
                 size="lg"
               >
-                Get Started
+                Započnite
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </div>
@@ -128,9 +128,9 @@ const PricingSection = () => {
 
         {/* Bottom Note */}
         <p className="text-center text-muted-foreground mt-12 text-sm">
-          All prices in USD. Need a custom plan?{" "}
+          Sve cijene u EUR. Trebate prilagođeni plan?{" "}
           <button className="text-accent hover:underline font-medium">
-            Contact our sales team
+            Kontaktirajte naš prodajni tim
           </button>
         </p>
       </div>

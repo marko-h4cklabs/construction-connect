@@ -31,25 +31,25 @@ const Navbar = () => {
               onClick={() => scrollToSection("video")}
               className="text-muted-foreground hover:text-foreground transition-colors font-medium"
             >
-              How It Works
+              Kako Radi
             </button>
             <button
               onClick={() => scrollToSection("pricing")}
               className="text-muted-foreground hover:text-foreground transition-colors font-medium"
             >
-              Pricing
+              Cijene
             </button>
             <button
               onClick={() => scrollToSection("faq")}
               className="text-muted-foreground hover:text-foreground transition-colors font-medium"
             >
-              FAQ
+              Česta Pitanja
             </button>
           </div>
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <Button variant="accent">Start Free Trial</Button>
+            <Button variant="accent">Besplatno Probno Razdoblje</Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -69,22 +69,22 @@ const Navbar = () => {
                 onClick={() => scrollToSection("video")}
                 className="text-muted-foreground hover:text-foreground transition-colors font-medium text-left py-2"
               >
-                How It Works
+                Kako Radi
               </button>
               <button
                 onClick={() => scrollToSection("pricing")}
                 className="text-muted-foreground hover:text-foreground transition-colors font-medium text-left py-2"
               >
-                Pricing
+                Cijene
               </button>
               <button
                 onClick={() => scrollToSection("faq")}
                 className="text-muted-foreground hover:text-foreground transition-colors font-medium text-left py-2"
               >
-                FAQ
+                Česta Pitanja
               </button>
               <div className="flex flex-col gap-2 pt-4 border-t border-border">
-                <Button variant="accent">Start Free Trial</Button>
+                <Button variant="accent">Besplatno Probno Razdoblje</Button>
               </div>
             </div>
           </div>
