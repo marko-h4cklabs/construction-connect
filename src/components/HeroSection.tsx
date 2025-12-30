@@ -12,8 +12,8 @@ const HeroSection = () => {
             className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground mb-6 leading-tight animate-fade-up"
             style={{ animationDelay: "0.1s" }}
           >
-            Run Your Construction Business{" "}
-            <span className="text-gradient">Smarter, Not Harder</span>
+            Vodite Svoju Građevinsku Tvrtku{" "}
+            <span className="text-gradient">Pametnije, Ne Teže</span>
           </h1>
 
           {/* Subheadline */}
@@ -21,8 +21,8 @@ const HeroSection = () => {
             className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto animate-fade-up"
             style={{ animationDelay: "0.2s" }}
           >
-            The all-in-one platform that helps construction companies manage projects, 
-            track crews, and get paid faster. No tech experience needed.
+            Sveobuhvatna platforma koja pomaže građevinskim tvrtkama upravljati projektima, 
+            pratiti ekipe i brže naplatiti. Nije potrebno tehničko iskustvo.
           </p>
 
           {/* Video Container */}
@@ -50,10 +50,10 @@ const HeroSection = () => {
                     </div>
                   </div>
                   <p className="text-primary-foreground text-lg font-medium">
-                    Add your video URL here
+                    Dodajte URL vašeg videa ovdje
                   </p>
                   <p className="text-primary-foreground/60 text-sm mt-2">
-                    Supports YouTube, Vimeo, or direct video files
+                    Podržava YouTube, Vimeo ili direktne video datoteke
                   </p>
                 </div>
               </div>
@@ -66,7 +66,7 @@ const HeroSection = () => {
             style={{ animationDelay: "0.4s" }}
           >
             <Button variant="hero" size="xl" className="w-full sm:w-auto">
-              Start Your Free Trial
+              Započnite Besplatno Probno Razdoblje
               <ArrowRight className="ml-2" />
             </Button>
             <Button 
@@ -75,7 +75,7 @@ const HeroSection = () => {
               className="w-full sm:w-auto"
             >
               <Play className="mr-2" />
-              Request Demo
+              Zatražite Demo
             </Button>
           </div>
 
@@ -86,15 +86,15 @@ const HeroSection = () => {
           >
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-accent" />
-              <span className="text-sm font-medium">14-day free trial</span>
+              <span className="text-sm font-medium">14 dana besplatno</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-accent" />
-              <span className="text-sm font-medium">No credit card required</span>
+              <span className="text-sm font-medium">Bez kreditne kartice</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-accent" />
-              <span className="text-sm font-medium">Cancel anytime</span>
+              <span className="text-sm font-medium">Otkažite bilo kada</span>
             </div>
           </div>
         </div>
