@@ -1,5 +1,4 @@
-import { Button } from "@/components/ui/button";
-import { Play, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Play } from "lucide-react";
 
 const HeroSection = () => {
   return (
@@ -12,8 +11,8 @@ const HeroSection = () => {
             className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground mb-6 leading-tight animate-fade-up"
             style={{ animationDelay: "0.1s" }}
           >
-            Vodite Svoju Građevinsku Tvrtku{" "}
-            <span className="text-gradient">Pametnije, Ne Teže</span>
+            Ušteđeno vrijeme.{" "}
+            <span className="text-gradient">Organizirani upiti.</span>
           </h1>
 
           {/* Subheadline */}
@@ -21,13 +20,12 @@ const HeroSection = () => {
             className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto animate-fade-up"
             style={{ animationDelay: "0.2s" }}
           >
-            Sveobuhvatna platforma koja pomaže građevinskim tvrtkama upravljati projektima, 
-            pratiti ekipe i brže naplatiti. Nije potrebno tehničko iskustvo.
+            Upitomat vodi kupce kroz vaša unaprijed postavljena pitanja i drži sve upite organizirane na jednom mjestu.
           </p>
 
           {/* Video Container */}
           <div 
-            className="relative rounded-2xl overflow-hidden shadow-card-hover bg-primary mb-10 animate-fade-up"
+            className="relative rounded-2xl overflow-hidden shadow-card-hover bg-primary animate-fade-up"
             style={{ animationDelay: "0.3s" }}
           >
             <div className="aspect-video relative">
@@ -36,7 +34,7 @@ const HeroSection = () => {
               {/* <iframe 
                 className="absolute inset-0 w-full h-full"
                 src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
-                title="BuildPro Demo"
+                title="Upitomat Demo"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               /> */}
@@ -57,44 +55,6 @@ const HeroSection = () => {
                   </p>
                 </div>
               </div>
-            </div>
-          </div>
-
-          {/* CTAs */}
-          <div 
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 animate-fade-up"
-            style={{ animationDelay: "0.4s" }}
-          >
-            <Button variant="hero" size="xl" className="w-full sm:w-auto">
-              Započnite Besplatno Probno Razdoblje
-              <ArrowRight className="ml-2" />
-            </Button>
-            <Button 
-              variant="heroOutline" 
-              size="xl" 
-              className="w-full sm:w-auto"
-            >
-              <Play className="mr-2" />
-              Zatražite Demo
-            </Button>
-          </div>
-
-          {/* Trust indicators */}
-          <div 
-            className="flex flex-wrap items-center justify-center gap-6 text-muted-foreground animate-fade-up"
-            style={{ animationDelay: "0.5s" }}
-          >
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-5 h-5 text-accent" />
-              <span className="text-sm font-medium">14 dana besplatno</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-5 h-5 text-accent" />
-              <span className="text-sm font-medium">Bez kreditne kartice</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-5 h-5 text-accent" />
-              <span className="text-sm font-medium">Otkažite bilo kada</span>
             </div>
           </div>
         </div>

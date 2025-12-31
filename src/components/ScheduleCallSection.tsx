@@ -1,7 +1,13 @@
 import { Button } from "@/components/ui/button";
-import { Phone, Calendar, Clock } from "lucide-react";
+import { Phone, Calendar, CheckCircle2 } from "lucide-react";
 
 const ScheduleCallSection = () => {
+  const handleScheduleClick = () => {
+    // Opens Calendly or your preferred scheduling tool
+    // Replace with your actual Calendly link
+    window.open("https://calendly.com/your-link", "_blank");
+  };
+
   return (
     <section className="py-16 md:py-24 bg-muted">
       <div className="container mx-auto px-4">
@@ -15,27 +21,27 @@ const ScheduleCallSection = () => {
           </h2>
           
           <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
-            Imate pitanja? Želite vidjeti kako BuildPro može raditi za vašu građevinsku tvrtku? 
+            Imate pitanja? Želite vidjeti kako Upitomat može raditi za vašu tvrtku? 
             Rezervirajte besplatan poziv od 15 minuta s našim timom.
           </p>
 
-          <Button variant="hero" size="xl" className="mb-10">
+          <Button variant="hero" size="xl" className="mb-10" onClick={handleScheduleClick}>
             <Calendar className="mr-2" />
             Zakažite Besplatan Poziv
           </Button>
 
           <div className="flex flex-wrap items-center justify-center gap-8 text-muted-foreground">
             <div className="flex items-center gap-2">
-              <Clock className="w-5 h-5 text-accent" />
-              <span className="text-sm font-medium">15 minuta</span>
+              <CheckCircle2 className="w-5 h-5 text-accent" />
+              <span className="text-sm font-medium">14 dana probno razdoblje</span>
             </div>
             <div className="flex items-center gap-2">
-              <Phone className="w-5 h-5 text-accent" />
-              <span className="text-sm font-medium">Bez obveza</span>
+              <CheckCircle2 className="w-5 h-5 text-accent" />
+              <span className="text-sm font-medium">Za hrvatske tvrtke</span>
             </div>
             <div className="flex items-center gap-2">
-              <Calendar className="w-5 h-5 text-accent" />
-              <span className="text-sm font-medium">Odaberite svoje vrijeme</span>
+              <CheckCircle2 className="w-5 h-5 text-accent" />
+              <span className="text-sm font-medium">Bez ugovorne obveze</span>
             </div>
           </div>
         </div>
