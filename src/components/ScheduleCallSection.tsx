@@ -16,18 +16,14 @@ const ScheduleCallSection = () => {
             <Phone className="w-8 h-8 text-accent" />
           </div>
           
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Zakažite Besplatan Poziv s Našim Timom
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8">
+            Želite vidjeti kako bi Upitomat radio za vašu tvrtku?
           </h2>
-          
-          <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
-            Imate pitanja? Želite vidjeti kako Upitomat može raditi za vašu tvrtku? 
-            Rezervirajte besplatan poziv od 15 minuta s našim timom.
-          </p>
 
           <Button variant="hero" size="xl" className="mb-10" onClick={handleScheduleClick}>
             <Calendar className="mr-2" />
-            Zakažite Besplatan Poziv
+            <span className="hidden md:inline">Zakažite besplatan poziv sa našim timom</span>
+            <span className="md:hidden">Besplatne konzultacije</span>
           </Button>
 
           <div className="flex flex-wrap items-center justify-center gap-8 text-muted-foreground">
