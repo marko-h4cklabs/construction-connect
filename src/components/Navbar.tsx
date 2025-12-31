@@ -20,9 +20,9 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex items-center gap-2">
             <div className="w-10 h-10 bg-accent-gradient rounded-lg flex items-center justify-center">
-              <span className="text-accent-foreground font-bold text-xl">B</span>
+              <span className="text-accent-foreground font-bold text-xl">U</span>
             </div>
-            <span className="font-bold text-xl text-foreground">BuildPro</span>
+            <span className="font-bold text-xl text-foreground">Upitomat</span>
           </div>
 
           {/* Desktop Navigation */}

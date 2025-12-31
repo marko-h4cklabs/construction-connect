@@ -119,12 +119,12 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-primary-foreground/10">
           <div className="flex items-center gap-2 mb-4 md:mb-0">
             <div className="w-8 h-8 bg-accent-gradient rounded-lg flex items-center justify-center">
-              <span className="text-accent-foreground font-bold text-sm">B</span>
+              <span className="text-accent-foreground font-bold text-sm">U</span>
             </div>
-            <span className="font-bold text-lg">BuildPro</span>
+            <span className="font-bold text-lg">Upitomat</span>
           </div>
           <p className="text-primary-foreground/60 text-sm">
-            © {currentYear} BuildPro. Sva prava pridržana.
+            © {currentYear} Upitomat. Sva prava pridržana.
           </p>
         </div>
       </div>
