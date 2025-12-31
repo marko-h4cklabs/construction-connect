@@ -1,5 +1,3 @@
-import { Play } from "lucide-react";
-
 const HeroSection = () => {
   return (
     <section className="pt-24 pb-16 md:pt-32 md:pb-24 bg-background">
@@ -25,36 +23,18 @@ const HeroSection = () => {
 
           {/* Video Container */}
           <div 
-            className="relative rounded-2xl overflow-hidden shadow-card-hover bg-primary animate-fade-up"
+            className="relative rounded-2xl overflow-hidden shadow-card-hover animate-fade-up"
             style={{ animationDelay: "0.3s" }}
           >
-            <div className="aspect-video relative">
-              {/* Replace this div with your actual video embed */}
-              {/* Example YouTube embed: */}
-              {/* <iframe 
-                className="absolute inset-0 w-full h-full"
-                src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
-                title="Upitomat Demo"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              /> */}
-              
-              {/* Placeholder until video is added */}
-              <div className="absolute inset-0 bg-hero-gradient flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-20 h-20 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-4 cursor-pointer hover:bg-accent/30 transition-colors group">
-                    <div className="w-16 h-16 rounded-full bg-accent-gradient flex items-center justify-center shadow-accent group-hover:scale-105 transition-transform">
-                      <Play className="w-8 h-8 text-accent-foreground ml-1" />
-                    </div>
-                  </div>
-                  <p className="text-primary-foreground text-lg font-medium">
-                    Dodajte URL vašeg videa ovdje
-                  </p>
-                  <p className="text-primary-foreground/60 text-sm mt-2">
-                    Podržava YouTube, Vimeo ili direktne video datoteke
-                  </p>
-                </div>
-              </div>
+            <div className="aspect-video">
+              <video
+                className="w-full h-full object-cover"
+                controls
+                poster="/images/video-thumbnail.png"
+              >
+                <source src="/videos/demo.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             </div>
           </div>
         </div>
