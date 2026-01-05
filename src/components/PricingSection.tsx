@@ -29,15 +29,8 @@ const PricingSection = () => {
         {/* Single Pricing Card */}
         <div className="max-w-lg mx-auto">
           <div className="relative rounded-2xl p-8 md:p-10 bg-primary text-primary-foreground shadow-card-hover">
-            {/* Badge */}
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-              <span className="bg-accent-gradient text-accent-foreground text-sm font-semibold px-4 py-1 rounded-full shadow-accent">
-                Sve uključeno
-              </span>
-            </div>
-
             {/* Price */}
-            <div className="text-center mb-8 pt-4">
+            <div className="text-center mb-8">
               <p className="text-primary-foreground/70 text-sm mb-2">Počinje od</p>
               <div className="flex items-baseline justify-center gap-1">
                 <span className="text-5xl md:text-6xl font-extrabold text-primary-foreground">
@@ -69,6 +62,12 @@ const PricingSection = () => {
               variant="hero"
               className="w-full"
               size="xl"
+              onClick={() => {
+                const element = document.getElementById("kontakt");
+                if (element) {
+                  element.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
             >
               Započnite besplatno
             </Button>
