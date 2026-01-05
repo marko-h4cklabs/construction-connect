@@ -59,8 +59,7 @@ const PricingSection = () => {
 
             {/* CTA Button */}
             <Button
-              variant="hero"
-              className="w-full"
+              className="w-full bg-background text-foreground hover:bg-background/90"
               size="xl"
               onClick={() => {
                 const element = document.getElementById("kontakt");
