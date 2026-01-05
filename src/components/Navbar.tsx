@@ -49,7 +49,7 @@ const Navbar = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <Button variant="accent">Besplatno Probno Razdoblje</Button>
+            <Button variant="accent" onClick={() => scrollToSection("kontakt")}>Kontaktirajte nas</Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -84,7 +84,7 @@ const Navbar = () => {
                 Česta Pitanja
               </button>
               <div className="flex flex-col gap-2 pt-4 border-t border-border">
-                <Button variant="accent">Besplatno Probno Razdoblje</Button>
+                <Button variant="accent" onClick={() => scrollToSection("kontakt")}>Kontaktirajte nas</Button>
               </div>
             </div>
           </div>

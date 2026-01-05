@@ -19,7 +19,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-muted">
+    <section id="kontakt" className="py-16 md:py-24 bg-muted">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/20 mb-6">
