@@ -7,24 +7,49 @@ import {
 
 const faqs = [
   {
-    question: "Kako funkcionira prvobitan poziv i zašto je važan?",
-    answer: "Odgovor će biti dodan.",
+    question: "Kako funkcionira probni poziv i zašto je važan?",
+    answer: `To je kratak i vrijedan razgovor u kojem prvo želimo razumjeti kako trenutno rješavate upite, i koji su vam glavni problemi koje želite riješiti.
+
+Zatim vam pokažemo kako bi Upitomat izgledao konkretno u vašem slučaju.
+
+Cilj nam je da imate jasnu sliku:
+• koliku prednost Upitomat vama može donijeti
+• kako Upitomat izgleda u akciji
+• bi li ovo imalo smisla za vašu tvrtku
+
+Sve prije nego uložite vrijeme ili novac.`,
   },
   {
     question: "Postoji li ugovorna obveza?",
-    answer: "Odgovor će biti dodan.",
+    answer: `Ne. Nema ugovora, nema skrivenih obveza.`,
   },
   {
     question: "Zašto bih ja odabrao vas?",
-    answer: "Odgovor će biti dodan.",
+    answer: `Zato što nismo krenuli od alata, nego od problema.
+
+Radeći s tvrtkama koje već dobivaju dosta upita, imamo dobru ideju gdje sve imaju najviše problema.
+
+Upitomat nije generičko rješenje, nego sustav koji se prilagođava načinu na koji vi već radite i komunicirate.
+
+Cilj je vratiti vama vrijeme i kontrolu, a ne dodati još jedan alat u cijeli kaos.`,
   },
   {
     question: "Što razlikuje Upitomat od ostalih alata?",
-    answer: "Odgovor će biti dodan.",
+    answer: `Većina chatbotova odgovara generički. Postavljaju osnovna pitanja i vrlo brzo se osjeti da s druge strane nije stvarna osoba.
+
+Upitomat radi drugačije.
+
+Naš chatbot treniramo na temelju vaših stvarnih razgovora, vašeg tona i načina komunikacije. Zbog toga ne odgovara kao bot, nego komunicira kao vi.
+
+To omogućuje dublje i prirodnije razgovore s potencijalnim kupcima. Ljudi imaju osjećaj da pričaju s vlasnikom ili nekim iz tima.
+
+Cilj nije automatizirati odgovor, nego zadržati ljudski osjećaj razgovora, bez da vi morate biti stalno prisutni.`,
   },
   {
     question: "Koliko je komplicirano koristiti Upitomat?",
-    answer: "Odgovor će biti dodan.",
+    answer: `Nimalo. Sve je napravljeno da bude jednostavno i razumljivo bez tehničkog znanja.
+
+Mi postavimo sustav, prilagodimo ga vašim potrebama i pokažemo kako ga koristiti.`,
   },
 ];
 
