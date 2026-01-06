@@ -1,7 +1,11 @@
 import { Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const ContactSection = () => {
+interface ContactSectionProps {
+  isSecondary?: boolean;
+}
+
+const ContactSection = ({ isSecondary = false }: ContactSectionProps) => {
   const phoneNumber = "+385992532420";
   const displayPhone = "+385 99 253 2420";
 
@@ -14,22 +18,22 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="kontakt" className="py-16 md:py-24 bg-muted">
+    <section id={isSecondary ? "kontakt-secondary" : "kontakt"} className="py-16 md:py-24 bg-muted">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/20 mb-6">
             <Phone className="w-8 h-8 text-accent" />
           </div>
           
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Zanima vas kako bi Upitomat radio za vašu firmu
+<h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Zanima vas kako bi Upitomat radio za vašu firmu?
           </h2>
           
           <p className="text-lg text-muted-foreground mb-8">
             Javite nam se porukom ili pozivom, ukratko opišite vašu situaciju i mi ćemo na temelju toga vama pripremiti demostraciju chatbota i platforme specijalizirano za vašu firmu, bez ikakave obveze.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button 
               variant="hero" 
               size="xl" 
@@ -44,15 +48,15 @@ const ContactSection = () => {
               </svg>
               WhatsApp
             </Button>
+            
+            <button 
+              onClick={handlePhoneCall}
+              className="text-accent hover:underline font-semibold text-lg transition-colors flex items-center"
+            >
+              <Phone className="w-4 h-4 mr-2" />
+              {displayPhone}
+            </button>
           </div>
-
-          <button 
-            onClick={handlePhoneCall}
-            className="text-accent hover:underline font-semibold text-lg transition-colors"
-          >
-            <Phone className="w-4 h-4 inline mr-2" />
-            {displayPhone}
-          </button>
         </div>
       </div>
     </section>
