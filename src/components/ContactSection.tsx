@@ -26,7 +26,7 @@ const ContactSection = () => {
           </h2>
           
           <p className="text-lg text-muted-foreground mb-8">
-            Javite nam se putem WhatsAppa ili nas nazovite direktno.
+            Na prvom dogovorenom pozivu ćemo pripremiti demonstraciju chatbota i platforme specijalizirano za vašu firmu bez ikakve obveze.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
