@@ -9,9 +9,9 @@ const OurStorySection = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Fan-style overlapping images */}
             <div className="order-2 lg:order-1">
-              <div className="relative w-full h-80 md:h-96">
+              <div className="relative w-full h-80 md:h-96 flex items-center justify-center">
                 {/* First image - rotated left */}
-                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-48 md:w-56 aspect-[3/4] rounded-2xl border-2 border-border overflow-hidden shadow-card-hover transform -rotate-6 hover:-rotate-3 transition-transform duration-300">
+                <div className="absolute left-4 md:left-8 w-40 md:w-52 aspect-square rounded-2xl border-2 border-border overflow-hidden shadow-lg transform -rotate-6 hover:-rotate-3 transition-transform duration-300">
                   <img 
                     src={partner1} 
                     alt="Partner 1" 
@@ -20,7 +20,7 @@ const OurStorySection = () => {
                 </div>
                 
                 {/* Second image - rotated right, overlapping */}
-                <div className="absolute right-0 md:right-8 top-1/2 -translate-y-1/2 w-48 md:w-56 aspect-[3/4] rounded-2xl border-2 border-border overflow-hidden shadow-card-hover transform rotate-6 hover:rotate-3 transition-transform duration-300 z-10">
+                <div className="absolute right-4 md:right-8 w-40 md:w-52 aspect-square rounded-2xl border-2 border-border overflow-hidden shadow-lg transform rotate-6 hover:rotate-3 transition-transform duration-300 z-10">
                   <img 
                     src={partner2} 
                     alt="Partner 2" 
