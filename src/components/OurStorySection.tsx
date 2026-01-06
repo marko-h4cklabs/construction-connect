@@ -6,9 +6,14 @@ const OurStorySection = () => {
     <section id="nasa-prica" className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
+          {/* Headline - centered on mobile */}
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-center lg:text-left lg:hidden">
+            Pomažemo tvrtkama da upiti opet postanu dobra vijest.
+          </h2>
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Fan-style overlapping images */}
-            <div className="order-2 lg:order-1">
+            {/* Fan-style overlapping images - shown after headline on mobile */}
+            <div className="order-1 lg:order-1">
               <div className="relative w-full h-80 md:h-96 flex items-center justify-center">
                 {/* First image - rotated left */}
                 <div className="absolute left-4 md:left-8 w-40 md:w-52 aspect-square rounded-2xl border-2 border-border overflow-hidden shadow-lg transform -rotate-6 hover:-rotate-3 transition-transform duration-300">
@@ -31,8 +36,9 @@ const OurStorySection = () => {
             </div>
 
             {/* Content */}
-            <div className="order-1 lg:order-2">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+            <div className="order-2 lg:order-2">
+              {/* Headline for desktop only */}
+              <h2 className="hidden lg:block text-3xl md:text-4xl font-bold text-foreground mb-6">
                 Pomažemo tvrtkama da upiti opet postanu dobra vijest.
               </h2>
               
