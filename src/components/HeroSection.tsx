@@ -18,7 +18,7 @@ const HeroSection = () => {
             className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto animate-fade-up"
             style={{ animationDelay: "0.2s" }}
           >
-            Upitomat vodi kupce kroz vaša unaprijed postavljena pitanja i drži sve upite organizirane na jednom mjestu.
+            Upitomat vodi potencijalne kupce kroz vaša ključna pitanja i drži sve upite organizirane na jednom mjestu.
           </p>
 
           {/* Video Container */}
