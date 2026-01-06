@@ -40,7 +40,7 @@ const PricingSection = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Kako naše usluge pomažu vašoj firmi?
+            Kako naš sistem pomaže vašoj firmi?
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Na prvom video pozivu vam demonstriramo personalizirani chatbot i platformu za vašu firmu, bez ikakve obveze.
