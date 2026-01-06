@@ -27,22 +27,22 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             <button
-              onClick={() => scrollToSection("video")}
+              onClick={() => scrollToSection("nasa-prica")}
               className="text-muted-foreground hover:text-foreground transition-colors font-medium"
             >
-              Kako Radi
+              Naša priča
             </button>
             <button
               onClick={() => scrollToSection("pricing")}
               className="text-muted-foreground hover:text-foreground transition-colors font-medium"
             >
-              Cijene
+              Usluge
             </button>
             <button
               onClick={() => scrollToSection("faq")}
               className="text-muted-foreground hover:text-foreground transition-colors font-medium"
             >
-              Česta Pitanja
+              Česta pitanja
             </button>
           </div>
 
@@ -65,22 +65,22 @@ const Navbar = () => {
           <div className="md:hidden py-4 border-t border-border animate-fade-in">
             <div className="flex flex-col gap-4">
               <button
-                onClick={() => scrollToSection("video")}
+                onClick={() => scrollToSection("nasa-prica")}
                 className="text-muted-foreground hover:text-foreground transition-colors font-medium text-left py-2"
               >
-                Kako Radi
+                Naša priča
               </button>
               <button
                 onClick={() => scrollToSection("pricing")}
                 className="text-muted-foreground hover:text-foreground transition-colors font-medium text-left py-2"
               >
-                Cijene
+                Usluge
               </button>
               <button
                 onClick={() => scrollToSection("faq")}
                 className="text-muted-foreground hover:text-foreground transition-colors font-medium text-left py-2"
               >
-                Česta Pitanja
+                Česta pitanja
               </button>
               <div className="flex flex-col gap-2 pt-4 border-t border-border">
                 <Button variant="accent" onClick={() => scrollToSection("kontakt")}>Kontaktirajte nas</Button>
