@@ -7,24 +7,24 @@ import {
 
 const faqs = [
   {
-    question: "Pitanje 1 - Čeka vaš sadržaj",
-    answer: "Odgovor na prvo pitanje će biti dodan.",
+    question: "Kako funkcionira prvobitan poziv i zašto je važan?",
+    answer: "Odgovor će biti dodan.",
   },
   {
-    question: "Pitanje 2 - Čeka vaš sadržaj",
-    answer: "Odgovor na drugo pitanje će biti dodan.",
+    question: "Postoji li ugovorna obveza?",
+    answer: "Odgovor će biti dodan.",
   },
   {
-    question: "Pitanje 3 - Čeka vaš sadržaj",
-    answer: "Odgovor na treće pitanje će biti dodan.",
+    question: "Zašto bih ja odabrao vas?",
+    answer: "Odgovor će biti dodan.",
   },
   {
-    question: "Pitanje 4 - Čeka vaš sadržaj",
-    answer: "Odgovor na četvrto pitanje će biti dodan.",
+    question: "Što razlikuje Upitomat od ostalih alata?",
+    answer: "Odgovor će biti dodan.",
   },
   {
-    question: "Pitanje 5 - Čeka vaš sadržaj",
-    answer: "Odgovor na peto pitanje će biti dodan.",
+    question: "Koliko je komplicirano koristiti Upitomat?",
+    answer: "Odgovor će biti dodan.",
   },
 ];
 
@@ -34,16 +34,9 @@ const FAQSection = () => {
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground">
             Često Postavljana Pitanja
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Imate pitanja? Imamo odgovore. Ako ne možete pronaći ono što tražite,{" "}
-            <button className="text-accent hover:underline font-medium">
-              kontaktirajte naš tim
-            </button>
-            .
-          </p>
         </div>
 
         {/* FAQ Accordion */}
