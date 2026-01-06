@@ -22,11 +22,11 @@ const ContactSection = () => {
           </div>
           
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Pogledajte kako bi Upitomat radio za vašu firmu
+            Zanima vas kako bi Upitomat radio za vašu firmu
           </h2>
           
           <p className="text-lg text-muted-foreground mb-8">
-            Na prvom dogovorenom pozivu ćemo pripremiti demonstraciju chatbota i platforme specijalizirano za vašu firmu bez ikakve obveze.
+            Javite nam se porukom ili pozivom, ukratko opišite vašu situaciju i mi ćemo na temelju toga vama pripremiti demostraciju chatbota i platforme specijalizirano za vašu firmu, bez ikakave obveze.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
