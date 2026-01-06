@@ -22,7 +22,7 @@ const ContactSection = () => {
           </div>
           
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Kontaktirajte nas porukom ili pozivom
+            Pogledajte kako bi Upitomat radio za vašu firmu
           </h2>
           
           <p className="text-lg text-muted-foreground mb-8">
