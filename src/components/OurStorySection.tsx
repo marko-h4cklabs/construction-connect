@@ -33,24 +33,36 @@ const OurStorySection = () => {
             {/* Content */}
             <div className="order-1 lg:order-2">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Naša Priča
+                Pomažemo tvrtkama da upiti opet postanu dobra vijest.
               </h2>
               
-              <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <div className="space-y-4 text-muted-foreground leading-relaxed whitespace-pre-line">
                 <p>
-                  {/* Placeholder text - replace with actual content */}
-                  Ovdje napišite svoju priču o tome tko ste i što radite. 
-                  Opišite svoju misiju, vrijednosti i zašto ste pokrenuli Upitomat.
+                  {`Upitomat je nastao iz stvarnog problema kojeg smo vidjeli iz prve ruke.
+
+Radeći s tvrtkama kojima dovodimo više kvalitetnih upita, te pričajući sa novima, stalno slušamo istu stvar:
+
+"Dobivamo dosta upita, ali nemamo vremena za sve pohvatati."
+"Sve je razbacano, ne znam tko mi glavu nosi."
+"Trošimo sate da na kraju shvatimo da od toga neće biti ništa."
+
+Za većinu, problem nije s interesom, nego s kaosom koji dolazi s njim. A upiti umjesto prilike postaju svakodnevni teret.`}
                 </p>
                 
                 <p>
-                  Dodajte informacije o vašem timu, iskustvu i što vas čini 
-                  posebnima na tržištu.
+                  {`Baš zbog toga smo napravili Upitomat.
+
+Da olakšamo život firmama koji imaju te probleme, uštedimo ih puno vremena i omogućimo im puno efektivniju organizaciju svih upita i razgovora sa potencijalnim kupcima.`}
                 </p>
                 
                 <p>
-                  Podijelite svoju viziju i kako pomažete hrvatskim tvrtkama 
-                  da bolje upravljaju upitima svojih klijenata.
+                  {`Znamo da je svaka tvrtka drugačija. I tu smo se pobrinuli da se stvarno izdvojimo.
+
+Za Upitomat izgradili napredan chatbot kojeg istreniramo na temelju vaših stvarnih razgovora, vašeg tona i načina komunikacije. Tako da 24/7 imate verziju sebe koja ne samo da vodi ljude nego im i daje osjećaj da pričaju s vlasnikom ili članom tima.`}
+                </p>
+                
+                <p>
+                  Cilj nije zamijeniti vas, nego vam vratiti vrijeme i kontrolu. A na kraju i vratiti osmijeh na lice svaki puta kada provjerite vaše upite.
                 </p>
               </div>
             </div>
