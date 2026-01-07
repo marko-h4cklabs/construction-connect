@@ -47,7 +47,11 @@ const HeroSection = () => {
               ) : (
                 <button
                   onClick={handlePlay}
-                  className="relative w-full h-full cursor-pointer group"
+                  onTouchEnd={(e) => {
+                    e.preventDefault();
+                    handlePlay();
+                  }}
+                  className="relative w-full h-full cursor-pointer group touch-manipulation"
                   aria-label="Pokreni video"
                 >
                   <img
