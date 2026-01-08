@@ -1,64 +1,9 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 
-declare global {
-  interface Window {
-    YT: any;
-    onYouTubeIframeAPIReady: () => void;
-  }
-}
+const VIDEO_ID = "t5guw03Rgbg";
 
 const HeroSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const playerRef = useRef<any>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Load YouTube IFrame API
-    if (!window.YT) {
-      const tag = document.createElement("script");
-      tag.src = "https://www.youtube.com/iframe_api";
-      const firstScriptTag = document.getElementsByTagName("script")[0];
-      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!isPlaying) return;
-
-    const initPlayer = () => {
-      if (playerRef.current) return;
-
-      const mountEl = document.getElementById("yt-player");
-      if (!mountEl) return;
-
-      playerRef.current = new window.YT.Player(mountEl, {
-        videoId: "t5guw03Rgbg",
-        playerVars: {
-          autoplay: 1,
-          playsinline: 1,
-          rel: 0,
-        },
-        events: {
-          onReady: (event: any) => {
-            event.target.playVideo();
-          },
-        },
-      });
-    };
-
-    // Wait a tick so the "yt-player" div is in the DOM after state update
-    const raf = window.requestAnimationFrame(() => {
-      if (window.YT && window.YT.Player) {
-        initPlayer();
-      } else {
-        window.onYouTubeIframeAPIReady = initPlayer;
-      }
-    });
-
-    return () => {
-      window.cancelAnimationFrame(raf);
-    };
-  }, [isPlaying]);
 
   const handlePlay = () => {
     setIsPlaying(true);
@@ -68,9 +13,8 @@ const HeroSection = () => {
     <section className="pt-24 pb-16 md:pt-32 md:pb-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-
           {/* Headline */}
-          <h1 
+          <h1
             className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground mb-6 leading-tight animate-fade-up"
             style={{ animationDelay: "0.1s" }}
           >
@@ -79,22 +23,28 @@ const HeroSection = () => {
           </h1>
 
           {/* Subheadline */}
-          <p 
+          <p
             className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto animate-fade-up"
             style={{ animationDelay: "0.2s" }}
           >
-            Upitomat vodi potencijalne kupce kroz vaša ključna pitanja i drži sve upite organizirane na jednom mjestu.
+            Upitomat vodi potencijalne kupce kroz vaša ključna pitanja i drži sve upite
+            organizirane na jednom mjestu.
           </p>
 
           {/* Video Container with custom thumbnail */}
-          <div 
-            ref={containerRef}
+          <div
             className="relative rounded-2xl overflow-hidden shadow-card-hover animate-fade-up"
             style={{ animationDelay: "0.3s" }}
           >
             <div className="aspect-video relative">
               {isPlaying ? (
-                <div id="yt-player" className="absolute inset-0 w-full h-full" />
+                <iframe
+                  className="absolute inset-0 h-full w-full"
+                  src={`https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&playsinline=1&rel=0`}
+                  title="Upitomat - Demo dashboard i chatbot"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
               ) : (
                 <button
                   type="button"
@@ -106,14 +56,18 @@ const HeroSection = () => {
                     src="/vsl-thumbnail.png"
                     alt="Video thumbnail"
                     className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <svg 
-                      className="w-16 h-12 md:w-20 md:h-14 transition-transform group-hover:scale-110" 
+                    <svg
+                      className="w-16 h-12 md:w-20 md:h-14 transition-transform group-hover:scale-110"
                       viewBox="0 0 68 48"
                     >
-                      <path fill="#f00" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/>
-                      <path fill="#fff" d="M45 24L27 14v20"/>
+                      <path
+                        fill="#f00"
+                        d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"
+                      />
+                      <path fill="#fff" d="M45 24L27 14v20" />
                     </svg>
                   </div>
                 </button>
@@ -127,3 +81,4 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
