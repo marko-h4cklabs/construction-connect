@@ -1,10 +1,51 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+
+declare global {
+  interface Window {
+    YT: any;
+    onYouTubeIframeAPIReady: () => void;
+  }
+}
 
 const HeroSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const playerRef = useRef<any>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Load YouTube IFrame API
+    if (!window.YT) {
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      const firstScriptTag = document.getElementsByTagName("script")[0];
+      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+    }
+  }, []);
 
   const handlePlay = () => {
     setIsPlaying(true);
+
+    const initPlayer = () => {
+      playerRef.current = new window.YT.Player("yt-player", {
+        videoId: "t5guw03Rgbg",
+        playerVars: {
+          autoplay: 1,
+          playsinline: 1,
+          rel: 0,
+        },
+        events: {
+          onReady: (event: any) => {
+            event.target.playVideo();
+          },
+        },
+      });
+    };
+
+    if (window.YT && window.YT.Player) {
+      initPlayer();
+    } else {
+      window.onYouTubeIframeAPIReady = initPlayer;
+    }
   };
 
   return (
@@ -31,19 +72,13 @@ const HeroSection = () => {
 
           {/* Video Container with custom thumbnail */}
           <div 
+            ref={containerRef}
             className="relative rounded-2xl overflow-hidden shadow-card-hover animate-fade-up"
             style={{ animationDelay: "0.3s" }}
           >
             <div className="aspect-video">
               {isPlaying ? (
-                <iframe
-                  className="w-full h-full"
-                  src="https://www.youtube.com/embed/t5guw03Rgbg?autoplay=1&playsinline=1"
-                  title="Upitomat VSL"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
+                <div id="yt-player" className="w-full h-full" />
               ) : (
                 <button
                   type="button"
