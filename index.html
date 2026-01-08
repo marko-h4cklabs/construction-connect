@@ -82,18 +82,23 @@
     <!-- WhatsApp Click Tracking for Meta Pixel -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        // Find any button that contains text "WhatsApp"
-        const waButtons = Array.from(document.querySelectorAll("button"))
-          .filter(btn => btn.innerText.trim().toLowerCase() === "whatsapp");
+
+        // Find WhatsApp buttons by text and by SVG icon
+        const waButtons = Array.from(document.querySelectorAll("button, a, div"))
+          .filter(el => {
+            const text = el.innerText.trim().toLowerCase();
+            return text.includes("whatsapp");
+          });
 
         waButtons.forEach(function (btn) {
           btn.addEventListener("click", function () {
             if (typeof fbq === "function") {
               fbq("trackCustom", "WhatsAppClick");
-              console.log("WhatsAppClick fired");
+              console.log("WhatsAppClick FIRED");
             }
           });
         });
+
       });
     </script>
   </body>
