@@ -27,12 +27,6 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             <button
-              onClick={() => scrollToSection("nasa-prica")}
-              className="text-muted-foreground hover:text-foreground transition-colors font-medium"
-            >
-              Naša priča
-            </button>
-            <button
               onClick={() => scrollToSection("pricing")}
               className="text-muted-foreground hover:text-foreground transition-colors font-medium"
             >
@@ -43,6 +37,12 @@ const Navbar = () => {
               className="text-muted-foreground hover:text-foreground transition-colors font-medium"
             >
               Klijenti
+            </button>
+            <button
+              onClick={() => scrollToSection("nasa-prica")}
+              className="text-muted-foreground hover:text-foreground transition-colors font-medium"
+            >
+              Naša priča
             </button>
             <button
               onClick={() => scrollToSection("faq")}
@@ -71,12 +71,6 @@ const Navbar = () => {
           <div className="md:hidden py-4 border-t border-border animate-fade-in bg-background">
             <div className="flex flex-col gap-4 items-center text-center">
               <button
-                onClick={() => scrollToSection("nasa-prica")}
-                className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
-              >
-                Naša priča
-              </button>
-              <button
                 onClick={() => scrollToSection("pricing")}
                 className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
               >
@@ -87,6 +81,12 @@ const Navbar = () => {
                 className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
               >
                 Klijenti
+              </button>
+              <button
+                onClick={() => scrollToSection("nasa-prica")}
+                className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
+              >
+                Naša priča
               </button>
               <button
                 onClick={() => scrollToSection("faq")}
