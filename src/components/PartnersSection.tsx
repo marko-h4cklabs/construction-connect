@@ -7,6 +7,7 @@ import srnecStyle from "@/assets/partners/srnec-style.png";
 import vrtnaOaza from "@/assets/partners/vrtna-oaza.png";
 import edenville from "@/assets/partners/edenville.png";
 import inovix from "@/assets/partners/inovix.png";
+import cakule from "@/assets/partners/cakule.jpg";
 
 const partners = [
   { name: "Render13", logo: render13 },
@@ -18,6 +19,10 @@ const partners = [
   { name: "Vrtna Oaza Beljan", logo: vrtnaOaza },
   { name: "EdenVille", logo: edenville },
   { name: "Inovix", logo: inovix },
+];
+
+const mobileOnlyPartners = [
+  { name: "Ćakule", logo: cakule },
 ];
 
 export { partners };
@@ -41,6 +46,22 @@ const PartnersSection = () => {
                 className="max-h-12 md:max-h-24 w-auto object-contain"
               />
               <span className="text-xs md:text-sm font-medium text-muted-foreground text-center">
+                {partner.name}
+              </span>
+            </div>
+          ))}
+          {/* Mobile-only partner */}
+          {mobileOnlyPartners.map((partner) => (
+            <div
+              key={partner.name}
+              className="md:hidden bg-background rounded-xl p-3 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-shadow duration-300 gap-2"
+            >
+              <img
+                src={partner.logo}
+                alt={partner.name}
+                className="max-h-12 w-auto object-contain"
+              />
+              <span className="text-xs font-medium text-muted-foreground text-center">
                 {partner.name}
               </span>
             </div>
