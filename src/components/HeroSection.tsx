@@ -1,12 +1,112 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+declare global {
+  interface Window {
+    YT: any;
+    onYouTubeIframeAPIReady?: () => void;
+  }
+}
 
 const VIDEO_ID = "t5guw03Rgbg";
 
 const HeroSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
 
+  const playerRef = useRef<any>(null);
+  const pendingPlayRef = useRef(false);
+  const apiReadyRef = useRef(false);
+
+  useEffect(() => {
+    // Load YouTube IFrame API early so mobile Safari doesn't have to wait after the tap.
+    if (!window.YT) {
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      const firstScriptTag = document.getElementsByTagName("script")[0];
+      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+    }
+  }, []);
+
+  useEffect(() => {
+    const mountEl = document.getElementById("yt-player");
+    if (!mountEl) return;
+
+    const initPlayer = () => {
+      if (playerRef.current) return;
+      if (!window.YT?.Player) return;
+
+      apiReadyRef.current = true;
+
+      playerRef.current = new window.YT.Player(mountEl, {
+        videoId: VIDEO_ID,
+        playerVars: {
+          autoplay: 0,
+          playsinline: 1,
+          rel: 0,
+          modestbranding: 1,
+        },
+        events: {
+          onReady: (event: any) => {
+            // Warm up the video so the first tap is more likely to start immediately on iOS.
+            try {
+              event.target.cueVideoById?.(VIDEO_ID);
+            } catch {
+              // ignore
+            }
+
+            // If user already tapped play while the player was initializing, start now.
+            if (pendingPlayRef.current) {
+              pendingPlayRef.current = false;
+              event.target.playVideo();
+              try {
+                event.target.unMute?.();
+              } catch {
+                // ignore
+              }
+            }
+          },
+        },
+      });
+    };
+
+    if (window.YT?.Player) {
+      initPlayer();
+    } else {
+      window.onYouTubeIframeAPIReady = initPlayer;
+    }
+  }, []);
+
   const handlePlay = () => {
     setIsPlaying(true);
+
+    // Try to start playback within the same user gesture (important for iOS Safari).
+    const player = playerRef.current;
+    if (player?.playVideo) {
+      player.playVideo();
+      try {
+        player.unMute?.();
+      } catch {
+        // ignore
+      }
+    } else {
+      // Player not ready yet; remember intent and autoplay onReady.
+      pendingPlayRef.current = true;
+
+      // Edge: if API is ready but player isn't created yet, attempt again next tick.
+      if (apiReadyRef.current) {
+        requestAnimationFrame(() => {
+          const p = playerRef.current;
+          if (p?.playVideo) {
+            pendingPlayRef.current = false;
+            p.playVideo();
+            try {
+              p.unMute?.();
+            } catch {
+              // ignore
+            }
+          }
+        });
+      }
+    }
   };
 
   return (
@@ -31,25 +131,20 @@ const HeroSection = () => {
             organizirane na jednom mjestu.
           </p>
 
-          {/* Video Container with custom thumbnail */}
+          {/* Video */}
           <div
             className="relative rounded-2xl overflow-hidden shadow-card-hover animate-fade-up"
             style={{ animationDelay: "0.3s" }}
           >
             <div className="aspect-video relative">
-              {isPlaying ? (
-                <iframe
-                  className="absolute inset-0 h-full w-full"
-                  src={`https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&playsinline=1&rel=0`}
-                  title="Upitomat - Demo dashboard i chatbot"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                />
-              ) : (
+              {/* Player stays mounted to avoid "first tap loads, second tap plays" on iOS */}
+              <div id="yt-player" className="absolute inset-0 h-full w-full" />
+
+              {!isPlaying && (
                 <button
                   type="button"
                   onClick={handlePlay}
-                  className="relative w-full h-full cursor-pointer group touch-manipulation"
+                  className="absolute inset-0 w-full h-full cursor-pointer group touch-manipulation"
                   aria-label="Pokreni video"
                 >
                   <img
