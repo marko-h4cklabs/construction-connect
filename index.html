@@ -82,15 +82,15 @@
     <!-- WhatsApp Click Tracking for Meta Pixel -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const waButtons = document.querySelectorAll('*[href*="wa.me"], *[href*="api.whatsapp.com"], button, div');
+        // Find any button that contains text "WhatsApp"
+        const waButtons = Array.from(document.querySelectorAll("button"))
+          .filter(btn => btn.innerText.trim().toLowerCase() === "whatsapp");
 
         waButtons.forEach(function (btn) {
           btn.addEventListener("click", function () {
-            const link = btn.href || btn.dataset.href || "";
-            if (link.includes("wa.me") || link.includes("api.whatsapp.com")) {
-              if (typeof fbq === "function") {
-                fbq("trackCustom", "WhatsAppClick");
-              }
+            if (typeof fbq === "function") {
+              fbq("trackCustom", "WhatsAppClick");
+              console.log("WhatsAppClick fired");
             }
           });
         });
