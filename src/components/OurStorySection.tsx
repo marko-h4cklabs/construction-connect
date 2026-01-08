@@ -42,7 +42,42 @@ const OurStorySection = () => {
                 Pomažemo tvrtkama da upiti opet postanu dobra vijest.
               </h2>
               
-              <div className="space-y-4 text-muted-foreground leading-relaxed whitespace-pre-line">
+              {/* Mobile text */}
+              <div className="lg:hidden space-y-4 text-muted-foreground leading-relaxed whitespace-pre-line">
+                <p>
+                  {`Upitomat je nastao iz stalnih problema kojih smo vidjeli iz prve ruke surađujući sa hrvatskim tvrtkama.
+
+"Dobivamo dosta upita, ali nemamo vremena za sve pohvatati."
+"Sve je razbacano, ne znam tko mi glavu nosi."
+"Trošimo sate da na kraju shvatimo da od toga neće biti ništa."
+
+Za većinu, problem nije s interesom, nego s kaosom koji dolazi s njim. A upiti umjesto prilike postaju svakodnevni teret.`}
+                </p>
+                
+                <p>
+                  Baš zbog toga smo napravili Upitomat.
+                </p>
+                
+                <p>
+                  Kako bismo firmama olakšali posao, uštedjeli im vrijeme i omogućili jasnu, učinkovitu organizaciju svih upita i razgovora.
+                </p>
+                
+                <p>
+                  Svaka tvrtka je drugačija, zato se i ovdje izdvajamo.
+                </p>
+                
+                <p>
+                  {`Upitomat koristi napredan chatbot koji treniramo na temelju vaših stvarnih razgovora, tona i načina komunikacije. 
+Tako imate verziju sebe koja 24/7 vodi razgovore i ostavlja dojam da ljudi pričaju s vlasnikom ili članom tima, dok se svi upiti i razgovori automatski organiziraju na jednom mjestu.`}
+                </p>
+                
+                <p>
+                  Cilj nije zamijeniti vas, nego vam vratiti mir u glavi i kontrolu nad upitima.
+                </p>
+              </div>
+
+              {/* Desktop text */}
+              <div className="hidden lg:block space-y-4 text-muted-foreground leading-relaxed whitespace-pre-line">
                 <p>
                   {`Upitomat je nastao iz stvarnog problema kojeg smo vidjeli iz prve ruke.
 
