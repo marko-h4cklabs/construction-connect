@@ -35,7 +35,7 @@ const flowSteps = [
 
 const PricingSection = () => {
   return (
-    <section id="pricing" className="py-12 md:py-24 bg-muted/30">
+    <section id="pricing" className="py-8 md:py-24 bg-muted/30 scroll-mt-20">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -84,12 +84,6 @@ const PricingSection = () => {
             ))}
           </div>
 
-          {/* Mobile Flow Indicators */}
-          <div className="flex justify-center mt-8 lg:hidden">
-            <div className="flex items-center gap-2 text-muted-foreground text-sm">
-              <span>Slijedite korake od 1 do 6</span>
-            </div>
-          </div>
         </div>
       </div>
     </section>
