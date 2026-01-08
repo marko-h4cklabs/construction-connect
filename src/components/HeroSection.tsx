@@ -22,11 +22,16 @@ const HeroSection = () => {
     }
   }, []);
 
-  const handlePlay = () => {
-    setIsPlaying(true);
+  useEffect(() => {
+    if (!isPlaying) return;
 
     const initPlayer = () => {
-      playerRef.current = new window.YT.Player("yt-player", {
+      if (playerRef.current) return;
+
+      const mountEl = document.getElementById("yt-player");
+      if (!mountEl) return;
+
+      playerRef.current = new window.YT.Player(mountEl, {
         videoId: "t5guw03Rgbg",
         playerVars: {
           autoplay: 1,
@@ -41,11 +46,22 @@ const HeroSection = () => {
       });
     };
 
-    if (window.YT && window.YT.Player) {
-      initPlayer();
-    } else {
-      window.onYouTubeIframeAPIReady = initPlayer;
-    }
+    // Wait a tick so the "yt-player" div is in the DOM after state update
+    const raf = window.requestAnimationFrame(() => {
+      if (window.YT && window.YT.Player) {
+        initPlayer();
+      } else {
+        window.onYouTubeIframeAPIReady = initPlayer;
+      }
+    });
+
+    return () => {
+      window.cancelAnimationFrame(raf);
+    };
+  }, [isPlaying]);
+
+  const handlePlay = () => {
+    setIsPlaying(true);
   };
 
   return (
