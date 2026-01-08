@@ -76,9 +76,9 @@ const HeroSection = () => {
             className="relative rounded-2xl overflow-hidden shadow-card-hover animate-fade-up"
             style={{ animationDelay: "0.3s" }}
           >
-            <div className="aspect-video">
+            <div className="aspect-video relative">
               {isPlaying ? (
-                <div id="yt-player" className="w-full h-full" />
+                <div id="yt-player" className="absolute inset-0 w-full h-full" />
               ) : (
                 <button
                   type="button"
