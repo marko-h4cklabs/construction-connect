@@ -38,7 +38,7 @@ const HeroSection = () => {
               {isPlaying ? (
                 <iframe
                   className="w-full h-full"
-                  src="https://www.youtube.com/embed/t5guw03Rgbg?autoplay=1&mute=1&playsinline=1"
+                  src="https://www.youtube.com/embed/t5guw03Rgbg?autoplay=1&playsinline=1"
                   title="Upitomat VSL"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
