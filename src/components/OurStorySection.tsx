@@ -14,7 +14,7 @@ const OurStorySection = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Fan-style overlapping images - shown after headline on mobile */}
             <div className="order-1 lg:order-1">
-              <div className="relative w-full h-80 md:h-96 flex items-center justify-center">
+              <div className="relative w-full h-52 md:h-96 flex items-center justify-center">
                 {/* First image - rotated left */}
                 <div className="absolute left-4 md:left-8 w-40 md:w-52 aspect-square rounded-2xl border-2 border-border overflow-hidden shadow-lg transform -rotate-6 hover:-rotate-3 transition-transform duration-300">
                   <img 
