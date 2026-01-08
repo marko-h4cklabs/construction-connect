@@ -78,5 +78,23 @@
     /></noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- WhatsApp Click Tracking for Meta Pixel -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const waButtons = document.querySelectorAll('*[href*="wa.me"], *[href*="api.whatsapp.com"], button, div');
+
+        waButtons.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            const link = btn.href || btn.dataset.href || "";
+            if (link.includes("wa.me") || link.includes("api.whatsapp.com")) {
+              if (typeof fbq === "function") {
+                fbq("trackCustom", "WhatsAppClick");
+              }
+            }
+          });
+        });
+      });
+    </script>
   </body>
 </html>
