@@ -35,7 +35,7 @@ const flowSteps = [
 
 const PricingSection = () => {
   return (
-    <section id="pricing" className="py-16 md:py-24 bg-muted/30">
+    <section id="pricing" className="py-12 md:py-24 bg-muted/30">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
