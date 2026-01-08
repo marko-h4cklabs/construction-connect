@@ -13,12 +13,14 @@ const partners = [
   { name: "Simper Tech", logo: simpertech },
   { name: "Shiatsu Shen", logo: shiatsuShen },
   { name: "Edictus", logo: edictus },
-  { name: "Beriko", logo: beriko },
-  { name: "Srnec Style", logo: srnecStyle },
+  { name: "Beriko d.o.o", logo: beriko },
+  { name: "Srnec Style d.o.o", logo: srnecStyle },
   { name: "Vrtna Oaza Beljan", logo: vrtnaOaza },
   { name: "EdenVille", logo: edenville },
   { name: "Inovix", logo: inovix },
 ];
+
+export { partners };
 
 const PartnersSection = () => {
   return (
@@ -31,13 +33,16 @@ const PartnersSection = () => {
           {partners.map((partner) => (
             <div
               key={partner.name}
-              className="bg-background rounded-xl p-6 flex items-center justify-center shadow-sm hover:shadow-md transition-shadow duration-300"
+              className="bg-background rounded-xl p-6 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-shadow duration-300 gap-4"
             >
               <img
                 src={partner.logo}
                 alt={partner.name}
                 className="max-h-20 md:max-h-24 w-auto object-contain"
               />
+              <span className="text-sm font-medium text-muted-foreground text-center">
+                {partner.name}
+              </span>
             </div>
           ))}
         </div>
