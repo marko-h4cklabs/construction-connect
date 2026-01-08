@@ -29,18 +29,18 @@ const PartnersSection = () => {
         <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-12">
           Firme sa kojima surađujemo
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-8 max-w-5xl mx-auto">
           {partners.map((partner) => (
             <div
               key={partner.name}
-              className="bg-background rounded-xl p-6 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-shadow duration-300 gap-4"
+              className="bg-background rounded-xl p-3 md:p-6 flex flex-col items-center justify-center shadow-sm hover:shadow-md transition-shadow duration-300 gap-2 md:gap-4"
             >
               <img
                 src={partner.logo}
                 alt={partner.name}
-                className="max-h-20 md:max-h-24 w-auto object-contain"
+                className="max-h-12 md:max-h-24 w-auto object-contain"
               />
-              <span className="text-sm font-medium text-muted-foreground text-center">
+              <span className="text-xs md:text-sm font-medium text-muted-foreground text-center">
                 {partner.name}
               </span>
             </div>
