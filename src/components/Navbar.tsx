@@ -68,33 +68,33 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-border animate-fade-in">
-            <div className="flex flex-col gap-4">
+          <div className="md:hidden py-4 border-t border-border animate-fade-in bg-background">
+            <div className="flex flex-col gap-4 items-center text-center">
               <button
                 onClick={() => scrollToSection("nasa-prica")}
-                className="text-muted-foreground hover:text-foreground transition-colors font-medium text-left py-2"
+                className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
               >
                 Naša priča
               </button>
               <button
                 onClick={() => scrollToSection("pricing")}
-                className="text-muted-foreground hover:text-foreground transition-colors font-medium text-left py-2"
+                className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
               >
                 Sistem
               </button>
               <button
                 onClick={() => scrollToSection("klijenti")}
-                className="text-muted-foreground hover:text-foreground transition-colors font-medium text-left py-2"
+                className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
               >
                 Klijenti
               </button>
               <button
                 onClick={() => scrollToSection("faq")}
-                className="text-muted-foreground hover:text-foreground transition-colors font-medium text-left py-2"
+                className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
               >
                 Česta pitanja
               </button>
-              <div className="flex flex-col gap-2 pt-4 border-t border-border">
+              <div className="flex flex-col gap-2 pt-4 border-t border-border w-full items-center">
                 <Button variant="accent" onClick={() => scrollToSection("kontakt")}>Kontaktirajte nas</Button>
               </div>
             </div>

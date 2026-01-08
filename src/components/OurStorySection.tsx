@@ -3,7 +3,7 @@ import partner2 from "@/assets/partner2.jpg";
 
 const OurStorySection = () => {
   return (
-    <section id="nasa-prica" className="py-16 md:py-24 bg-background">
+    <section id="nasa-prica" className="py-16 md:py-24 bg-background scroll-mt-20">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Headline - centered on mobile */}
