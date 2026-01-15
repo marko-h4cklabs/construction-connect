@@ -1,9 +1,8 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import LogoMarquee from "@/components/LogoMarquee";
+import FeatureShowcase from "@/components/FeatureShowcase";
 import ContactSection from "@/components/ContactSection";
 import OurStorySection from "@/components/OurStorySection";
-import PricingSection from "@/components/PricingSection";
 import FAQSection from "@/components/FAQSection";
 import PartnersSection from "@/components/PartnersSection";
 import Footer from "@/components/Footer";
@@ -18,12 +17,11 @@ const Index = () => {
         <Navbar />
         <main>
           <HeroSection />
-          <LogoMarquee />
+          <ScrollReveal>
+            <FeatureShowcase />
+          </ScrollReveal>
           <ScrollReveal>
             <ContactSection />
-          </ScrollReveal>
-          <ScrollReveal delay={100}>
-            <PricingSection />
           </ScrollReveal>
           <ScrollReveal delay={100}>
             <PartnersSection />
