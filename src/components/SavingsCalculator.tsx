@@ -65,7 +65,7 @@ const SavingsCalculator = () => {
               {/* Slider 1 - Hours per day */}
               <div className="mb-8">
                 <div className="flex justify-between items-center mb-3">
-                  <label className="text-foreground font-medium">Broj sati dnevno na upite</label>
+                  <label className="text-foreground font-medium">Broj sati dnevno na upite?</label>
                   <span className="text-primary font-bold text-lg tabular-nums">{hoursPerDay}h</span>
                 </div>
                 <Slider
@@ -177,7 +177,7 @@ const SavingsCalculator = () => {
                 href="https://preview--nurturehub-ai.lovable.app/auth"
                 className="mt-4 w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-xl hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-lg"
               >
-                Želim da AI radi ovo za mene
+                Isprobajte Upitomat odmah
               </a>
               <p className="text-center text-sm text-muted-foreground">
                 Procjene se temelje na implementacijama. Točne brojke prolazimo na demo pozivu.
