@@ -6,6 +6,7 @@ import beriko from "@/assets/partners/beriko-new.jpg";
 import srnecStyle from "@/assets/partners/srnec-style-new.jpg";
 import vrtnaOaza from "@/assets/partners/vrtna-oaza-new.jpg";
 import edenville from "@/assets/partners/edenville-new.jpg";
+import inovix from "@/assets/partners/inovix-new.jpg";
 
 const partners = [
   { name: "Render13", logo: render13 },
@@ -16,6 +17,7 @@ const partners = [
   { name: "Srnec Style", logo: srnecStyle },
   { name: "Vrtna Oaza Beljan", logo: vrtnaOaza },
   { name: "EdenVille", logo: edenville },
+  { name: "Inovix", logo: inovix },
 ];
 
 export { partners };
@@ -27,16 +29,16 @@ const PartnersSection = () => {
         <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-12">
           Firme sa kojima surađujemo
         </h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-5xl mx-auto">
           {partners.map((partner) => (
             <div
               key={partner.name}
-              className="bg-background/50 backdrop-blur-sm rounded-xl p-4 md:p-6 flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 aspect-[3/2]"
+              className="bg-background/50 backdrop-blur-sm rounded-xl p-5 md:p-8 flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 aspect-[3/2]"
             >
               <img
                 src={partner.logo}
                 alt={partner.name}
-                className="max-h-16 md:max-h-20 w-auto object-contain"
+                className="max-h-20 md:max-h-28 w-auto object-contain"
               />
             </div>
           ))}
