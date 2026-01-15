@@ -47,7 +47,7 @@ const FeatureShowcase = () => {
   }, [activeFeature]);
 
   return (
-    <section id="sistem" className="py-12 md:py-24 bg-muted/30 scroll-mt-20">
+    <section id="sistem" className="py-12 md:py-24 scroll-mt-20">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
