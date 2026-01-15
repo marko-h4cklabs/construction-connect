@@ -115,26 +115,17 @@ const HeroSection = () => {
         <div className="max-w-4xl mx-auto text-center">
           {/* Headline */}
           <h1
-            className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground mb-6 leading-tight animate-fade-up"
+            className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground mb-8 leading-tight animate-fade-up"
             style={{ animationDelay: "0.1s" }}
           >
             Ušteđeno vrijeme.{" "}
             <span className="text-gradient">Organizirani upiti.</span>
           </h1>
 
-          {/* Subheadline */}
-          <p
-            className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto animate-fade-up"
-            style={{ animationDelay: "0.2s" }}
-          >
-            Upitomat vodi potencijalne kupce kroz vaša ključna pitanja i drži sve upite
-            organizirane na jednom mjestu.
-          </p>
-
           {/* Video */}
           <div
-            className="relative rounded-2xl overflow-hidden shadow-card-hover animate-fade-up"
-            style={{ animationDelay: "0.3s" }}
+            className="relative rounded-2xl overflow-hidden shadow-card-hover animate-fade-up mb-10"
+            style={{ animationDelay: "0.2s" }}
           >
             <div className="aspect-video relative">
               {/* Player stays mounted to avoid "first tap loads, second tap plays" on iOS */}
@@ -168,6 +159,20 @@ const HeroSection = () => {
                 </button>
               )}
             </div>
+          </div>
+
+          {/* CTA Button */}
+          <div
+            className="animate-fade-up"
+            style={{ animationDelay: "0.3s" }}
+          >
+            <a
+              href="https://preview--nurturehub-ai.lovable.app/auth"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-xl hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-lg"
+            >
+              Isprobajte Upitomat danas
+              <span className="text-sm opacity-80">→ Ulogirajte se</span>
+            </a>
           </div>
         </div>
       </div>
