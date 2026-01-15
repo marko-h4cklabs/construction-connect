@@ -65,7 +65,7 @@ const SavingsCalculator = () => {
               {/* Slider 1 - Hours per day */}
               <div className="mb-8">
                 <div className="flex justify-between items-center mb-3">
-                  <label className="text-foreground font-medium">Potrošenih sati dnevno na odgovaranje klijentima?</label>
+                  <label className="text-foreground font-medium">Broj sati dnevno na upite</label>
                   <span className="text-primary font-bold text-lg tabular-nums">{hoursPerDay}h</span>
                 </div>
                 <Slider
