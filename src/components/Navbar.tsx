@@ -54,7 +54,9 @@ const Navbar = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <Button variant="accent" onClick={() => scrollToSection("kontakt")}>Kontaktirajte nas</Button>
+            <Button variant="accent" asChild>
+              <a href="https://preview--nurturehub-ai.lovable.app/auth">Isprobajte Upitomat</a>
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -95,7 +97,9 @@ const Navbar = () => {
                 Česta pitanja
               </button>
               <div className="flex flex-col gap-2 pt-4 border-t border-border w-full items-center">
-                <Button variant="accent" onClick={() => scrollToSection("kontakt")}>Kontaktirajte nas</Button>
+                <Button variant="accent" asChild>
+                  <a href="https://preview--nurturehub-ai.lovable.app/auth">Isprobajte Upitomat</a>
+                </Button>
               </div>
             </div>
           </div>

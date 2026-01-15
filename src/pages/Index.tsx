@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import FeatureShowcase from "@/components/FeatureShowcase";
-import ContactSection from "@/components/ContactSection";
 import OurStorySection from "@/components/OurStorySection";
 import FAQSection from "@/components/FAQSection";
 import PartnersSection from "@/components/PartnersSection";
@@ -20,9 +19,6 @@ const Index = () => {
           <ScrollReveal>
             <FeatureShowcase />
           </ScrollReveal>
-          <ScrollReveal>
-            <ContactSection />
-          </ScrollReveal>
           <ScrollReveal delay={100}>
             <PartnersSection />
           </ScrollReveal>
@@ -31,9 +27,6 @@ const Index = () => {
           </ScrollReveal>
           <ScrollReveal delay={100}>
             <FAQSection />
-          </ScrollReveal>
-          <ScrollReveal delay={100}>
-            <ContactSection isSecondary />
           </ScrollReveal>
         </main>
         <Footer />
