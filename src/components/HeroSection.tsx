@@ -163,16 +163,18 @@ const HeroSection = () => {
 
           {/* CTA Button */}
           <div
-            className="animate-fade-up"
+            className="animate-fade-up flex flex-col items-center gap-2"
             style={{ animationDelay: "0.3s" }}
           >
             <a
               href="https://preview--nurturehub-ai.lovable.app/auth"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-xl hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-lg"
             >
-              Isprobajte Upitomat danas
-              <span className="text-sm opacity-80">→ Ulogirajte se</span>
+              Isprobajte Upitomat odmah
             </a>
+            <p className="text-sm text-muted-foreground">
+              14 dana besplatno, bez obveze
+            </p>
           </div>
         </div>
       </div>
