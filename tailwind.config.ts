@@ -87,6 +87,20 @@ export default {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
         },
+        "aurora-1": {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+          "33%": { transform: "translate(30px, -30px) scale(1.05)" },
+          "66%": { transform: "translate(-20px, 20px) scale(0.95)" },
+        },
+        "aurora-2": {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+          "33%": { transform: "translate(-40px, 20px) scale(1.1)" },
+          "66%": { transform: "translate(30px, -15px) scale(0.9)" },
+        },
+        "aurora-3": {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+          "50%": { transform: "translate(20px, 30px) scale(1.08)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -95,6 +109,9 @@ export default {
         "fade-in": "fade-in 0.4s ease-out forwards",
         "marquee": "marquee 30s linear infinite",
         "marquee-mobile": "marquee 8s linear infinite",
+        "aurora-1": "aurora-1 15s ease-in-out infinite",
+        "aurora-2": "aurora-2 18s ease-in-out infinite",
+        "aurora-3": "aurora-3 12s ease-in-out infinite",
       },
     },
   },
