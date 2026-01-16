@@ -55,7 +55,7 @@ const Navbar = () => {
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
             <Button variant="accent" asChild>
-              <a href="https://preview--nurturehub-ai.lovable.app/auth">Isprobajte Upitomat</a>
+              <a href="https://nurturehub-ai.lovable.app">Isprobajte Upitomat</a>
             </Button>
           </div>
 
@@ -98,7 +98,7 @@ const Navbar = () => {
               </button>
               <div className="flex flex-col gap-2 pt-4 border-t border-border w-full items-center">
                 <Button variant="accent" asChild>
-                  <a href="https://preview--nurturehub-ai.lovable.app/auth">Isprobajte Upitomat</a>
+                  <a href="https://nurturehub-ai.lovable.app">Isprobajte Upitomat</a>
                 </Button>
               </div>
             </div>

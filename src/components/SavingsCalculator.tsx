@@ -206,7 +206,7 @@ const SavingsCalculator = () => {
 
               {/* CTA Button */}
               <a
-                href="https://preview--nurturehub-ai.lovable.app/auth"
+                href="https://nurturehub-ai.lovable.app"
                 className="mt-2 md:mt-4 w-full inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 bg-primary text-primary-foreground font-semibold rounded-xl hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-base md:text-lg"
               >
                 Isprobajte Upitomat odmah
