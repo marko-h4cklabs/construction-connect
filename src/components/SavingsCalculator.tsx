@@ -54,8 +54,8 @@ const SavingsCalculator = () => {
     const weeksPerMonth = 4;
     const totalHoursPerMonth = hoursPerDay * workDaysPerWeek * weeksPerMonth;
     
-    // Assume 70% automation rate
-    const hoursSaved = Math.round(totalHoursPerMonth * 0.7);
+    // 100% automation rate - show real data
+    const hoursSaved = Math.round(totalHoursPerMonth);
     
     // Calculate money saved based on hourly rate
     const moneySaved = Math.round(hoursSaved * hourlyRate);
