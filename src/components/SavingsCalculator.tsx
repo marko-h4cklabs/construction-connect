@@ -51,7 +51,7 @@ const SavingsCalculator = () => {
 
   useEffect(() => {
     // Calculate monthly hours spent on client communication
-    const weeksPerMonth = 4.33;
+    const weeksPerMonth = 4;
     const totalHoursPerMonth = hoursPerDay * workDaysPerWeek * weeksPerMonth;
     
     // Assume 70% automation rate
