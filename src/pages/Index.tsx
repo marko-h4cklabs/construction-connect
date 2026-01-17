@@ -3,7 +3,6 @@ import HeroSection from "@/components/HeroSection";
 import FeatureShowcase from "@/components/FeatureShowcase";
 import SavingsCalculator from "@/components/SavingsCalculator";
 import OurStorySection from "@/components/OurStorySection";
-import FAQSection from "@/components/FAQSection";
 import CTASection from "@/components/CTASection";
 import PartnersSection from "@/components/PartnersSection";
 import Footer from "@/components/Footer";
@@ -29,9 +28,6 @@ const Index = () => {
           </ScrollReveal>
           <ScrollReveal delay={100}>
             <OurStorySection />
-          </ScrollReveal>
-          <ScrollReveal delay={100}>
-            <FAQSection />
           </ScrollReveal>
           <ScrollReveal delay={100}>
             <CTASection />
