@@ -61,7 +61,7 @@ const FeatureShowcase = () => {
 
         {/* Feature Grid + Preview */}
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
             {/* Feature Boxes - Left Side */}
             <div className="grid grid-cols-2 gap-4">
               {features.map((feature) => {
@@ -117,10 +117,10 @@ const FeatureShowcase = () => {
             </div>
 
             {/* Video Preview - Right Side */}
-            <div className="relative order-first lg:order-last">
-              <div className="relative rounded-2xl overflow-hidden bg-card border border-border shadow-xl">
-                {/* Video container with aspect ratio */}
-                <div className="aspect-video relative">
+            <div className="relative order-first lg:order-last h-full">
+              <div className="relative rounded-2xl overflow-hidden bg-card border border-border shadow-xl h-full min-h-[400px] lg:min-h-full">
+                {/* Video container - matches height of feature boxes */}
+                <div className="absolute inset-0">
                   <video
                     ref={videoRef}
                     src={activeFeature.videoUrl}
