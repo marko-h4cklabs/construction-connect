@@ -8,8 +8,7 @@ const HeroSection = () => {
             className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground leading-tight animate-fade-up"
             style={{ animationDelay: "0.1s" }}
           >
-            Vaši klijenti žele odgovore odmah.{" "}
-            <span className="text-gradient">Vi nemate vremena.</span>
+            <span className="text-gradient">Nemate vremena.</span>
           </h1>
 
           {/* Subheadline */}
@@ -17,13 +16,7 @@ const HeroSection = () => {
             className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-up"
             style={{ animationDelay: "0.2s" }}
           >
-            Upitomat je inteligentni chatbot koji odgovara na upite umjesto vas i vodi komunikaciju u vašem jeziku i stilu.
-          </p>
-          <p
-            className="mt-4 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-up"
-            style={{ animationDelay: "0.3s" }}
-          >
-            Sve razgovore i prikupljene podatke automatski sprema u jedan organizirani inbox s potpunim pregledom svih upita.
+            Upitomat odgovara na upite u vašem stilu te organizira sve razgovore i podatke u jednom inboxu.
           </p>
         </div>
       </div>
