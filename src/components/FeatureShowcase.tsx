@@ -117,8 +117,8 @@ const FeatureShowcase = () => {
             </div>
 
             {/* Video Preview - Right Side */}
-            <div className="relative order-first lg:order-last h-full">
-              <div className="relative rounded-2xl overflow-hidden bg-card border border-border shadow-xl h-full min-h-[400px] lg:min-h-full">
+            <div className="relative order-first lg:order-last">
+              <div className="relative rounded-2xl overflow-hidden bg-card border border-border shadow-xl aspect-[4/3]">
                 {/* Video container - matches height of feature boxes */}
                 <div className="absolute inset-0">
                   <video
