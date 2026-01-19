@@ -1,6 +1,6 @@
 const HeroSection = () => {
   return (
-    <section className="pt-24 pb-16 md:pt-32 md:pb-24">
+    <section className="pt-32 pb-16 md:pt-44 md:pb-24">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           {/* Headline */}
@@ -13,7 +13,7 @@ const HeroSection = () => {
 
           {/* Subheadline */}
           <p
-            className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-up"
+            className="mt-10 md:mt-12 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-up"
             style={{ animationDelay: "0.2s" }}
           >
             Upitomat odgovara na upite u <span className="font-semibold text-foreground">vašem stilu</span> te organizira sve razgovore i podatke u <span className="font-semibold text-foreground">jednom inboxu.</span>
