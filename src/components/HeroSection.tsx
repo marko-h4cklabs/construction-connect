@@ -5,7 +5,7 @@ const HeroSection = () => {
         <div className="max-w-4xl mx-auto text-center">
           {/* Headline */}
           <h1
-            className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground leading-tight animate-fade-up"
+            className="text-[2.5rem] md:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-foreground leading-tight animate-fade-up"
             style={{ animationDelay: "0.1s" }}
           >
             <span className="text-gradient">Nemate vremena.</span>
