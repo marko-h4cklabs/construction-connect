@@ -27,7 +27,7 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             <button
-              onClick={() => scrollToSection("pricing")}
+              onClick={() => scrollToSection("sistem")}
               className="text-muted-foreground hover:text-foreground transition-colors font-medium"
             >
               Sistem
@@ -43,12 +43,6 @@ const Navbar = () => {
               className="text-muted-foreground hover:text-foreground transition-colors font-medium"
             >
               Naša priča
-            </button>
-            <button
-              onClick={() => scrollToSection("faq")}
-              className="text-muted-foreground hover:text-foreground transition-colors font-medium"
-            >
-              Česta pitanja
             </button>
           </div>
 
@@ -73,7 +67,7 @@ const Navbar = () => {
           <div className="md:hidden py-4 border-t border-border animate-fade-in bg-background">
             <div className="flex flex-col gap-4 items-center text-center">
               <button
-                onClick={() => scrollToSection("pricing")}
+                onClick={() => scrollToSection("sistem")}
                 className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
               >
                 Sistem
@@ -89,12 +83,6 @@ const Navbar = () => {
                 className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
               >
                 Naša priča
-              </button>
-              <button
-                onClick={() => scrollToSection("faq")}
-                className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
-              >
-                Česta pitanja
               </button>
               <div className="flex flex-col gap-2 pt-4 border-t border-border w-full items-center">
                 <Button variant="accent" asChild>
