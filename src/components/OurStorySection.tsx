@@ -8,7 +8,7 @@ const OurStorySection = () => {
         <div className="max-w-6xl mx-auto">
           {/* Headline - centered on mobile */}
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-center lg:text-left lg:hidden">
-            Pomažemo tvrtkama da upiti opet postanu dobra vijest.
+            Naša priča
           </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -39,72 +39,45 @@ const OurStorySection = () => {
             <div className="order-2 lg:order-2">
               {/* Headline for desktop only */}
               <h2 className="hidden lg:block text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Pomažemo tvrtkama da upiti opet postanu dobra vijest.
+                Naša priča
               </h2>
               
-              {/* Mobile text */}
-              <div className="lg:hidden space-y-4 text-muted-foreground leading-relaxed whitespace-pre-line">
+              {/* Story text - same for mobile and desktop */}
+              <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  {`Upitomat je nastao iz stalnih problema kojih smo vidjeli iz prve ruke surađujući sa hrvatskim tvrtkama.
-
-"Dobivamo dosta upita, ali nemamo vremena za sve pohvatati."
-"Sve je razbacano, ne znam tko mi glavu nosi."
-"Trošimo sate da na kraju shvatimo da od toga neće biti ništa."
-
-Za većinu, problem nije s interesom, nego s kaosom koji dolazi s njim. A upiti umjesto prilike postaju svakodnevni teret.`}
+                  Upitomat je nastao iz problema kojih smo saznali iz prve ruke surađujući sa hrvatskim firmama.
+                </p>
+                
+                <div className="space-y-2 pl-4 border-l-2 border-primary/30 italic">
+                  <p>"Dobivam previše upita, a nemam vremena za sve pohvatati."</p>
+                  <p>"Sve je razbacano, ne znam tko mi glavu nosi."</p>
+                  <p>"Gubim sate svaki dan ponavljajući isto, da na kraju ne bude ništa."</p>
+                </div>
+                
+                <p className="font-semibold text-foreground">
+                  I to s nama jednostavno ne stoji.
                 </p>
                 
                 <p>
-                  Baš zbog toga smo napravili Upitomat.
+                  Marljiv i kvalitetan rad zaslužuje biti nagrađen, a ne kažnjen.
+                </p>
+                
+                <p className="font-semibold text-foreground">
+                  Zato smo kreirali Upitomat.
                 </p>
                 
                 <p>
-                  Kako bismo firmama olakšali posao, uštedjeli im vrijeme i omogućili jasnu, učinkovitu organizaciju svih upita i razgovora.
+                  Kako bi vam poruke prestale uzimati dan, a posao opet imao mir i red.
                 </p>
                 
-                <p>
-                  Svaka tvrtka je drugačija, zato se i ovdje izdvajamo.
-                </p>
-                
-                <p>
-                  {`Upitomat koristi napredan chatbot koji treniramo na temelju vaših stvarnih razgovora, tona i načina komunikacije. 
-Tako imate verziju sebe koja 24/7 vodi razgovore i ostavlja dojam da ljudi pričaju s vlasnikom ili članom tima, dok se svi upiti i razgovori automatski organiziraju na jednom mjestu.`}
-                </p>
-                
-                <p>
-                  Cilj nije zamijeniti vas, nego vam vratiti mir u glavi i kontrolu nad upitima.
-                </p>
-              </div>
-
-              {/* Desktop text */}
-              <div className="hidden lg:block space-y-4 text-muted-foreground leading-relaxed whitespace-pre-line">
-                <p>
-                  {`Upitomat je nastao iz stvarnog problema kojeg smo vidjeli iz prve ruke.
-
-Radeći s tvrtkama kojima dovodimo više kvalitetnih upita, te pričajući sa novima, stalno slušamo istu stvar:
-
-"Dobivamo dosta upita, ali nemamo vremena za sve pohvatati."
-"Sve je razbacano, ne znam tko mi glavu nosi."
-"Trošimo sate da na kraju shvatimo da od toga neće biti ništa."
-
-Za većinu, problem nije s interesom, nego s kaosom koji dolazi s njim. A upiti umjesto prilike postaju svakodnevni teret.`}
-                </p>
-                
-                <p>
-                  {`Baš zbog toga smo napravili Upitomat.
-
-Da olakšamo život firmama koji imaju te probleme, uštedimo ih puno vremena i omogućimo im puno efektivniju organizaciju svih upita i razgovora sa potencijalnim kupcima.`}
-                </p>
-                
-                <p>
-                  {`Znamo da je svaka tvrtka drugačija. I tu smo se pobrinuli da se stvarno izdvojimo.
-
-Za Upitomat izgradili napredan chatbot kojeg istreniramo na temelju vaših stvarnih razgovora, vašeg tona i načina komunikacije. Tako da 24/7 imate verziju sebe koja ne samo da vodi ljude nego im i daje osjećaj da pričaju s vlasnikom ili članom tima.`}
-                </p>
-                
-                <p>
-                  Cilj nije zamijeniti vas, nego vam vratiti vrijeme i kontrolu. A na kraju i vratiti osmijeh na lice svaki puta kada provjerite vaše upite.
-                </p>
+                <div className="pt-4 mt-4 border-t border-border">
+                  <p className="text-foreground font-medium">
+                    Jedno pitanje za vas:
+                  </p>
+                  <p className="text-lg text-foreground mt-2">
+                    Na što biste radije potrošili vrijeme koje će vam danas ukrasti poruke?
+                  </p>
+                </div>
               </div>
             </div>
           </div>
