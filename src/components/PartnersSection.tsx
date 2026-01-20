@@ -24,7 +24,7 @@ export { partners };
 
 const PartnersSection = () => {
   return (
-    <section id="klijenti" className="py-6 md:py-24 scroll-mt-20">
+    <section id="klijenti" className="py-6 md:py-24 scroll-mt-24">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-12">
           Firme sa kojima surađujemo

@@ -70,7 +70,7 @@ const SavingsCalculator = () => {
   }, [hoursPerDay, hourlyRate, workDaysPerWeek]);
 
   return (
-    <section className="py-10 md:py-24">
+    <section id="kalkulator" className="py-10 md:py-24 scroll-mt-24">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-6 md:mb-12">

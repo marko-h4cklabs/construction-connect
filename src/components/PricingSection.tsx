@@ -25,7 +25,7 @@ const PricingSection = () => {
       id: "pro",
       name: "Pro",
       price: 84,
-      description: "Za ozbiljne biznise",
+      description: "Za ozbiljne firme",
       popular: true,
       platforms: [
         { icon: MessageCircle, name: "Messenger" },
@@ -49,7 +49,7 @@ const PricingSection = () => {
   };
 
   return (
-    <section id="pricing" className="py-16 md:py-24 scroll-mt-20">
+    <section id="cijene" className="py-16 md:py-24 scroll-mt-24">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
@@ -139,10 +139,6 @@ const PricingSection = () => {
           ))}
         </div>
 
-        {/* Bottom note */}
-        <p className="text-center text-sm text-muted-foreground mt-8">
-          14 dana besplatno, bez obveze. Otkažite kad god želite.
-        </p>
       </div>
     </section>
   );
