@@ -33,9 +33,6 @@ const Index = () => {
           <ScrollReveal delay={100}>
             <OurStorySection />
           </ScrollReveal>
-          <ScrollReveal delay={100}>
-            <CTASection />
-          </ScrollReveal>
         </main>
         <Footer />
       </div>
