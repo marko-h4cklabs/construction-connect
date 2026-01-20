@@ -27,16 +27,28 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             <button
-              onClick={() => scrollToSection("sistem")}
+              onClick={() => scrollToSection("proces")}
               className="text-muted-foreground hover:text-foreground transition-colors font-medium"
             >
-              Sistem
+              Proces
+            </button>
+            <button
+              onClick={() => scrollToSection("kalkulator")}
+              className="text-muted-foreground hover:text-foreground transition-colors font-medium"
+            >
+              Kalkulator
             </button>
             <button
               onClick={() => scrollToSection("klijenti")}
               className="text-muted-foreground hover:text-foreground transition-colors font-medium"
             >
               Klijenti
+            </button>
+            <button
+              onClick={() => scrollToSection("cijene")}
+              className="text-muted-foreground hover:text-foreground transition-colors font-medium"
+            >
+              Cijene
             </button>
             <button
               onClick={() => scrollToSection("nasa-prica")}
@@ -67,16 +79,28 @@ const Navbar = () => {
           <div className="md:hidden py-4 border-t border-border animate-fade-in bg-background">
             <div className="flex flex-col gap-4 items-center text-center">
               <button
-                onClick={() => scrollToSection("sistem")}
+                onClick={() => scrollToSection("proces")}
                 className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
               >
-                Sistem
+                Proces
+              </button>
+              <button
+                onClick={() => scrollToSection("kalkulator")}
+                className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
+              >
+                Kalkulator
               </button>
               <button
                 onClick={() => scrollToSection("klijenti")}
                 className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
               >
                 Klijenti
+              </button>
+              <button
+                onClick={() => scrollToSection("cijene")}
+                className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
+              >
+                Cijene
               </button>
               <button
                 onClick={() => scrollToSection("nasa-prica")}
