@@ -3,31 +3,31 @@ import { Inbox, Bot, Share2, BarChart3 } from "lucide-react";
 
 const features = [
   {
+    id: "analytics",
+    icon: BarChart3,
+    title: "Analitika i Uvid",
+    description: "Jasan uvid u rezultate i ponašanje vaših klijenata",
+    videoUrl: "/videos/demo.mp4",
+  },
+  {
     id: "inbox",
     icon: Inbox,
     title: "Upitomat Inbox",
-    description: "Svi upiti s različitih platformi na jednom mjestu",
-    videoUrl: "/videos/demo.mp4", // Placeholder - will need actual videos
-  },
-  {
-    id: "chatbot",
-    icon: Bot,
-    title: "Personalizirani Chatbot",
-    description: "AI asistent obučen specifično za vašu firmu",
+    description: "Svi vaši upiti uredno organizirani na jednom mjestu.",
     videoUrl: "/videos/demo.mp4",
   },
   {
     id: "platforms",
     icon: Share2,
-    title: "Platforme",
-    description: "Instagram, Facebook, WhatsApp - sve povezano",
+    title: "Povezane Platforme",
+    description: "Instagram, Facebook, WhatsApp i ostali kanali, po vašem odabiru.",
     videoUrl: "/videos/demo.mp4",
   },
   {
-    id: "analytics",
-    icon: BarChart3,
-    title: "Analitika i Uvid",
-    description: "Pratite performanse i razumijte svoje klijente",
+    id: "chatbot",
+    icon: Bot,
+    title: "Personalizirani Chatbot",
+    description: "AI asistent obučen prema vašem načinu rada i komunikacije",
     videoUrl: "/videos/demo.mp4",
   },
 ];

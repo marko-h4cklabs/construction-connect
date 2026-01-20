@@ -1,90 +1,148 @@
-import { MessageSquare, Bot, Database, LayoutDashboard, Clock, Users } from "lucide-react";
-
-const flowSteps = [
-  {
-    icon: Users,
-    title: "Potencijalni klijent",
-    description: "Klijent vas kontaktira putem bilo koje platforme",
-  },
-  {
-    icon: MessageSquare,
-    title: "Vaš Messenger",
-    description: "Facebook, Instagram, WhatsApp ili web chat",
-  },
-  {
-    icon: Bot,
-    title: "Personalizirani Chatbot",
-    description: "AI asistent obučen za vašu firmu odgovara 24/7",
-  },
-  {
-    icon: Database,
-    title: "Spremanje Podataka",
-    description: "Ključne informacije i razgovori se automatski spremaju",
-  },
-  {
-    icon: LayoutDashboard,
-    title: "Upravljačka Ploča",
-    description: "Pregled svih upita i informacija s jednog mjesta",
-  },
-  {
-    icon: Clock,
-    title: "Ušteđeno Vrijeme",
-    description: "Više strukture, manje ručnog rada",
-  },
-];
+import { Check, MessageCircle, Instagram, Mail, Globe } from "lucide-react";
+import { useState } from "react";
 
 const PricingSection = () => {
+  const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
+
+  const plans = [
+    {
+      id: "basic",
+      name: "Osnovni",
+      price: 62,
+      description: "Za fokusirane timove",
+      platforms: [
+        { icon: MessageCircle, name: "Messenger" },
+        { icon: Instagram, name: "Instagram" },
+      ],
+      features: [
+        "2 social media platforme",
+        "Upitomat Inbox",
+        "Personalizirani chatbot",
+        "Osnovna analitika",
+      ],
+    },
+    {
+      id: "pro",
+      name: "Pro",
+      price: 84,
+      description: "Za ozbiljne biznise",
+      popular: true,
+      platforms: [
+        { icon: MessageCircle, name: "Messenger" },
+        { icon: Instagram, name: "Instagram" },
+        { icon: Mail, name: "Email" },
+        { icon: Globe, name: "Website chatbot" },
+      ],
+      features: [
+        "4 platforme uključene",
+        "Upitomat Inbox",
+        "Personalizirani chatbot",
+        "Napredna analitika",
+        "Prioritetna podrška",
+      ],
+    },
+  ];
+
+  const handleSelectPlan = (planId: string) => {
+    setSelectedPlan(planId);
+    window.open("https://nurturehub-ai.lovable.app", "_blank");
+  };
+
   return (
-    <section id="pricing" className="py-8 md:py-24 bg-muted/30 scroll-mt-20">
+    <section id="pricing" className="py-16 md:py-24 scroll-mt-20">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Kako naš sistem pomaže vašoj firmi?
+            Odaberite svoj plan
           </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Na prvom video pozivu vam demonstriramo personalizirani chatbot i platformu za vašu firmu, bez ikakve obveze.
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Jednostavne cijene, bez skrivenih troškova
           </p>
         </div>
 
-        {/* Flow Diagram */}
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {flowSteps.map((step, index) => (
-              <div key={step.title} className="relative group">
-                {/* Card */}
-                <div className="bg-background border border-border rounded-xl p-6 h-full transition-all duration-300 hover:shadow-lg hover:border-primary/50 hover:-translate-y-1">
-                  {/* Step Number */}
-                  <div className="absolute -top-3 -left-3 w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-bold shadow-md">
-                    {index + 1}
-                  </div>
-                  
-                  {/* Icon */}
-                  <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                    <step.icon className="w-7 h-7 text-primary" />
-                  </div>
-                  
-                  {/* Content */}
-                  <h3 className="text-lg font-semibold text-foreground mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {step.description}
-                  </p>
+        {/* Pricing Cards */}
+        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {plans.map((plan) => (
+            <div
+              key={plan.id}
+              className={`
+                relative rounded-2xl border-2 p-6 md:p-8 transition-all duration-300
+                ${plan.popular 
+                  ? "border-primary bg-primary/5 shadow-xl scale-[1.02]" 
+                  : "border-border bg-background hover:border-primary/50"
+                }
+              `}
+            >
+              {/* Popular badge */}
+              {plan.popular && (
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <span className="bg-primary text-primary-foreground text-xs font-semibold px-3 py-1 rounded-full">
+                    Najpopularniji
+                  </span>
                 </div>
+              )}
 
-                {/* Connection Arrow (hidden on last item per row) */}
-                {index < flowSteps.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
-                    <div className="w-6 h-0.5 bg-primary/40"></div>
-                    <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-4 border-t-transparent border-b-4 border-b-transparent border-l-6 border-l-primary/40"></div>
-                  </div>
-                )}
+              {/* Plan header */}
+              <div className="text-center mb-6">
+                <h3 className="text-xl font-bold text-foreground mb-1">{plan.name}</h3>
+                <p className="text-sm text-muted-foreground mb-4">{plan.description}</p>
+                
+                <div className="flex items-baseline justify-center gap-1">
+                  <span className="text-4xl md:text-5xl font-bold text-foreground">{plan.price}</span>
+                  <span className="text-muted-foreground">€/mj</span>
+                </div>
               </div>
-            ))}
-          </div>
 
+              {/* Platforms */}
+              <div className="mb-6">
+                <p className="text-sm font-medium text-foreground mb-3">Uključene platforme:</p>
+                <div className="flex flex-wrap gap-2">
+                  {plan.platforms.map((platform, idx) => (
+                    <div
+                      key={idx}
+                      className="flex items-center gap-2 bg-muted/50 rounded-lg px-3 py-2"
+                    >
+                      <platform.icon className="w-4 h-4 text-primary" />
+                      <span className="text-sm text-foreground">{platform.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Features */}
+              <ul className="space-y-3 mb-8">
+                {plan.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-center gap-3">
+                    <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                      <Check className="w-3 h-3 text-primary" />
+                    </div>
+                    <span className="text-sm text-muted-foreground">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* CTA Button */}
+              <button
+                onClick={() => handleSelectPlan(plan.id)}
+                className={`
+                  w-full py-3 px-6 rounded-xl font-semibold transition-all duration-300
+                  ${plan.popular
+                    ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-xl"
+                    : "bg-muted text-foreground hover:bg-muted/80"
+                  }
+                `}
+              >
+                Odaberi {plan.name}
+              </button>
+            </div>
+          ))}
         </div>
+
+        {/* Bottom note */}
+        <p className="text-center text-sm text-muted-foreground mt-8">
+          14 dana besplatno, bez obveze. Otkažite kad god želite.
+        </p>
       </div>
     </section>
   );

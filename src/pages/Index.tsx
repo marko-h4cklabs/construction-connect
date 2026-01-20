@@ -5,6 +5,7 @@ import SavingsCalculator from "@/components/SavingsCalculator";
 import OurStorySection from "@/components/OurStorySection";
 import CTASection from "@/components/CTASection";
 import PartnersSection from "@/components/PartnersSection";
+import PricingSection from "@/components/PricingSection";
 import Footer from "@/components/Footer";
 import BackgroundEffects from "@/components/BackgroundEffects";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -25,6 +26,9 @@ const Index = () => {
           </ScrollReveal>
           <ScrollReveal delay={100}>
             <PartnersSection />
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <PricingSection />
           </ScrollReveal>
           <ScrollReveal delay={100}>
             <OurStorySection />
