@@ -123,10 +123,7 @@ const PricingSection = () => {
                   {plan.hasDropdown && (
                     <Select value={selectedPlatform} onValueChange={setSelectedPlatform}>
                       <SelectTrigger className="w-auto min-w-[160px] bg-muted/50 border-0 rounded-lg px-3 py-2 h-auto">
-                        <div className="flex items-center gap-2">
-                          <SelectedPlatformIcon className="w-4 h-4 text-primary" />
-                          <SelectValue />
-                        </div>
+                        <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="bg-background border border-border">
                         {platformOptions.map((option) => (
