@@ -169,6 +169,10 @@ const PricingSection = () => {
           ))}
         </div>
 
+        {/* Note */}
+        <p className="text-center text-sm text-muted-foreground mt-8">
+          Plan možete promijeniti kada god želite
+        </p>
       </div>
     </section>
   );
