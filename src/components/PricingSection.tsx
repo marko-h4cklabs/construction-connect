@@ -1,21 +1,33 @@
-import { Check, MessageCircle, Instagram, Mail, Globe } from "lucide-react";
+import { Check, MessageCircle, Instagram, Mail, Globe, ChevronDown } from "lucide-react";
 import { useState } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const PricingSection = () => {
-  const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
+  const [selectedPlatform, setSelectedPlatform] = useState<string>("messenger");
+
+  const platformOptions = [
+    { value: "messenger", icon: MessageCircle, name: "Messenger" },
+    { value: "instagram", icon: Instagram, name: "Instagram" },
+    { value: "website", icon: Globe, name: "Website chatbot" },
+  ];
 
   const plans = [
     {
       id: "basic",
       name: "Osnovni",
-      price: 62,
-      description: "Za fokusirane timove",
+      price: "44,99",
       platforms: [
-        { icon: MessageCircle, name: "Messenger" },
-        { icon: Instagram, name: "Instagram" },
+        { icon: Mail, name: "Email" },
       ],
+      hasDropdown: true,
       features: [
-        "2 social media platforme",
+        "2 platforme uključene",
         "Upitomat Inbox",
         "Personalizirani chatbot",
         "Osnovna analitika",
@@ -24,8 +36,7 @@ const PricingSection = () => {
     {
       id: "pro",
       name: "Pro",
-      price: 84,
-      description: "Za ozbiljne firme",
+      price: "89,99",
       popular: true,
       platforms: [
         { icon: MessageCircle, name: "Messenger" },
@@ -34,19 +45,20 @@ const PricingSection = () => {
         { icon: Globe, name: "Website chatbot" },
       ],
       features: [
-        "4 platforme uključene",
+        "Sve platforme uključene",
         "Upitomat Inbox",
         "Personalizirani chatbot",
         "Napredna analitika",
-        "Prioritetna podrška",
+        "24/7 Prioritetna podrška",
       ],
     },
   ];
 
   const handleSelectPlan = (planId: string) => {
-    setSelectedPlan(planId);
     window.open("https://nurturehub-ai.lovable.app", "_blank");
   };
+
+  const SelectedPlatformIcon = platformOptions.find(p => p.value === selectedPlatform)?.icon || MessageCircle;
 
   return (
     <section id="cijene" className="py-16 md:py-24 scroll-mt-24">
@@ -85,8 +97,7 @@ const PricingSection = () => {
 
               {/* Plan header */}
               <div className="text-center mb-6">
-                <h3 className="text-xl font-bold text-foreground mb-1">{plan.name}</h3>
-                <p className="text-sm text-muted-foreground mb-4">{plan.description}</p>
+                <h3 className="text-xl font-bold text-foreground mb-4">{plan.name}</h3>
                 
                 <div className="flex items-baseline justify-center gap-1">
                   <span className="text-4xl md:text-5xl font-bold text-foreground">{plan.price}</span>
@@ -107,6 +118,28 @@ const PricingSection = () => {
                       <span className="text-sm text-foreground">{platform.name}</span>
                     </div>
                   ))}
+                  
+                  {/* Dropdown for basic plan */}
+                  {plan.hasDropdown && (
+                    <Select value={selectedPlatform} onValueChange={setSelectedPlatform}>
+                      <SelectTrigger className="w-auto min-w-[160px] bg-muted/50 border-0 rounded-lg px-3 py-2 h-auto">
+                        <div className="flex items-center gap-2">
+                          <SelectedPlatformIcon className="w-4 h-4 text-primary" />
+                          <SelectValue />
+                        </div>
+                      </SelectTrigger>
+                      <SelectContent className="bg-background border border-border">
+                        {platformOptions.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            <div className="flex items-center gap-2">
+                              <option.icon className="w-4 h-4 text-primary" />
+                              <span>{option.name}</span>
+                            </div>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  )}
                 </div>
               </div>
 
