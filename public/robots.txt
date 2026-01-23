@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://upitomat.eu/sitemap.xml
+Sitemap: https://upitomat.hr/sitemap.xml
