@@ -1,15 +1,32 @@
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
-  const scrollToSection = (id: string) => {
+  // Handle hash navigation on page load and hash changes
+  useEffect(() => {
+    const hash = location.hash.replace('#', '');
+    if (hash) {
+      setTimeout(() => {
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    }
+  }, [location.hash]);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+      window.history.pushState(null, '', `#${id}`);
     }
     setIsOpen(false);
   };
@@ -26,36 +43,41 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <button
-              onClick={() => scrollToSection("proces")}
+            <a
+              href="#proces"
+              onClick={(e) => handleNavClick(e, "proces")}
               className="text-muted-foreground hover:text-foreground transition-colors font-medium"
             >
               Proces
-            </button>
-            <button
-              onClick={() => scrollToSection("kalkulator")}
+            </a>
+            <a
+              href="#kalkulator"
+              onClick={(e) => handleNavClick(e, "kalkulator")}
               className="text-muted-foreground hover:text-foreground transition-colors font-medium"
             >
               Kalkulator
-            </button>
-            <button
-              onClick={() => scrollToSection("klijenti")}
+            </a>
+            <a
+              href="#klijenti"
+              onClick={(e) => handleNavClick(e, "klijenti")}
               className="text-muted-foreground hover:text-foreground transition-colors font-medium"
             >
               Klijenti
-            </button>
-            <button
-              onClick={() => scrollToSection("cijene")}
+            </a>
+            <a
+              href="#cijene"
+              onClick={(e) => handleNavClick(e, "cijene")}
               className="text-muted-foreground hover:text-foreground transition-colors font-medium"
             >
               Cijene
-            </button>
-            <button
-              onClick={() => scrollToSection("nasa-prica")}
+            </a>
+            <a
+              href="#nasa-prica"
+              onClick={(e) => handleNavClick(e, "nasa-prica")}
               className="text-muted-foreground hover:text-foreground transition-colors font-medium"
             >
               Naša priča
-            </button>
+            </a>
           </div>
 
           {/* Desktop CTA */}
@@ -78,36 +100,41 @@ const Navbar = () => {
         {isOpen && (
           <div className="md:hidden py-4 border-t border-border animate-fade-in bg-background">
             <div className="flex flex-col gap-4 items-center text-center">
-              <button
-                onClick={() => scrollToSection("proces")}
+              <a
+                href="#proces"
+                onClick={(e) => handleNavClick(e, "proces")}
                 className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
               >
                 Proces
-              </button>
-              <button
-                onClick={() => scrollToSection("kalkulator")}
+              </a>
+              <a
+                href="#kalkulator"
+                onClick={(e) => handleNavClick(e, "kalkulator")}
                 className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
               >
                 Kalkulator
-              </button>
-              <button
-                onClick={() => scrollToSection("klijenti")}
+              </a>
+              <a
+                href="#klijenti"
+                onClick={(e) => handleNavClick(e, "klijenti")}
                 className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
               >
                 Klijenti
-              </button>
-              <button
-                onClick={() => scrollToSection("cijene")}
+              </a>
+              <a
+                href="#cijene"
+                onClick={(e) => handleNavClick(e, "cijene")}
                 className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
               >
                 Cijene
-              </button>
-              <button
-                onClick={() => scrollToSection("nasa-prica")}
+              </a>
+              <a
+                href="#nasa-prica"
+                onClick={(e) => handleNavClick(e, "nasa-prica")}
                 className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
               >
                 Naša priča
-              </button>
+              </a>
               <div className="flex flex-col gap-2 pt-4 border-t border-border w-full items-center">
                 <Button variant="accent" asChild>
                   <a href="https://app.upitomat.hr/auth">Isprobajte Upitomat</a>
