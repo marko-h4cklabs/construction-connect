@@ -25,7 +25,7 @@ const HeroSection = () => {
             style={{ animationDelay: "0.3s" }}
           >
             <a
-              href="https://nurturehub-ai.lovable.app"
+              href="https://app.upitomat.hr/auth"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"

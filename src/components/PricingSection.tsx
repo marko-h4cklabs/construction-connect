@@ -55,7 +55,7 @@ const PricingSection = () => {
   ];
 
   const handleSelectPlan = (planId: string) => {
-    window.open("https://nurturehub-ai.lovable.app", "_blank");
+    window.open("https://app.upitomat.hr/auth", "_blank");
   };
 
   const SelectedPlatformIcon = platformOptions.find(p => p.value === selectedPlatform)?.icon || MessageCircle;
