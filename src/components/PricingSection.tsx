@@ -35,7 +35,7 @@ const PricingSection = () => {
     },
     {
       id: "pro",
-      name: "Pro",
+      name: "Napredni",
       price: "89,99",
       popular: true,
       platforms: [
