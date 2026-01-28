@@ -59,27 +59,27 @@ const BackgroundEffects = () => {
           className="absolute inset-0"
           style={{
             backgroundImage: `
-              linear-gradient(hsl(50 100% 50% / 0.06) 1px, transparent 1px),
-              linear-gradient(90deg, hsl(50 100% 50% / 0.06) 1px, transparent 1px)
+              linear-gradient(hsl(50 100% 50% / 0.12) 1px, transparent 1px),
+              linear-gradient(90deg, hsl(50 100% 50% / 0.12) 1px, transparent 1px)
             `,
             backgroundSize: '80px 80px',
             maskImage: `
-              radial-gradient(ellipse 40% 30% at 20% 15%, black 0%, transparent 70%),
-              radial-gradient(ellipse 35% 25% at 75% 25%, black 0%, transparent 65%),
-              radial-gradient(ellipse 30% 20% at 85% 55%, black 0%, transparent 60%),
-              radial-gradient(ellipse 40% 28% at 15% 50%, black 0%, transparent 70%),
-              radial-gradient(ellipse 35% 22% at 60% 75%, black 0%, transparent 65%),
-              radial-gradient(ellipse 30% 25% at 30% 85%, black 0%, transparent 60%),
-              radial-gradient(ellipse 25% 18% at 90% 90%, black 0%, transparent 55%)
+              radial-gradient(ellipse 50% 40% at 20% 15%, black 0%, transparent 80%),
+              radial-gradient(ellipse 45% 35% at 75% 25%, black 0%, transparent 75%),
+              radial-gradient(ellipse 40% 30% at 85% 55%, black 0%, transparent 70%),
+              radial-gradient(ellipse 50% 38% at 15% 50%, black 0%, transparent 80%),
+              radial-gradient(ellipse 45% 32% at 60% 75%, black 0%, transparent 75%),
+              radial-gradient(ellipse 40% 35% at 30% 85%, black 0%, transparent 70%),
+              radial-gradient(ellipse 35% 28% at 90% 90%, black 0%, transparent 65%)
             `,
             WebkitMaskImage: `
-              radial-gradient(ellipse 40% 30% at 20% 15%, black 0%, transparent 70%),
-              radial-gradient(ellipse 35% 25% at 75% 25%, black 0%, transparent 65%),
-              radial-gradient(ellipse 30% 20% at 85% 55%, black 0%, transparent 60%),
-              radial-gradient(ellipse 40% 28% at 15% 50%, black 0%, transparent 70%),
-              radial-gradient(ellipse 35% 22% at 60% 75%, black 0%, transparent 65%),
-              radial-gradient(ellipse 30% 25% at 30% 85%, black 0%, transparent 60%),
-              radial-gradient(ellipse 25% 18% at 90% 90%, black 0%, transparent 55%)
+              radial-gradient(ellipse 50% 40% at 20% 15%, black 0%, transparent 80%),
+              radial-gradient(ellipse 45% 35% at 75% 25%, black 0%, transparent 75%),
+              radial-gradient(ellipse 40% 30% at 85% 55%, black 0%, transparent 70%),
+              radial-gradient(ellipse 50% 38% at 15% 50%, black 0%, transparent 80%),
+              radial-gradient(ellipse 45% 32% at 60% 75%, black 0%, transparent 75%),
+              radial-gradient(ellipse 40% 35% at 30% 85%, black 0%, transparent 70%),
+              radial-gradient(ellipse 35% 28% at 90% 90%, black 0%, transparent 65%)
             `,
           }}
         />
