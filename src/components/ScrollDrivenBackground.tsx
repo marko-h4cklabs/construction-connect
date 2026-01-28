@@ -261,58 +261,66 @@ const ScrollDrivenBackground = () => {
         );
       })()}
 
-      {/* Animated floating glow orbs - ENHANCED (fade out in editorial mode) */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-0 overflow-hidden transition-opacity duration-700"
-        style={{ opacity: 1 - isEditorialValue }}
-      >
-        {/* Primary large glow - follows scroll dramatically */}
-        <div 
-          className="absolute w-[60vw] h-[60vh] rounded-full blur-[120px] transition-all duration-700"
-          style={{
-            background: `radial-gradient(circle, ${rgbToString(currentGlow, 0.2 * glowScale * currentIntensity)} 0%, transparent 65%)`,
-            left: `${-5 + glowOffset1}%`,
-            top: `${-10 + scrollProgress * 40}%`,
-            transform: `scale(${glowScale * 1.1})`,
-          }}
-        />
-        {/* Secondary accent glow */}
-        <div 
-          className="absolute w-[50vw] h-[50vh] rounded-full blur-[100px] transition-all duration-700"
-          style={{
-            background: `radial-gradient(circle, ${rgbToString(currentAccent, 0.18 * currentIntensity)} 0%, transparent 60%)`,
-            right: `${-5 + glowOffset2}%`,
-            top: `${15 + scrollProgress * 35}%`,
-            transform: `scale(${1 + scrollProgress * 0.25})`,
-          }}
-        />
-        {/* Tertiary moving glow */}
-        <div 
-          className="absolute w-[45vw] h-[45vh] rounded-full blur-[90px] transition-all duration-700"
-          style={{
-            background: `radial-gradient(circle, ${rgbToString(currentGlow, 0.15 * currentIntensity)} 0%, transparent 55%)`,
-            left: `${40 + glowOffset2 * 2.5}%`,
-            bottom: `${10 + (1 - scrollProgress) * 30}%`,
-            transform: `rotate(${scrollProgress * 45}deg)`,
-          }}
-        />
-        {/* Fourth glow for depth during transitions */}
-        <div 
-          className="absolute w-[40vw] h-[40vh] rounded-full blur-[80px] transition-all duration-500"
-          style={{
-            background: `radial-gradient(circle, ${rgbToString(currentAccent, 0.12 * (currentIntensity - 0.5))} 0%, transparent 50%)`,
-            left: `${20 + glowOffset1 * 1.5}%`,
-            top: `${50 + glowOffset2}%`,
-          }}
-        />
-      </div>
+      {/* Animated floating glow orbs - ONLY for dark sections */}
+      {(() => {
+        const isLightSection = vignetteOpacity < 0.5;
+        // Completely hide glow orbs in light sections
+        if (isLightSection) return null;
+        
+        return (
+          <div 
+            className="fixed inset-0 pointer-events-none z-0 overflow-hidden transition-opacity duration-700"
+            style={{ opacity: 1 - isEditorialValue }}
+          >
+            {/* Primary large glow - follows scroll dramatically */}
+            <div 
+              className="absolute w-[60vw] h-[60vh] rounded-full blur-[120px] transition-all duration-700"
+              style={{
+                background: `radial-gradient(circle, ${rgbToString(currentGlow, 0.2 * glowScale * currentIntensity)} 0%, transparent 65%)`,
+                left: `${-5 + glowOffset1}%`,
+                top: `${-10 + scrollProgress * 40}%`,
+                transform: `scale(${glowScale * 1.1})`,
+              }}
+            />
+            {/* Secondary accent glow */}
+            <div 
+              className="absolute w-[50vw] h-[50vh] rounded-full blur-[100px] transition-all duration-700"
+              style={{
+                background: `radial-gradient(circle, ${rgbToString(currentAccent, 0.18 * currentIntensity)} 0%, transparent 60%)`,
+                right: `${-5 + glowOffset2}%`,
+                top: `${15 + scrollProgress * 35}%`,
+                transform: `scale(${1 + scrollProgress * 0.25})`,
+              }}
+            />
+            {/* Tertiary moving glow */}
+            <div 
+              className="absolute w-[45vw] h-[45vh] rounded-full blur-[90px] transition-all duration-700"
+              style={{
+                background: `radial-gradient(circle, ${rgbToString(currentGlow, 0.15 * currentIntensity)} 0%, transparent 55%)`,
+                left: `${40 + glowOffset2 * 2.5}%`,
+                bottom: `${10 + (1 - scrollProgress) * 30}%`,
+                transform: `rotate(${scrollProgress * 45}deg)`,
+              }}
+            />
+            {/* Fourth glow for depth during transitions */}
+            <div 
+              className="absolute w-[40vw] h-[40vh] rounded-full blur-[80px] transition-all duration-500"
+              style={{
+                background: `radial-gradient(circle, ${rgbToString(currentAccent, 0.12 * (currentIntensity - 0.5))} 0%, transparent 50%)`,
+                left: `${20 + glowOffset1 * 1.5}%`,
+                top: `${50 + glowOffset2}%`,
+              }}
+            />
+          </div>
+        );
+      })()}
 
       {/* Scroll-reactive grid with breathing - SAME intensity for both dark and light */}
       {(() => {
         // Calculate light mode factor for grid color
         const isLightSection = vignetteOpacity < 0.5;
-      // MUCH STRONGER grid on light sections (4x), normal on dark
-        const gridIntensityMultiplier = isLightSection ? 4.0 : 1.0;
+      // MUCH STRONGER grid on light sections (8x), normal on dark
+        const gridIntensityMultiplier = isLightSection ? 8.0 : 1.0;
         // Varying line opacity based on breathe phase - creates fade/strengthen effect
         const lineVariation1 = 0.8 + Math.sin(breathePhase * Math.PI * 4) * 0.2;
         const lineVariation2 = 0.8 + Math.cos(breathePhase * Math.PI * 3 + 1) * 0.2;
@@ -355,38 +363,47 @@ const ScrollDrivenBackground = () => {
         );
       })()}
 
-      {/* Section transition highlight - ENHANCED with more dramatic pulse */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-500"
-        style={{
-          background: `
-            linear-gradient(180deg, 
-              transparent 0%, 
-              ${rgbToString(currentGlow, 0.04 * currentIntensity + Math.sin(scrollProgress * Math.PI * 8) * 0.03)} 40%,
-              ${rgbToString(currentGlow, 0.08 * currentIntensity + Math.sin(scrollProgress * Math.PI * 8) * 0.05)} 50%,
-              ${rgbToString(currentGlow, 0.04 * currentIntensity + Math.sin(scrollProgress * Math.PI * 8) * 0.03)} 60%,
-              transparent 100%
-            )
-          `,
-        }}
-      />
-      
-      {/* Horizontal light streaks during story switches */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-700"
-        style={{
-          opacity: currentIntensity > 1.3 ? (currentIntensity - 1.3) * 1.5 : 0,
-          background: `
-            linear-gradient(90deg, 
-              transparent 0%, 
-              ${rgbToString(currentGlow, 0.06)} 20%,
-              ${rgbToString(currentGlow, 0.1)} 50%,
-              ${rgbToString(currentGlow, 0.06)} 80%,
-              transparent 100%
-            )
-          `,
-        }}
-      />
+      {/* Section transition highlight - ONLY for dark sections */}
+      {(() => {
+        const isLightSection = vignetteOpacity < 0.5;
+        if (isLightSection) return null;
+        
+        return (
+          <>
+            <div 
+              className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-500"
+              style={{
+                background: `
+                  linear-gradient(180deg, 
+                    transparent 0%, 
+                    ${rgbToString(currentGlow, 0.04 * currentIntensity + Math.sin(scrollProgress * Math.PI * 8) * 0.03)} 40%,
+                    ${rgbToString(currentGlow, 0.08 * currentIntensity + Math.sin(scrollProgress * Math.PI * 8) * 0.05)} 50%,
+                    ${rgbToString(currentGlow, 0.04 * currentIntensity + Math.sin(scrollProgress * Math.PI * 8) * 0.03)} 60%,
+                    transparent 100%
+                  )
+                `,
+              }}
+            />
+            
+            {/* Horizontal light streaks during story switches */}
+            <div 
+              className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-700"
+              style={{
+                opacity: currentIntensity > 1.3 ? (currentIntensity - 1.3) * 1.5 : 0,
+                background: `
+                  linear-gradient(90deg, 
+                    transparent 0%, 
+                    ${rgbToString(currentGlow, 0.06)} 20%,
+                    ${rgbToString(currentGlow, 0.1)} 50%,
+                    ${rgbToString(currentGlow, 0.06)} 80%,
+                    transparent 100%
+                  )
+                `,
+              }}
+            />
+          </>
+        );
+      })()}
 
       {/* Premium film grain - subtle texture */}
       <div 
