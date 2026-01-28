@@ -7,48 +7,50 @@ import CTASection from "@/components/CTASection";
 import PartnersSection from "@/components/PartnersSection";
 import PricingSection from "@/components/PricingSection";
 import Footer from "@/components/Footer";
-import BackgroundEffects from "@/components/BackgroundEffects";
+import ScrollDrivenBackground from "@/components/ScrollDrivenBackground";
 import PremiumSection from "@/components/PremiumSection";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background relative overflow-x-hidden scroll-smooth snap-y snap-mandatory">
-      <BackgroundEffects />
+    <div className="min-h-screen relative overflow-x-hidden scroll-smooth snap-y snap-mandatory">
+      {/* Dynamic scroll-driven background */}
+      <ScrollDrivenBackground />
+      
       <div className="relative z-10">
         <Navbar />
         <main>
           {/* Hero - Full screen snap */}
-          <PremiumSection variant="dark" className="pt-20">
+          <PremiumSection className="pt-20">
             <HeroSection />
           </PremiumSection>
           
           {/* Feature Showcase */}
-          <PremiumSection variant="dark">
+          <PremiumSection>
             <FeatureShowcase />
           </PremiumSection>
           
-          {/* Calculator - Premium gold gradient instead of flat yellow */}
-          <PremiumSection variant="gold" id="kalkulator">
+          {/* Calculator */}
+          <PremiumSection id="kalkulator">
             <SavingsCalculator />
           </PremiumSection>
           
           {/* Partners */}
-          <PremiumSection variant="dark">
+          <PremiumSection>
             <PartnersSection />
           </PremiumSection>
           
           {/* Pricing */}
-          <PremiumSection variant="dark">
+          <PremiumSection>
             <PricingSection />
           </PremiumSection>
           
-          {/* Our Story - Premium gold gradient */}
-          <PremiumSection variant="gold" id="nasa-prica">
+          {/* Our Story */}
+          <PremiumSection id="nasa-prica">
             <OurStorySection />
           </PremiumSection>
           
           {/* Final CTA */}
-          <PremiumSection variant="gradient" className="min-h-[60vh]">
+          <PremiumSection className="min-h-[60vh]">
             <CTASection />
           </PremiumSection>
         </main>
