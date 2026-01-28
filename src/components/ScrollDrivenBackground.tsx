@@ -11,11 +11,11 @@ const sectionColors = [
   // Partners/Klijenti - last dark section (DARK)
   { bg: [14, 14, 14], accent: [50, 70, 48], glow: [48, 80, 52], light: false, intensity: 1.3, noVignette: false, noGrid: false, isEditorial: false },
   // === SINGLE TRANSITION POINT === Calculator - first light section (LIGHT - stays light from here)
-  { bg: [252, 248, 240], accent: [35, 45, 35], glow: [38, 50, 40], light: true, intensity: 1.6, noVignette: true, noGrid: false, isEditorial: false },
+  { bg: [252, 248, 240], accent: [35, 45, 35], glow: [38, 50, 40], light: true, intensity: 1.6, noVignette: false, noGrid: false, isEditorial: false },
   // Our Story (LIGHT - editorial style)
-  { bg: [252, 248, 240], accent: [35, 45, 35], glow: [38, 50, 40], light: true, intensity: 1.6, noVignette: true, noGrid: true, isEditorial: true },
+  { bg: [252, 248, 240], accent: [35, 45, 35], glow: [38, 50, 40], light: true, intensity: 1.6, noVignette: false, noGrid: true, isEditorial: true },
   // CTA - stays light with subtle warmth
-  { bg: [248, 244, 236], accent: [38, 48, 38], glow: [40, 52, 42], light: true, intensity: 1.4, noVignette: true, noGrid: false, isEditorial: false },
+  { bg: [248, 244, 236], accent: [38, 48, 38], glow: [40, 52, 42], light: true, intensity: 1.4, noVignette: false, noGrid: false, isEditorial: false },
 ];
 
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
@@ -529,8 +529,24 @@ const ScrollDrivenBackground = () => {
           `,
         }}
       />
+      
+      {/* LIGHT SECTION VIGNETTE - subtle shadow-like effect for cream backgrounds */}
+      <div 
+        className="fixed inset-0 pointer-events-none z-0 transition-all duration-700"
+        style={{
+          opacity: (1 - vignetteOpacity) * 0.65,
+          background: `
+            radial-gradient(
+              ellipse 85% 70% at 50% 50%, 
+              transparent 30%, 
+              rgba(60, 50, 40, 0.08) 60%,
+              rgba(50, 40, 30, 0.15) 80%,
+              rgba(40, 30, 25, 0.25) 100%
+            )
+          `,
+        }}
+      />
 
-      {/* Top/bottom ambient lighting */}
       <div 
         className="fixed top-0 left-0 right-0 h-48 pointer-events-none z-0"
         style={{
