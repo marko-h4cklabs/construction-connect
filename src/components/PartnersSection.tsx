@@ -9,6 +9,7 @@ import edenville from "@/assets/partners/edenville-new.jpg";
 import inovix from "@/assets/partners/inovix-new.jpg";
 import VideoTestimonials from "./VideoTestimonials";
 import LogoMarquee from "./LogoMarquee";
+import StaggeredText from "@/components/StaggeredText";
 
 const partners = [
   { name: "Render13", logo: render13 },
@@ -31,12 +32,12 @@ const PartnersSection = () => {
       <VideoTestimonials />
       
       {/* Logo Marquee */}
-      <div className="mt-6 md:mt-10">
+      <StaggeredText delay={300} className="mt-6 md:mt-10">
         <p className="text-center text-sm text-muted-foreground mb-2 uppercase tracking-wide">
           Firme koje nam vjeruju
         </p>
         <LogoMarquee />
-      </div>
+      </StaggeredText>
     </section>
   );
 };
