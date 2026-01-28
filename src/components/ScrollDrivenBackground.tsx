@@ -233,17 +233,33 @@ const ScrollDrivenBackground = () => {
   return (
     <>
       {/* Dynamic scroll-driven background */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-0 transition-colors duration-300"
-        style={{
-          background: `
-            radial-gradient(ellipse 100% 60% at 50% ${-10 + scrollProgress * 20}%, ${rgbToString(currentAccent, 0.08)} 0%, transparent 50%),
-            radial-gradient(ellipse 80% 50% at ${20 + glowOffset1}% ${30 + scrollProgress * 20}%, ${rgbToString(currentGlow, 0.06)} 0%, transparent 40%),
-            radial-gradient(ellipse 60% 40% at ${80 + glowOffset2}% ${60 - scrollProgress * 15}%, ${rgbToString(currentGlow, 0.05)} 0%, transparent 35%),
-            linear-gradient(180deg, ${rgbToString(currentBg)} 0%, ${rgbToString(lerpColor(currentBg, [8, 8, 8], 0.3))} 100%)
-          `,
-        }}
-      />
+      {(() => {
+        const isLightSection = vignetteOpacity < 0.5;
+        // Light sections: pure clean background, no dark lerping
+        // Dark sections: keep the subtle darkening gradient
+        const bgGradient = isLightSection
+          ? `linear-gradient(180deg, ${rgbToString(currentBg)} 0%, ${rgbToString(currentBg)} 100%)`
+          : `linear-gradient(180deg, ${rgbToString(currentBg)} 0%, ${rgbToString(lerpColor(currentBg, [8, 8, 8], 0.3))} 100%)`;
+        
+        // Light sections: no colored accent glows (keep it clean)
+        const accentOpacity = isLightSection ? 0 : 0.08;
+        const glowOpacity1 = isLightSection ? 0 : 0.06;
+        const glowOpacity2 = isLightSection ? 0 : 0.05;
+        
+        return (
+          <div 
+            className="fixed inset-0 pointer-events-none z-0 transition-colors duration-300"
+            style={{
+              background: `
+                radial-gradient(ellipse 100% 60% at 50% ${-10 + scrollProgress * 20}%, ${rgbToString(currentAccent, accentOpacity)} 0%, transparent 50%),
+                radial-gradient(ellipse 80% 50% at ${20 + glowOffset1}% ${30 + scrollProgress * 20}%, ${rgbToString(currentGlow, glowOpacity1)} 0%, transparent 40%),
+                radial-gradient(ellipse 60% 40% at ${80 + glowOffset2}% ${60 - scrollProgress * 15}%, ${rgbToString(currentGlow, glowOpacity2)} 0%, transparent 35%),
+                ${bgGradient}
+              `,
+            }}
+          />
+        );
+      })()}
 
       {/* Animated floating glow orbs - ENHANCED (fade out in editorial mode) */}
       <div 
@@ -291,12 +307,12 @@ const ScrollDrivenBackground = () => {
         />
       </div>
 
-      {/* Scroll-reactive grid with breathing - STRONGER on light, WEAKER on dark, with varying line intensity */}
+      {/* Scroll-reactive grid with breathing - SAME intensity for both dark and light */}
       {(() => {
-        // Calculate light mode factor for grid intensity
+        // Calculate light mode factor for grid color
         const isLightSection = vignetteOpacity < 0.5;
-        // Light sections: stronger grid (1.8x), Dark sections: weaker grid (0.7x)
-        const gridIntensityMultiplier = isLightSection ? 1.8 : 0.7;
+        // SAME grid intensity for both sections (no multiplier difference)
+        const gridIntensityMultiplier = 1.0;
         // Varying line opacity based on breathe phase - creates fade/strengthen effect
         const lineVariation1 = 0.8 + Math.sin(breathePhase * Math.PI * 4) * 0.2;
         const lineVariation2 = 0.8 + Math.cos(breathePhase * Math.PI * 3 + 1) * 0.2;
@@ -530,7 +546,7 @@ const ScrollDrivenBackground = () => {
         }}
       />
       
-      {/* LIGHT SECTION VIGNETTE - white glow identical to dark section vignette */}
+      {/* LIGHT SECTION VIGNETTE - extra white glow, stronger intensity */}
       <div 
         className="fixed inset-0 pointer-events-none z-0 transition-all duration-500"
         style={{
@@ -538,10 +554,10 @@ const ScrollDrivenBackground = () => {
           background: `
             radial-gradient(
               ellipse ${vignetteSize}% ${vignetteSize * 0.8}% at ${50 + vignetteShift + glowOffset1 * 0.4}% ${50 + glowOffset2 * 0.3}%, 
-              transparent 15%, 
-              rgba(255, 255, 255, ${vignetteIntensity * 0.5}) 60%,
-              rgba(255, 255, 255, ${vignetteIntensity * 0.8}) 80%,
-              rgba(255, 255, 255, ${vignetteIntensity * 1.1}) 100%
+              transparent 10%, 
+              rgba(255, 255, 255, ${vignetteIntensity * 0.7}) 50%,
+              rgba(255, 255, 255, ${vignetteIntensity * 1.0}) 70%,
+              rgba(255, 255, 255, ${vignetteIntensity * 1.4}) 100%
             )
           `,
         }}
@@ -555,23 +571,23 @@ const ScrollDrivenBackground = () => {
           background: `
             radial-gradient(
               ellipse ${vignetteSize + 15}% ${(vignetteSize + 15) * 0.85}% at ${50 - vignetteShift * 0.8 - glowOffset2 * 0.25}% ${50 - glowOffset1 * 0.2}%, 
-              transparent 25%, 
-              rgba(255, 255, 255, ${vignetteIntensity * 0.4}) 100%
+              transparent 20%, 
+              rgba(255, 255, 255, ${vignetteIntensity * 0.6}) 100%
             )
           `,
         }}
       />
       
-      {/* Tertiary white vignette - subtle edge brightening that pulses */}
+      {/* Tertiary white vignette - edge brightening that pulses */}
       <div 
         className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-500"
         style={{
-          opacity: (1 - vignetteOpacity) * 0.8,
+          opacity: 1 - vignetteOpacity,
           background: `
             radial-gradient(
               ellipse 90% 75% at 50% ${50 + breathePhase * 10 - 5}%, 
-              transparent 40%, 
-              rgba(255, 255, 255, ${0.15 + breathePhase * 0.1}) 100%
+              transparent 35%, 
+              rgba(255, 255, 255, ${0.25 + breathePhase * 0.15}) 100%
             )
           `,
         }}
