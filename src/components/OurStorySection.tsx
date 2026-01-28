@@ -18,7 +18,7 @@ const OurStorySection = () => {
             {/* Images */}
             <StaggeredText delay={100} className="order-1 lg:order-1">
               <div className="relative w-full h-52 md:h-96 flex items-center justify-center">
-                <div className="absolute left-4 md:left-8 w-40 md:w-52 aspect-square border border-[rgb(85,80,72)]/40 overflow-hidden transform -rotate-6 hover:-rotate-3 transition-all duration-500 hover:border-[rgb(180,140,60)]/60 hover:shadow-[0_0_35px_rgba(180,140,60,0.25)]">
+                <div className="absolute left-4 md:left-8 w-40 md:w-52 aspect-square border-2 border-[rgb(74,74,74)]/50 overflow-hidden transform -rotate-6 hover:-rotate-3 transition-all duration-500 hover:border-[rgb(120,95,50)]/70 hover:shadow-[0_8px_30px_rgba(120,95,50,0.15)]">
                   <img 
                     src={partner1} 
                     alt="Partner 1" 
@@ -26,7 +26,7 @@ const OurStorySection = () => {
                   />
                 </div>
                 
-                <div className="absolute right-4 md:right-8 w-40 md:w-52 aspect-square border border-[rgb(85,80,72)]/40 overflow-hidden transform rotate-6 hover:rotate-3 transition-all duration-500 z-10 hover:border-[rgb(180,140,60)]/60 hover:shadow-[0_0_35px_rgba(180,140,60,0.25)]">
+                <div className="absolute right-4 md:right-8 w-40 md:w-52 aspect-square border-2 border-[rgb(74,74,74)]/50 overflow-hidden transform rotate-6 hover:rotate-3 transition-all duration-500 z-10 hover:border-[rgb(120,95,50)]/70 hover:shadow-[0_8px_30px_rgba(120,95,50,0.15)]">
                   <img 
                     src={partner2} 
                     alt="Partner 2" 
@@ -52,7 +52,7 @@ const OurStorySection = () => {
                 </StaggeredText>
                 
                 <StaggeredText delay={400}>
-                  <div className="space-y-2 pl-4 border-l-2 border-[rgb(180,140,60)]/50 italic text-scroll-adaptive opacity-90">
+                  <div className="space-y-2 pl-4 border-l-2 border-[rgb(120,95,50)]/60 italic text-scroll-adaptive opacity-90">
                     <p>"Dobivam previše upita, a nemam vremena za sve pohvatati."</p>
                     <p>"Sve je razbacano, ne znam tko mi glavu nosi."</p>
                     <p>"Gubim sate svaki dan ponavljajući isto, da na kraju ne bude ništa."</p>
@@ -84,7 +84,7 @@ const OurStorySection = () => {
                 </StaggeredText>
                 
                 <StaggeredText delay={900}>
-                  <div className="pt-4 mt-4 border-t border-[rgb(85,80,72)]/30">
+                  <div className="pt-4 mt-4 border-t-2 border-[rgb(74,74,74)]/30">
                     <p className="text-scroll-heading font-bold uppercase tracking-tight">
                       Jedno pitanje za vas:
                     </p>

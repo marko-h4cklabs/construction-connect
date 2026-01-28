@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useMemo } from 'react';
 
 // Define color stops for each section (in order) with story switches
 // Format: bg (RGB), accent (HSL), glow (HSL), isLightMode (for text adaptation), transitionIntensity, noVignette
@@ -7,14 +7,22 @@ const sectionColors = [
   { bg: [12, 12, 12], accent: [45, 70, 50], glow: [45, 80, 50], light: false, intensity: 1, noVignette: false },
   // Features - slightly warmer dark
   { bg: [18, 16, 14], accent: [48, 65, 45], glow: [50, 75, 48], light: false, intensity: 1.2, noVignette: false },
-  // Calculator - STORY SWITCH: Warm cream (light mode) - seamless gradient transition
-  { bg: [252, 248, 240], accent: [42, 85, 45], glow: [45, 75, 55], light: true, intensity: 1.8, noVignette: true },
+  // Pre-Calculator transition zone - fade out dark elements
+  { bg: [80, 75, 68], accent: [42, 60, 40], glow: [45, 65, 45], light: false, intensity: 0.6, noVignette: true },
+  // Calculator - Warm cream with bronze accents (NO bright yellow/gold)
+  { bg: [252, 248, 240], accent: [35, 45, 35], glow: [38, 50, 40], light: true, intensity: 1.8, noVignette: true },
+  // Post-Calculator transition - gradual return to dark
+  { bg: [60, 55, 48], accent: [42, 55, 38], glow: [45, 60, 42], light: false, intensity: 0.7, noVignette: true },
   // Partners - back to deep dark - smooth transition
   { bg: [10, 10, 10], accent: [50, 70, 48], glow: [48, 80, 52], light: false, intensity: 1.5, noVignette: false },
   // Pricing - neutral dark with warm undertone
   { bg: [20, 18, 15], accent: [45, 75, 52], glow: [45, 85, 50], light: false, intensity: 1.2, noVignette: false },
-  // Our Story - STORY SWITCH: Warm cream (light mode) - seamless gradient transition
-  { bg: [252, 248, 240], accent: [40, 80, 50], glow: [42, 85, 55], light: true, intensity: 1.8, noVignette: true },
+  // Pre-Story transition zone
+  { bg: [75, 70, 62], accent: [38, 55, 38], glow: [42, 60, 42], light: false, intensity: 0.6, noVignette: true },
+  // Our Story - Warm cream with bronze accents
+  { bg: [252, 248, 240], accent: [35, 45, 35], glow: [38, 50, 40], light: true, intensity: 1.8, noVignette: true },
+  // Post-Story transition
+  { bg: [55, 50, 44], accent: [40, 50, 36], glow: [44, 55, 40], light: false, intensity: 0.7, noVignette: true },
   // CTA - deep cinematic dark with intense gold accents
   { bg: [8, 8, 8], accent: [48, 80, 55], glow: [45, 90, 60], light: false, intensity: 1.5, noVignette: false },
 ];
@@ -139,9 +147,17 @@ const ScrollDrivenBackground = () => {
     // Update CSS custom properties for global text adaptation
     document.documentElement.style.setProperty('--scroll-light-mode', isLight.toString());
     document.documentElement.style.setProperty('--scroll-no-vignette', noVignette.toString());
-    // Use anthracite (#333) for light sections instead of pure black
-    document.documentElement.style.setProperty('--scroll-text-color', isLight > 0.5 ? '45, 42, 38' : '255, 255, 255');
-    document.documentElement.style.setProperty('--scroll-heading-color', isLight > 0.5 ? '55, 50, 42' : '255, 220, 100');
+    
+    // Premium anthracite colors for light sections (NO pure black)
+    // Dark: #2B2B2B (43,43,43), Light secondary: #4A4A4A (74,74,74)
+    // Headings in light: bronze-accented anthracite
+    if (isLight > 0.5) {
+      document.documentElement.style.setProperty('--scroll-text-color', '43, 43, 43');
+      document.documentElement.style.setProperty('--scroll-heading-color', '48, 42, 35');
+    } else {
+      document.documentElement.style.setProperty('--scroll-text-color', '255, 255, 255');
+      document.documentElement.style.setProperty('--scroll-heading-color', '255, 220, 100');
+    }
   }, [scrollProgress]);
 
   // Calculate current section intensity for enhanced transitions
@@ -296,39 +312,104 @@ const ScrollDrivenBackground = () => {
         }}
       />
 
-      {/* Shimmer effect for light sections - replaces vignette */}
+      {/* === LIGHT SECTION PREMIUM EFFECTS === */}
+      
+      {/* A) Ultra-fine material texture - luxury paper/ceramic grain */}
       <div 
-        className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-700"
+        className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-1000"
         style={{
-          opacity: vignetteOpacity < 0.5 ? (1 - vignetteOpacity * 2) * 0.6 : 0,
-          background: `
-            linear-gradient(
-              120deg,
-              transparent 0%,
-              rgba(255, 252, 245, 0.15) 20%,
-              rgba(255, 252, 245, 0.25) 40%,
-              rgba(255, 252, 245, 0.15) 60%,
-              transparent 80%
-            )
-          `,
-          backgroundSize: '200% 100%',
-          animation: vignetteOpacity < 0.5 ? 'shimmer-wave 12s ease-in-out infinite' : 'none',
+          opacity: vignetteOpacity < 0.5 ? (1 - vignetteOpacity * 2) * 0.035 : 0,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='5' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E")`,
+          mixBlendMode: 'multiply',
         }}
       />
       
-      {/* Soft light waves for light sections */}
+      {/* B) Animated geometry - thin floating lines (VERY subtle) */}
       <div 
-        className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-700"
+        className="fixed inset-0 pointer-events-none z-0 overflow-hidden transition-opacity duration-1000"
         style={{
-          opacity: vignetteOpacity < 0.5 ? (1 - vignetteOpacity * 2) * 0.4 : 0,
+          opacity: vignetteOpacity < 0.5 ? (1 - vignetteOpacity * 2) : 0,
+        }}
+      >
+        {/* Horizontal drifting line 1 */}
+        <div 
+          className="absolute w-[120%] h-[1px] transition-all duration-[3000ms] ease-linear"
+          style={{
+            background: 'linear-gradient(90deg, transparent 0%, rgba(120, 100, 70, 0.05) 30%, rgba(120, 100, 70, 0.08) 50%, rgba(120, 100, 70, 0.05) 70%, transparent 100%)',
+            top: `${25 + Math.sin(breathePhase * Math.PI * 2) * 3}%`,
+            left: `${-10 + Math.sin(scrollProgress * Math.PI * 2 + breathePhase * Math.PI) * 8}%`,
+          }}
+        />
+        {/* Horizontal drifting line 2 */}
+        <div 
+          className="absolute w-[100%] h-[1px] transition-all duration-[4000ms] ease-linear"
+          style={{
+            background: 'linear-gradient(90deg, transparent 0%, rgba(100, 85, 60, 0.04) 40%, rgba(100, 85, 60, 0.06) 50%, rgba(100, 85, 60, 0.04) 60%, transparent 100%)',
+            top: `${55 + Math.cos(breathePhase * Math.PI * 2) * 4}%`,
+            left: `${5 - Math.cos(scrollProgress * Math.PI * 1.5) * 6}%`,
+          }}
+        />
+        {/* Vertical subtle line */}
+        <div 
+          className="absolute h-[80%] w-[1px] transition-all duration-[5000ms] ease-linear"
+          style={{
+            background: 'linear-gradient(180deg, transparent 0%, rgba(110, 95, 65, 0.03) 20%, rgba(110, 95, 65, 0.05) 50%, rgba(110, 95, 65, 0.03) 80%, transparent 100%)',
+            left: `${75 + Math.sin(breathePhase * Math.PI) * 5}%`,
+            top: `${10 + Math.sin(scrollProgress * Math.PI * 2) * 3}%`,
+          }}
+        />
+        {/* Floating circle accent */}
+        <div 
+          className="absolute w-[200px] h-[200px] rounded-full border transition-all duration-[6000ms] ease-linear"
+          style={{
+            borderColor: 'rgba(100, 80, 50, 0.03)',
+            borderWidth: '1px',
+            left: `${20 + Math.sin(breathePhase * Math.PI * 2) * 8}%`,
+            top: `${35 + Math.cos(breathePhase * Math.PI * 2) * 5}%`,
+            transform: `scale(${1 + Math.sin(breathePhase * Math.PI) * 0.08})`,
+          }}
+        />
+        {/* Second floating circle */}
+        <div 
+          className="absolute w-[150px] h-[150px] rounded-full border transition-all duration-[7000ms] ease-linear"
+          style={{
+            borderColor: 'rgba(90, 75, 50, 0.025)',
+            borderWidth: '1px',
+            right: `${15 + Math.cos(breathePhase * Math.PI * 2) * 6}%`,
+            bottom: `${25 + Math.sin(breathePhase * Math.PI * 2) * 4}%`,
+            transform: `scale(${1 + Math.cos(breathePhase * Math.PI) * 0.06})`,
+          }}
+        />
+      </div>
+      
+      {/* C) Light refraction effect - ultra subtle passing light */}
+      <div 
+        className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-1000"
+        style={{
+          opacity: vignetteOpacity < 0.5 ? (1 - vignetteOpacity * 2) * 0.25 : 0,
           background: `
-            radial-gradient(ellipse 80% 50% at ${30 + Math.sin(breathePhase * Math.PI * 2) * 20}% ${40 + Math.cos(breathePhase * Math.PI * 2) * 15}%, 
-              rgba(180, 140, 60, 0.08) 0%, 
+            radial-gradient(
+              ellipse 100% 60% at ${30 + Math.sin((breathePhase + scrollProgress * 0.3) * Math.PI * 2) * 25}% ${20 + Math.cos(breathePhase * Math.PI) * 15}%, 
+              rgba(255, 252, 248, 0.4) 0%, 
               transparent 50%
+            )
+          `,
+        }}
+      />
+      
+      {/* D) Rhythm-based scroll-reactive subtle glow */}
+      <div 
+        className="fixed inset-0 pointer-events-none z-0 transition-all duration-700"
+        style={{
+          opacity: vignetteOpacity < 0.5 ? (1 - vignetteOpacity * 2) * 0.15 : 0,
+          background: `
+            radial-gradient(ellipse 70% 45% at ${40 + scrollProgress * 20}% ${35 + Math.sin(scrollProgress * Math.PI * 3) * 10}%, 
+              rgba(180, 160, 120, 0.08) 0%, 
+              transparent 60%
             ),
-            radial-gradient(ellipse 60% 40% at ${70 - Math.sin(breathePhase * Math.PI * 2) * 15}% ${60 + Math.cos(breathePhase * Math.PI * 2) * 10}%, 
-              rgba(180, 140, 60, 0.06) 0%, 
-              transparent 45%
+            radial-gradient(ellipse 50% 35% at ${60 - scrollProgress * 15}% ${65 - Math.cos(scrollProgress * Math.PI * 2) * 8}%, 
+              rgba(160, 140, 100, 0.06) 0%, 
+              transparent 50%
             )
           `,
         }}
