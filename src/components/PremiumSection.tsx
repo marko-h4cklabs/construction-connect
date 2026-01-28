@@ -62,13 +62,13 @@ const PremiumSection = ({
       {/* Content wrapper with premium entrance animation */}
       <div
         className={cn(
-          "relative z-20 w-full transition-all duration-1000 ease-out",
+          "relative z-20 w-full transition-all duration-500 ease-out",
           isVisible 
             ? "opacity-100 translate-y-0 blur-0" 
-            : "opacity-0 translate-y-16 blur-sm"
+            : "opacity-0 translate-y-8 blur-sm"
         )}
         style={{
-          transitionDelay: '150ms',
+          transitionDelay: '50ms',
         }}
       >
         {children}
