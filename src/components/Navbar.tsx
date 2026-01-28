@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
@@ -8,7 +7,6 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
-  // Handle hash navigation on page load and hash changes
   useEffect(() => {
     const hash = location.hash.replace('#', '');
     if (hash) {
@@ -31,65 +29,51 @@ const Navbar = () => {
     setIsOpen(false);
   };
 
+  const navLinks = [
+    { id: "proces", label: "Proces" },
+    { id: "kalkulator", label: "Kalkulator" },
+    { id: "klijenti", label: "Klijenti" },
+    { id: "cijene", label: "Cijene" },
+    { id: "nasa-prica", label: "Naša priča" },
+  ];
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background border-b-2 border-border">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <img src={logo} alt="Upitomat logo" className="w-10 h-10" />
-            <span className="font-bold text-xl text-foreground">Upitomat</span>
+            <span className="font-black text-xl text-foreground uppercase tracking-tight">Upitomat</span>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <a
-              href="#proces"
-              onClick={(e) => handleNavClick(e, "proces")}
-              className="text-muted-foreground hover:text-foreground transition-colors font-medium"
-            >
-              Proces
-            </a>
-            <a
-              href="#kalkulator"
-              onClick={(e) => handleNavClick(e, "kalkulator")}
-              className="text-muted-foreground hover:text-foreground transition-colors font-medium"
-            >
-              Kalkulator
-            </a>
-            <a
-              href="#klijenti"
-              onClick={(e) => handleNavClick(e, "klijenti")}
-              className="text-muted-foreground hover:text-foreground transition-colors font-medium"
-            >
-              Klijenti
-            </a>
-            <a
-              href="#cijene"
-              onClick={(e) => handleNavClick(e, "cijene")}
-              className="text-muted-foreground hover:text-foreground transition-colors font-medium"
-            >
-              Cijene
-            </a>
-            <a
-              href="#nasa-prica"
-              onClick={(e) => handleNavClick(e, "nasa-prica")}
-              className="text-muted-foreground hover:text-foreground transition-colors font-medium"
-            >
-              Naša priča
-            </a>
+            {navLinks.map((link) => (
+              <a
+                key={link.id}
+                href={`#${link.id}`}
+                onClick={(e) => handleNavClick(e, link.id)}
+                className="text-muted-foreground hover:text-foreground transition-colors duration-150 font-semibold uppercase text-sm tracking-wide border-b-2 border-transparent hover:border-primary pb-1"
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-4">
-            <Button variant="accent" asChild>
-              <a href="https://app.upitomat.hr/auth">Isprobajte Upitomat</a>
-            </Button>
+          <div className="hidden md:flex items-center">
+            <a 
+              href="https://app.upitomat.hr/auth"
+              className="btn-brutal px-5 py-2 text-sm focus-brutal"
+            >
+              Isprobajte Upitomat
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-foreground"
+            className="md:hidden p-2 text-foreground border-2 border-border hover:border-primary transition-colors duration-150 focus-brutal"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -98,47 +82,25 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-border animate-fade-in bg-background">
-            <div className="flex flex-col gap-4 items-center text-center">
-              <a
-                href="#proces"
-                onClick={(e) => handleNavClick(e, "proces")}
-                className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
-              >
-                Proces
-              </a>
-              <a
-                href="#kalkulator"
-                onClick={(e) => handleNavClick(e, "kalkulator")}
-                className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
-              >
-                Kalkulator
-              </a>
-              <a
-                href="#klijenti"
-                onClick={(e) => handleNavClick(e, "klijenti")}
-                className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
-              >
-                Klijenti
-              </a>
-              <a
-                href="#cijene"
-                onClick={(e) => handleNavClick(e, "cijene")}
-                className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
-              >
-                Cijene
-              </a>
-              <a
-                href="#nasa-prica"
-                onClick={(e) => handleNavClick(e, "nasa-prica")}
-                className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2"
-              >
-                Naša priča
-              </a>
-              <div className="flex flex-col gap-2 pt-4 border-t border-border w-full items-center">
-                <Button variant="accent" asChild>
-                  <a href="https://app.upitomat.hr/auth">Isprobajte Upitomat</a>
-                </Button>
+          <div className="md:hidden py-6 border-t-2 border-border bg-background">
+            <div className="flex flex-col gap-1">
+              {navLinks.map((link) => (
+                <a
+                  key={link.id}
+                  href={`#${link.id}`}
+                  onClick={(e) => handleNavClick(e, link.id)}
+                  className="text-muted-foreground hover:text-foreground hover:bg-muted transition-colors duration-150 font-semibold uppercase text-sm tracking-wide py-3 px-4 border-l-2 border-transparent hover:border-primary"
+                >
+                  {link.label}
+                </a>
+              ))}
+              <div className="pt-4 mt-4 border-t-2 border-border px-4">
+                <a 
+                  href="https://app.upitomat.hr/auth"
+                  className="btn-brutal px-5 py-3 text-sm w-full text-center block focus-brutal"
+                >
+                  Isprobajte Upitomat
+                </a>
               </div>
             </div>
           </div>

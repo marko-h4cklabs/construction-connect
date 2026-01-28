@@ -1,4 +1,4 @@
-import { Check, MessageCircle, Instagram, Mail, Globe, ChevronDown } from "lucide-react";
+import { Check, MessageCircle, Instagram, Mail, Globe } from "lucide-react";
 import { useState } from "react";
 import {
   Select,
@@ -58,17 +58,15 @@ const PricingSection = () => {
     window.open("https://app.upitomat.hr/auth", "_blank");
   };
 
-  const SelectedPlatformIcon = platformOptions.find(p => p.value === selectedPlatform)?.icon || MessageCircle;
-
   return (
     <section id="cijene" className="py-16 md:py-24 scroll-mt-24">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-2xl md:text-4xl font-black text-foreground mb-4">
             Odaberite svoj plan
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
             Jednostavne cijene, bez skrivenih troškova
           </p>
         </div>
@@ -79,53 +77,52 @@ const PricingSection = () => {
             <div
               key={plan.id}
               className={`
-                relative rounded-2xl border-2 p-6 md:p-8 transition-all duration-300
+                relative border-2 p-6 md:p-8 transition-all duration-150
                 ${plan.popular 
-                  ? "border-primary bg-primary/5 shadow-xl scale-[1.02]" 
-                  : "border-border bg-background hover:border-primary/50"
+                  ? "border-primary bg-primary/5" 
+                  : "border-border bg-card hover:border-primary/50"
                 }
               `}
             >
               {/* Popular badge */}
               {plan.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <span className="bg-primary text-primary-foreground text-xs font-semibold px-3 py-1 rounded-full">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                  <span className="bg-primary text-primary-foreground text-xs font-black px-4 py-2 uppercase tracking-wide">
                     Najpopularniji
                   </span>
                 </div>
               )}
 
               {/* Plan header */}
-              <div className="text-center mb-6">
-                <h3 className="text-xl font-bold text-foreground mb-4">{plan.name}</h3>
+              <div className="text-center mb-6 pt-2">
+                <h3 className="text-xl font-black text-foreground mb-4 uppercase tracking-tight">{plan.name}</h3>
                 
                 <div className="flex items-baseline justify-center gap-1">
-                  <span className="text-4xl md:text-5xl font-bold text-foreground">{plan.price}</span>
-                  <span className="text-muted-foreground">€/mj</span>
+                  <span className="text-4xl md:text-5xl font-black text-foreground">{plan.price}</span>
+                  <span className="text-muted-foreground font-semibold uppercase">€/mj</span>
                 </div>
               </div>
 
               {/* Platforms */}
               <div className="mb-6">
-                <p className="text-sm font-medium text-foreground mb-3">Uključene platforme:</p>
+                <p className="text-sm font-bold text-foreground mb-3 uppercase tracking-tight">Uključene platforme:</p>
                 <div className="flex flex-wrap gap-2">
                   {plan.platforms.map((platform, idx) => (
                     <div
                       key={idx}
-                      className="flex items-center gap-2 bg-muted/50 rounded-lg px-3 py-2"
+                      className="flex items-center gap-2 bg-muted border border-border px-3 py-2"
                     >
                       <platform.icon className="w-4 h-4 text-primary" />
-                      <span className="text-sm text-foreground">{platform.name}</span>
+                      <span className="text-sm text-foreground font-medium">{platform.name}</span>
                     </div>
                   ))}
                   
-                  {/* Dropdown for basic plan */}
                   {plan.hasDropdown && (
                     <Select value={selectedPlatform} onValueChange={setSelectedPlatform}>
-                      <SelectTrigger className="w-auto min-w-[160px] bg-muted/50 border-0 rounded-lg px-3 py-2 h-auto">
+                      <SelectTrigger className="w-auto min-w-[160px] bg-muted border-2 border-border px-3 py-2 h-auto focus-brutal">
                         <SelectValue />
                       </SelectTrigger>
-                      <SelectContent className="bg-background border border-border">
+                      <SelectContent className="bg-background border-2 border-border">
                         {platformOptions.map((option) => (
                           <SelectItem key={option.value} value={option.value}>
                             <div className="flex items-center gap-2">
@@ -144,7 +141,7 @@ const PricingSection = () => {
               <ul className="space-y-3 mb-8">
                 {plan.features.map((feature, idx) => (
                   <li key={idx} className="flex items-center gap-3">
-                    <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                    <div className="w-5 h-5 border-2 border-primary bg-primary/20 flex items-center justify-center flex-shrink-0">
                       <Check className="w-3 h-3 text-primary" />
                     </div>
                     <span className="text-sm text-muted-foreground">{feature}</span>
@@ -156,10 +153,10 @@ const PricingSection = () => {
               <button
                 onClick={() => handleSelectPlan(plan.id)}
                 className={`
-                  w-full py-3 px-6 rounded-xl font-semibold transition-all duration-300
+                  w-full py-3 px-6 font-bold uppercase tracking-wide transition-all duration-150 border-2 focus-brutal
                   ${plan.popular
-                    ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-xl"
-                    : "bg-muted text-foreground hover:bg-muted/80"
+                    ? "btn-brutal"
+                    : "border-border bg-muted text-foreground hover:border-primary hover:bg-muted/80"
                   }
                 `}
               >
@@ -170,7 +167,7 @@ const PricingSection = () => {
         </div>
 
         {/* Note */}
-        <p className="text-center text-sm text-muted-foreground mt-8">
+        <p className="text-center text-sm text-muted-foreground mt-8 uppercase tracking-wide">
           Plan možete promijeniti kada god želite
         </p>
       </div>
