@@ -311,8 +311,8 @@ const ScrollDrivenBackground = () => {
       {(() => {
         // Calculate light mode factor for grid color
         const isLightSection = vignetteOpacity < 0.5;
-        // STRONGER grid on light sections (2.5x), normal on dark
-        const gridIntensityMultiplier = isLightSection ? 2.5 : 1.0;
+      // MUCH STRONGER grid on light sections (4x), normal on dark
+        const gridIntensityMultiplier = isLightSection ? 4.0 : 1.0;
         // Varying line opacity based on breathe phase - creates fade/strengthen effect
         const lineVariation1 = 0.8 + Math.sin(breathePhase * Math.PI * 4) * 0.2;
         const lineVariation2 = 0.8 + Math.cos(breathePhase * Math.PI * 3 + 1) * 0.2;
@@ -399,65 +399,70 @@ const ScrollDrivenBackground = () => {
       {/* === LIGHT SECTION - CLEAN WHITE, NO SHADOWS === */}
       {/* Only grid lines visible, fully white background */}
 
-      {/* Dynamic cinematic vignette - fades out in light sections */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-0 transition-all duration-500"
-        style={{
-          opacity: vignetteOpacity,
-          background: `
-            radial-gradient(
-              ellipse ${vignetteSize}% ${vignetteSize * 0.8}% at ${50 + vignetteShift + glowOffset1 * 0.4}% ${50 + glowOffset2 * 0.3}%, 
-              transparent 15%, 
-              rgba(0, 0, 0, ${vignetteIntensity * 0.5}) 60%,
-              rgba(0, 0, 0, ${vignetteIntensity * 0.8}) 80%,
-              rgba(0, 0, 0, ${vignetteIntensity * 1.1}) 100%
-            )
-          `,
-        }}
-      />
-      
-      {/* Secondary vignette layer - orbiting effect */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-0 transition-all duration-500"
-        style={{
-          opacity: vignetteOpacity,
-          background: `
-            radial-gradient(
-              ellipse ${vignetteSize + 15}% ${(vignetteSize + 15) * 0.85}% at ${50 - vignetteShift * 0.8 - glowOffset2 * 0.25}% ${50 - glowOffset1 * 0.2}%, 
-              transparent 25%, 
-              rgba(0, 0, 0, ${vignetteIntensity * 0.4}) 100%
-            )
-          `,
-        }}
-      />
-      
-      {/* Tertiary vignette - subtle edge darkening that pulses */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-500"
-        style={{
-          opacity: vignetteOpacity * 0.8,
-          background: `
-            radial-gradient(
-              ellipse 90% 75% at 50% ${50 + breathePhase * 10 - 5}%, 
-              transparent 40%, 
-              rgba(0, 0, 0, ${0.15 + breathePhase * 0.1}) 100%
-            )
-          `,
-        }}
-      />
+      {/* Dynamic cinematic vignette - ONLY for dark sections, completely hidden in light */}
+      {vignetteOpacity > 0.01 && (
+        <>
+          <div 
+            className="fixed inset-0 pointer-events-none z-0 transition-all duration-500"
+            style={{
+              opacity: vignetteOpacity,
+              background: `
+                radial-gradient(
+                  ellipse ${vignetteSize}% ${vignetteSize * 0.8}% at ${50 + vignetteShift + glowOffset1 * 0.4}% ${50 + glowOffset2 * 0.3}%, 
+                  transparent 15%, 
+                  rgba(0, 0, 0, ${vignetteIntensity * 0.5}) 60%,
+                  rgba(0, 0, 0, ${vignetteIntensity * 0.8}) 80%,
+                  rgba(0, 0, 0, ${vignetteIntensity * 1.1}) 100%
+                )
+              `,
+            }}
+          />
+          
+          {/* Secondary vignette layer - orbiting effect */}
+          <div 
+            className="fixed inset-0 pointer-events-none z-0 transition-all duration-500"
+            style={{
+              opacity: vignetteOpacity,
+              background: `
+                radial-gradient(
+                  ellipse ${vignetteSize + 15}% ${(vignetteSize + 15) * 0.85}% at ${50 - vignetteShift * 0.8 - glowOffset2 * 0.25}% ${50 - glowOffset1 * 0.2}%, 
+                  transparent 25%, 
+                  rgba(0, 0, 0, ${vignetteIntensity * 0.4}) 100%
+                )
+              `,
+            }}
+          />
+          
+          {/* Tertiary vignette - subtle edge darkening that pulses */}
+          <div 
+            className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-500"
+            style={{
+              opacity: vignetteOpacity * 0.8,
+              background: `
+                radial-gradient(
+                  ellipse 90% 75% at 50% ${50 + breathePhase * 10 - 5}%, 
+                  transparent 40%, 
+                  rgba(0, 0, 0, ${0.15 + breathePhase * 0.1}) 100%
+                )
+              `,
+            }}
+          />
 
-      <div 
-        className="fixed top-0 left-0 right-0 h-48 pointer-events-none z-0"
-        style={{
-          background: `linear-gradient(180deg, ${rgbToString(currentBg, 0.8)} 0%, transparent 100%)`,
-        }}
-      />
-      <div 
-        className="fixed bottom-0 left-0 right-0 h-32 pointer-events-none z-0"
-        style={{
-          background: `linear-gradient(0deg, ${rgbToString(currentBg, 0.9)} 0%, transparent 100%)`,
-        }}
-      />
+          {/* Top/bottom gradients - ONLY for dark sections */}
+          <div 
+            className="fixed top-0 left-0 right-0 h-48 pointer-events-none z-0"
+            style={{
+              background: `linear-gradient(180deg, ${rgbToString(currentBg, 0.8)} 0%, transparent 100%)`,
+            }}
+          />
+          <div 
+            className="fixed bottom-0 left-0 right-0 h-32 pointer-events-none z-0"
+            style={{
+              background: `linear-gradient(0deg, ${rgbToString(currentBg, 0.9)} 0%, transparent 100%)`,
+            }}
+          />
+        </>
+      )}
     </>
   );
 };
