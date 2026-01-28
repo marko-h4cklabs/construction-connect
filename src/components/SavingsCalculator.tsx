@@ -77,9 +77,9 @@ const SavingsCalculator = () => {
           <div className="grid md:grid-cols-2 gap-6 md:gap-10">
             {/* Left Side - Inputs */}
             <StaggeredText delay={200}>
-              <div className="bg-[rgba(248,244,235,0.4)] backdrop-blur-sm border-2 border-[rgb(35,35,35)]/60 p-5 md:p-8 transition-all duration-300 hover:border-[rgb(120,95,50)]/60">
+              <div className="bg-[rgba(248,244,235,0.4)] backdrop-blur-sm border-[3px] border-[rgb(20,20,20)] p-5 md:p-8 transition-all duration-300 hover:border-[rgb(120,95,50)]/80">
                 <div className="flex items-center gap-3 mb-6 md:mb-8">
-                  <div className="w-10 h-10 border-2 border-[rgb(35,35,35)]/60 bg-[rgba(248,244,235,0.5)] flex items-center justify-center group icon-pulse-hover">
+                  <div className="w-10 h-10 border-[3px] border-[rgb(20,20,20)] bg-[rgba(248,244,235,0.5)] flex items-center justify-center group icon-pulse-hover">
                     <Calculator className="w-5 h-5 text-[rgb(74,74,74)] group-hover:text-[rgb(120,95,50)] transition-colors duration-300" strokeWidth={1.5} />
                   </div>
                   <h3 className="text-lg md:text-xl font-bold text-scroll-heading uppercase tracking-tight">Vaši parametri</h3>
@@ -152,9 +152,9 @@ const SavingsCalculator = () => {
               <h3 className="text-lg md:text-xl font-bold text-scroll-heading uppercase tracking-tight mb-2">Vaši rezultati:</h3>
               
               {/* Time Saved */}
-              <div className="bg-[rgba(248,244,235,0.4)] backdrop-blur-sm border-2 border-[rgb(35,35,35)]/60 p-4 md:p-5 hover:border-[rgb(120,95,50)]/70 transition-all duration-300 group">
+              <div className="bg-[rgba(248,244,235,0.4)] backdrop-blur-sm border-[3px] border-[rgb(20,20,20)] p-4 md:p-5 hover:border-[rgb(120,95,50)]/80 transition-all duration-300 group">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 border-2 border-[rgb(35,35,35)]/60 bg-[rgba(248,244,235,0.5)] flex items-center justify-center shrink-0 group-hover:border-[rgb(120,95,50)]/80 group-hover:bg-[rgba(120,95,50,0.08)] transition-all duration-300">
+                  <div className="w-12 h-12 border-[3px] border-[rgb(20,20,20)] bg-[rgba(248,244,235,0.5)] flex items-center justify-center shrink-0 group-hover:border-[rgb(120,95,50)]/80 group-hover:bg-[rgba(120,95,50,0.08)] transition-all duration-300">
                     <Clock className="w-6 h-6 text-[rgb(74,74,74)] group-hover:text-[rgb(120,95,50)] group-hover:scale-[1.03] transition-all duration-300" strokeWidth={1.5} />
                   </div>
                   <div>
@@ -167,9 +167,9 @@ const SavingsCalculator = () => {
               </div>
 
               {/* Money Saved */}
-              <div className="bg-[rgba(248,244,235,0.4)] backdrop-blur-sm border-2 border-[rgb(35,35,35)]/60 p-4 md:p-5 hover:border-[rgb(120,95,50)]/70 transition-all duration-300 group">
+              <div className="bg-[rgba(248,244,235,0.4)] backdrop-blur-sm border-[3px] border-[rgb(20,20,20)] p-4 md:p-5 hover:border-[rgb(120,95,50)]/80 transition-all duration-300 group">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 border-2 border-[rgb(35,35,35)]/60 bg-[rgba(248,244,235,0.5)] flex items-center justify-center shrink-0 group-hover:border-[rgb(120,95,50)]/80 group-hover:bg-[rgba(120,95,50,0.08)] transition-all duration-300">
+                  <div className="w-12 h-12 border-[3px] border-[rgb(20,20,20)] bg-[rgba(248,244,235,0.5)] flex items-center justify-center shrink-0 group-hover:border-[rgb(120,95,50)]/80 group-hover:bg-[rgba(120,95,50,0.08)] transition-all duration-300">
                     <Euro className="w-6 h-6 text-[rgb(74,74,74)] group-hover:text-[rgb(120,95,50)] group-hover:scale-[1.03] transition-all duration-300" strokeWidth={1.5} />
                   </div>
                   <div>
@@ -182,9 +182,9 @@ const SavingsCalculator = () => {
               </div>
 
               {/* ROI */}
-              <div className="bg-[rgba(248,244,235,0.4)] backdrop-blur-sm border-2 border-[rgb(35,35,35)]/60 p-4 md:p-5 hover:border-[rgb(120,95,50)]/70 transition-all duration-300 group">
+              <div className="bg-[rgba(248,244,235,0.4)] backdrop-blur-sm border-[3px] border-[rgb(20,20,20)] p-4 md:p-5 hover:border-[rgb(120,95,50)]/80 transition-all duration-300 group">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 border-2 border-[rgb(35,35,35)]/60 bg-[rgba(248,244,235,0.5)] flex items-center justify-center shrink-0 group-hover:border-[rgb(120,95,50)]/80 group-hover:bg-[rgba(120,95,50,0.08)] transition-all duration-300">
+                  <div className="w-12 h-12 border-[3px] border-[rgb(20,20,20)] bg-[rgba(248,244,235,0.5)] flex items-center justify-center shrink-0 group-hover:border-[rgb(120,95,50)]/80 group-hover:bg-[rgba(120,95,50,0.08)] transition-all duration-300">
                     <TrendingUp className="w-6 h-6 text-[rgb(74,74,74)] group-hover:text-[rgb(120,95,50)] group-hover:scale-[1.03] transition-all duration-300" strokeWidth={1.5} />
                   </div>
                   <div>
@@ -202,7 +202,7 @@ const SavingsCalculator = () => {
                   href="https://app.upitomat.hr/auth"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full text-center py-4 text-base md:text-lg bg-[rgb(120,95,50)] text-white font-bold uppercase tracking-wide border-2 border-[rgb(140,110,55)] focus-brutal transition-all duration-300 hover:translate-y-[-2px] hover:bg-[rgb(140,110,55)] hover:shadow-[0_0_35px_6px_rgba(180,140,60,0.4)]"
+                  className="w-full text-center py-4 text-base md:text-lg bg-[rgb(120,95,50)] text-white font-bold uppercase tracking-wide border-[3px] border-[rgb(90,70,35)] focus-brutal transition-all duration-300 hover:translate-y-[-2px] hover:bg-[rgb(140,110,55)] hover:shadow-[0_0_35px_6px_rgba(180,140,60,0.4)]"
                   style={{ boxShadow: '0 0 25px 4px rgba(180,140,60,0.3)' }}
                 >
                   Isprobajte Upitomat

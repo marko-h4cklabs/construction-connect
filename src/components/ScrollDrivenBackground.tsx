@@ -110,7 +110,7 @@ const ScrollDrivenBackground = () => {
       const elapsed = (Date.now() - startTime) % 10000;
       const phase = elapsed / 10000;
       setBreathePhase(phase);
-      setGridOpacity(0.08 + Math.sin(phase * Math.PI * 2) * 0.06);
+      setGridOpacity(0.18 + Math.sin(phase * Math.PI * 2) * 0.10);
       rafId = requestAnimationFrame(breathe);
     };
     
@@ -274,8 +274,8 @@ const ScrollDrivenBackground = () => {
         style={{
           opacity: gridVisibility,
           backgroundImage: `
-            linear-gradient(${rgbToString(currentAccent, gridOpacity * 0.8)} 1px, transparent 1px),
-            linear-gradient(90deg, ${rgbToString(currentAccent, gridOpacity * 0.8)} 1px, transparent 1px)
+            linear-gradient(${rgbToString(currentAccent, gridOpacity * 1.2)} 1.5px, transparent 1.5px),
+            linear-gradient(90deg, ${rgbToString(currentAccent, gridOpacity * 1.2)} 1.5px, transparent 1.5px)
           `,
           backgroundSize: '80px 80px',
           backgroundPosition: `0 ${scrollProgress * -40}px`,
