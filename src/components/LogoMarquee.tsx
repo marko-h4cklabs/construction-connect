@@ -1,8 +1,8 @@
 import { partners } from "./PartnersSection";
 
 const LogoMarquee = () => {
-  // Duplicate array 3 times for truly seamless infinite loop
-  const duplicatedPartners = [...partners, ...partners, ...partners];
+  // Duplicate array exactly twice for seamless infinite loop
+  const duplicatedPartners = [...partners, ...partners];
 
   return (
     <div className="py-6 md:py-10 overflow-hidden">
