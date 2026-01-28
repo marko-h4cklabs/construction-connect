@@ -29,14 +29,14 @@ const Index = () => {
             <FeatureShowcase />
           </PremiumSection>
           
-          {/* Calculator */}
-          <PremiumSection id="kalkulator">
-            <SavingsCalculator />
+          {/* Partners/Clients - DARK SECTION (last dark section) */}
+          <PremiumSection id="klijenti">
+            <PartnersSection />
           </PremiumSection>
           
-          {/* Partners */}
-          <PremiumSection>
-            <PartnersSection />
+          {/* Calculator - LIGHT SECTION (first light section, stays light) */}
+          <PremiumSection id="kalkulator">
+            <SavingsCalculator />
           </PremiumSection>
           
           {/* Our Story */}

@@ -1,30 +1,21 @@
 import { useEffect, useState, useCallback, useMemo } from 'react';
 
-// Define color stops for each section (in order) with story switches
-// Format: bg (RGB), accent (HSL), glow (HSL), isLightMode (for text adaptation), transitionIntensity, noVignette, noGrid, isEditorial
+// SIMPLIFIED: Only TWO themes - DARK (first half) and LIGHT (second half)
+// Single transition happens between Klijenti (Partners) and Kalkulator sections
+// Page structure: Hero → Features → Klijenti(dark) → [TRANSITION] → Kalkulator(light) → Our Story(light) → CTA(light)
 const sectionColors = [
-  // Hero - deep charcoal with subtle gold
+  // Hero - deep charcoal with subtle gold (DARK)
   { bg: [12, 12, 12], accent: [45, 70, 50], glow: [45, 80, 50], light: false, intensity: 1, noVignette: false, noGrid: false, isEditorial: false },
-  // Features - slightly warmer dark
+  // Features - slightly warmer dark (DARK)
   { bg: [18, 16, 14], accent: [48, 65, 45], glow: [50, 75, 48], light: false, intensity: 1.2, noVignette: false, noGrid: false, isEditorial: false },
-  // Pre-Calculator transition zone - fade out dark elements
-  { bg: [80, 75, 68], accent: [42, 60, 40], glow: [45, 65, 45], light: false, intensity: 0.6, noVignette: true, noGrid: false, isEditorial: false },
-  // Calculator - Warm cream with bronze accents (NO bright yellow/gold)
-  { bg: [252, 248, 240], accent: [35, 45, 35], glow: [38, 50, 40], light: true, intensity: 1.8, noVignette: true, noGrid: false, isEditorial: false },
-  // Post-Calculator transition - gradual return to dark
-  { bg: [60, 55, 48], accent: [42, 55, 38], glow: [45, 60, 42], light: false, intensity: 0.7, noVignette: true, noGrid: false, isEditorial: false },
-  // Partners - back to deep dark - smooth transition
-  { bg: [10, 10, 10], accent: [50, 70, 48], glow: [48, 80, 52], light: false, intensity: 1.5, noVignette: false, noGrid: false, isEditorial: false },
-  // Pricing - neutral dark with warm undertone
-  { bg: [20, 18, 15], accent: [45, 75, 52], glow: [45, 85, 50], light: false, intensity: 1.2, noVignette: false, noGrid: false, isEditorial: false },
-  // Pre-Story transition zone
-  { bg: [75, 70, 62], accent: [38, 55, 38], glow: [42, 60, 42], light: false, intensity: 0.6, noVignette: true, noGrid: true },
-  // Our Story - Warm cream with bronze accents (EDITORIAL - no grid, no vignette, no tech effects)
-  { bg: [252, 248, 240], accent: [35, 45, 35], glow: [38, 50, 40], light: true, intensity: 1.8, noVignette: true, noGrid: true, isEditorial: true },
-  // Post-Story transition
-  { bg: [55, 50, 44], accent: [40, 50, 36], glow: [44, 55, 40], light: false, intensity: 0.7, noVignette: true, noGrid: true, isEditorial: false },
-  // CTA - deep cinematic dark with intense gold accents
-  { bg: [8, 8, 8], accent: [48, 80, 55], glow: [45, 90, 60], light: false, intensity: 1.5, noVignette: false, noGrid: false, isEditorial: false },
+  // Partners/Klijenti - last dark section (DARK)
+  { bg: [14, 14, 14], accent: [50, 70, 48], glow: [48, 80, 52], light: false, intensity: 1.3, noVignette: false, noGrid: false, isEditorial: false },
+  // === SINGLE TRANSITION POINT === Calculator - first light section (LIGHT - stays light from here)
+  { bg: [252, 248, 240], accent: [35, 45, 35], glow: [38, 50, 40], light: true, intensity: 1.6, noVignette: true, noGrid: false, isEditorial: false },
+  // Our Story (LIGHT - editorial style)
+  { bg: [252, 248, 240], accent: [35, 45, 35], glow: [38, 50, 40], light: true, intensity: 1.6, noVignette: true, noGrid: true, isEditorial: true },
+  // CTA - stays light with subtle warmth
+  { bg: [248, 244, 236], accent: [38, 48, 38], glow: [40, 52, 42], light: true, intensity: 1.4, noVignette: true, noGrid: false, isEditorial: false },
 ];
 
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
@@ -127,21 +118,38 @@ const ScrollDrivenBackground = () => {
     const nextSection = Math.min(currentSection + 1, numSections - 1);
     const t = sectionProgress - currentSection;
     
-    // FAST transition easing - happens quickly in the "gap" between sections
-    // Only transition in the middle 30% of the section boundary (0.35 to 0.65)
-    // This ensures color change happens in empty space, not during content
+    // Detect the SINGLE dark→light transition (section 2→3, Klijenti→Kalkulator)
+    const isMainTransition = currentSection === 2 && nextSection === 3;
+    
+    // ULTRA-FAST transition easing for the main dark→light switch
+    // Happens ONLY in the narrow gap between sections (0.42 to 0.58)
     let eased: number;
-    if (t < 0.35) {
-      eased = 0; // Stay at current section color
-    } else if (t > 0.65) {
-      eased = 1; // Fully at next section color
+    if (isMainTransition) {
+      // Main transition: super fast, happens in narrow window
+      if (t < 0.42) {
+        eased = 0;
+      } else if (t > 0.58) {
+        eased = 1;
+      } else {
+        // Ultra-fast transition in 16% window
+        const transitionT = (t - 0.42) / 0.16;
+        // Sharp ease-in-out for instant feel
+        eased = transitionT < 0.5 
+          ? 4 * transitionT * transitionT * transitionT
+          : 1 - Math.pow(-2 * transitionT + 2, 3) / 2;
+      }
     } else {
-      // Fast transition in the 0.35-0.65 range (maps to 0-1)
-      const transitionT = (t - 0.35) / 0.30;
-      // Smooth ease-in-out for the fast transition
-      eased = transitionT < 0.5 
-        ? 2 * transitionT * transitionT 
-        : 1 - Math.pow(-2 * transitionT + 2, 2) / 2;
+      // Other transitions: also fast but less critical
+      if (t < 0.35) {
+        eased = 0;
+      } else if (t > 0.65) {
+        eased = 1;
+      } else {
+        const transitionT = (t - 0.35) / 0.30;
+        eased = transitionT < 0.5 
+          ? 2 * transitionT * transitionT 
+          : 1 - Math.pow(-2 * transitionT + 2, 2) / 2;
+      }
     }
     
     const c1 = sectionColorsRGB[currentSection];
