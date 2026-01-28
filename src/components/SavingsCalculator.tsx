@@ -67,7 +67,7 @@ const SavingsCalculator = () => {
           <h2 className="text-2xl md:text-4xl font-black text-scroll-heading mb-3 uppercase tracking-tight">
             Koliko bi Upitomat uštedio vama?
           </h2>
-          <p className="text-scroll-adaptive opacity-70 text-sm md:text-lg max-w-2xl mx-auto">
+          <p className="text-scroll-adaptive opacity-80 text-sm md:text-lg max-w-2xl mx-auto">
             Unesite svoje brojke i odmah vidite uštedu vremena i dodatnu prodaju.
           </p>
         </StaggeredText>
@@ -77,10 +77,10 @@ const SavingsCalculator = () => {
           <div className="grid md:grid-cols-2 gap-6 md:gap-10">
             {/* Left Side - Inputs */}
             <StaggeredText delay={200}>
-              <div className="bg-black/10 backdrop-blur-sm border border-black/20 p-5 md:p-8 transition-all duration-300 hover:border-black/40">
+              <div className="bg-[rgb(45,42,38)]/8 backdrop-blur-sm border border-[rgb(85,80,72)]/30 p-5 md:p-8 transition-all duration-300 hover:border-[rgb(180,140,60)]/40">
                 <div className="flex items-center gap-3 mb-6 md:mb-8">
-                  <div className="w-10 h-10 border border-black/40 bg-black/10 flex items-center justify-center">
-                    <Calculator className="w-5 h-5 text-scroll-adaptive" />
+                  <div className="w-10 h-10 border border-[rgb(85,80,72)]/40 bg-[rgb(45,42,38)]/5 flex items-center justify-center group icon-pulse-hover">
+                    <Calculator className="w-5 h-5 text-scroll-adaptive group-hover:text-[rgb(180,140,60)] transition-colors duration-300 icon-glow-hover" strokeWidth={1.5} />
                   </div>
                   <h3 className="text-lg md:text-xl font-bold text-scroll-heading uppercase tracking-tight">Vaši parametri</h3>
                 </div>
@@ -97,9 +97,9 @@ const SavingsCalculator = () => {
                     min={1}
                     max={10}
                     step={1}
-                    className="w-full [&_[role=slider]]:bg-amber-800 [&_[role=slider]]:border-amber-800 [&_.bg-primary]:bg-amber-700"
+                    className="w-full [&_[role=slider]]:bg-[rgb(120,95,50)] [&_[role=slider]]:border-[rgb(140,110,55)] [&_.bg-primary]:bg-[rgb(160,125,50)]"
                   />
-                  <div className="flex justify-between text-xs text-scroll-adaptive opacity-50 mt-2">
+                  <div className="flex justify-between text-xs text-scroll-adaptive opacity-60 mt-2">
                     <span>1h</span>
                     <span>10h</span>
                   </div>
@@ -117,9 +117,9 @@ const SavingsCalculator = () => {
                     min={10}
                     max={150}
                     step={5}
-                    className="w-full [&_[role=slider]]:bg-amber-800 [&_[role=slider]]:border-amber-800 [&_.bg-primary]:bg-amber-700"
+                    className="w-full [&_[role=slider]]:bg-[rgb(120,95,50)] [&_[role=slider]]:border-[rgb(140,110,55)] [&_.bg-primary]:bg-[rgb(160,125,50)]"
                   />
-                  <div className="flex justify-between text-xs text-scroll-adaptive opacity-50 mt-2">
+                  <div className="flex justify-between text-xs text-scroll-adaptive opacity-60 mt-2">
                     <span>10€</span>
                     <span>150€</span>
                   </div>
@@ -137,9 +137,9 @@ const SavingsCalculator = () => {
                     min={1}
                     max={7}
                     step={1}
-                    className="w-full [&_[role=slider]]:bg-amber-800 [&_[role=slider]]:border-amber-800 [&_.bg-primary]:bg-amber-700"
+                    className="w-full [&_[role=slider]]:bg-[rgb(120,95,50)] [&_[role=slider]]:border-[rgb(140,110,55)] [&_.bg-primary]:bg-[rgb(160,125,50)]"
                   />
-                  <div className="flex justify-between text-xs text-scroll-adaptive opacity-50 mt-2">
+                  <div className="flex justify-between text-xs text-scroll-adaptive opacity-60 mt-2">
                     <span>1 dan</span>
                     <span>7 dana</span>
                   </div>
@@ -152,46 +152,46 @@ const SavingsCalculator = () => {
               <h3 className="text-lg md:text-xl font-bold text-scroll-heading uppercase tracking-tight mb-2">Vaši rezultati:</h3>
               
               {/* Time Saved */}
-              <div className="bg-black/10 backdrop-blur-sm border border-black/20 p-4 md:p-5 hover:border-amber-700/60 transition-all duration-300 group">
+              <div className="bg-[rgb(45,42,38)]/8 backdrop-blur-sm border border-[rgb(85,80,72)]/30 p-4 md:p-5 hover:border-[rgb(180,140,60)]/50 transition-all duration-300 group">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 border border-black/40 bg-black/10 flex items-center justify-center shrink-0 group-hover:border-amber-700/60 group-hover:bg-amber-700/10 transition-colors">
-                    <Clock className="w-6 h-6 text-scroll-adaptive group-hover:text-amber-800 transition-colors" />
+                  <div className="w-12 h-12 border border-[rgb(85,80,72)]/40 bg-[rgb(45,42,38)]/5 flex items-center justify-center shrink-0 group-hover:border-[rgb(180,140,60)]/60 group-hover:bg-[rgb(180,140,60)]/10 transition-all duration-300 icon-pulse-hover">
+                    <Clock className="w-6 h-6 text-scroll-adaptive group-hover:text-[rgb(180,140,60)] transition-colors duration-300" strokeWidth={1.5} />
                   </div>
                   <div>
                     <span className="text-3xl md:text-4xl font-black text-scroll-heading tabular-nums">
                       + {animatedTimeSaved}h
                     </span>
-                    <p className="text-scroll-adaptive opacity-60 font-bold text-sm md:text-base tracking-tight normal-case">Ušteda vremena mjesečno</p>
+                    <p className="text-scroll-adaptive opacity-70 font-bold text-sm md:text-base tracking-tight normal-case">Ušteda vremena mjesečno</p>
                   </div>
                 </div>
               </div>
 
               {/* Money Saved */}
-              <div className="bg-black/10 backdrop-blur-sm border border-black/20 p-4 md:p-5 hover:border-amber-700/60 transition-all duration-300 group">
+              <div className="bg-[rgb(45,42,38)]/8 backdrop-blur-sm border border-[rgb(85,80,72)]/30 p-4 md:p-5 hover:border-[rgb(180,140,60)]/50 transition-all duration-300 group">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 border border-black/40 bg-black/10 flex items-center justify-center shrink-0 group-hover:border-amber-700/60 group-hover:bg-amber-700/10 transition-colors">
-                    <Euro className="w-6 h-6 text-scroll-adaptive group-hover:text-amber-800 transition-colors" />
+                  <div className="w-12 h-12 border border-[rgb(85,80,72)]/40 bg-[rgb(45,42,38)]/5 flex items-center justify-center shrink-0 group-hover:border-[rgb(180,140,60)]/60 group-hover:bg-[rgb(180,140,60)]/10 transition-all duration-300 icon-pulse-hover">
+                    <Euro className="w-6 h-6 text-scroll-adaptive group-hover:text-[rgb(180,140,60)] transition-colors duration-300" strokeWidth={1.5} />
                   </div>
                   <div>
                     <span className="text-3xl md:text-4xl font-black text-scroll-heading tabular-nums">
                       + {animatedMoneySaved}€
                     </span>
-                    <p className="text-scroll-adaptive opacity-60 font-bold text-sm md:text-base tracking-tight normal-case">Ušteda novaca mjesečno</p>
+                    <p className="text-scroll-adaptive opacity-70 font-bold text-sm md:text-base tracking-tight normal-case">Ušteda novaca mjesečno</p>
                   </div>
                 </div>
               </div>
 
               {/* ROI */}
-              <div className="bg-black/10 backdrop-blur-sm border border-black/20 p-4 md:p-5 hover:border-amber-700/60 transition-all duration-300 group">
+              <div className="bg-[rgb(45,42,38)]/8 backdrop-blur-sm border border-[rgb(85,80,72)]/30 p-4 md:p-5 hover:border-[rgb(180,140,60)]/50 transition-all duration-300 group">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 border border-black/40 bg-black/10 flex items-center justify-center shrink-0 group-hover:border-amber-700/60 group-hover:bg-amber-700/10 transition-colors">
-                    <TrendingUp className="w-6 h-6 text-scroll-adaptive group-hover:text-amber-800 transition-colors" />
+                  <div className="w-12 h-12 border border-[rgb(85,80,72)]/40 bg-[rgb(45,42,38)]/5 flex items-center justify-center shrink-0 group-hover:border-[rgb(180,140,60)]/60 group-hover:bg-[rgb(180,140,60)]/10 transition-all duration-300 icon-pulse-hover">
+                    <TrendingUp className="w-6 h-6 text-scroll-adaptive group-hover:text-[rgb(180,140,60)] transition-colors duration-300" strokeWidth={1.5} />
                   </div>
                   <div>
                     <span className="text-3xl md:text-4xl font-black text-scroll-heading tabular-nums">
                       + {animatedRoi}%
                     </span>
-                    <p className="text-scroll-adaptive opacity-60 font-bold text-sm md:text-base tracking-tight normal-case">Povrat/Rast</p>
+                    <p className="text-scroll-adaptive opacity-70 font-bold text-sm md:text-base tracking-tight normal-case">Povrat/Rast</p>
                   </div>
                 </div>
               </div>
@@ -202,12 +202,12 @@ const SavingsCalculator = () => {
                   href="https://app.upitomat.hr/auth"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full text-center py-4 text-base md:text-lg bg-amber-800 text-white font-bold uppercase tracking-wide border-2 border-amber-900 focus-brutal transition-all duration-300 hover:translate-y-[-2px] hover:shadow-[0_0_30px_4px_rgba(146,64,14,0.5)]"
-                  style={{ boxShadow: '0 0 25px 3px rgba(146,64,14,0.4)' }}
+                  className="w-full text-center py-4 text-base md:text-lg bg-[rgb(120,95,50)] text-white font-bold uppercase tracking-wide border-2 border-[rgb(140,110,55)] focus-brutal transition-all duration-300 hover:translate-y-[-2px] hover:bg-[rgb(140,110,55)] hover:shadow-[0_0_35px_6px_rgba(180,140,60,0.4)]"
+                  style={{ boxShadow: '0 0 25px 4px rgba(180,140,60,0.3)' }}
                 >
                   Isprobajte Upitomat
                 </a>
-                <span className="text-sm text-scroll-adaptive opacity-60">
+                <span className="text-sm text-scroll-adaptive opacity-70">
                   Besplatno, bez obveze
                 </span>
               </div>

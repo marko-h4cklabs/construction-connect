@@ -18,7 +18,7 @@ const OurStorySection = () => {
             {/* Images */}
             <StaggeredText delay={100} className="order-1 lg:order-1">
               <div className="relative w-full h-52 md:h-96 flex items-center justify-center">
-                <div className="absolute left-4 md:left-8 w-40 md:w-52 aspect-square border border-black/30 overflow-hidden transform -rotate-6 hover:-rotate-3 transition-all duration-500 hover:border-amber-700/60 hover:shadow-[0_0_30px_rgba(146,64,14,0.3)]">
+                <div className="absolute left-4 md:left-8 w-40 md:w-52 aspect-square border border-[rgb(85,80,72)]/40 overflow-hidden transform -rotate-6 hover:-rotate-3 transition-all duration-500 hover:border-[rgb(180,140,60)]/60 hover:shadow-[0_0_35px_rgba(180,140,60,0.25)]">
                   <img 
                     src={partner1} 
                     alt="Partner 1" 
@@ -26,7 +26,7 @@ const OurStorySection = () => {
                   />
                 </div>
                 
-                <div className="absolute right-4 md:right-8 w-40 md:w-52 aspect-square border border-black/30 overflow-hidden transform rotate-6 hover:rotate-3 transition-all duration-500 z-10 hover:border-amber-700/60 hover:shadow-[0_0_30px_rgba(146,64,14,0.3)]">
+                <div className="absolute right-4 md:right-8 w-40 md:w-52 aspect-square border border-[rgb(85,80,72)]/40 overflow-hidden transform rotate-6 hover:rotate-3 transition-all duration-500 z-10 hover:border-[rgb(180,140,60)]/60 hover:shadow-[0_0_35px_rgba(180,140,60,0.25)]">
                   <img 
                     src={partner2} 
                     alt="Partner 2" 
@@ -44,7 +44,7 @@ const OurStorySection = () => {
                 </h2>
               </StaggeredText>
               
-              <div className="space-y-4 text-scroll-adaptive opacity-70 leading-relaxed">
+              <div className="space-y-4 text-scroll-adaptive opacity-85 leading-relaxed">
                 <StaggeredText delay={300}>
                   <p>
                     Upitomat je nastao iz problema kojih smo saznali iz prve ruke surađujući sa hrvatskim firmama.
@@ -52,7 +52,7 @@ const OurStorySection = () => {
                 </StaggeredText>
                 
                 <StaggeredText delay={400}>
-                  <div className="space-y-2 pl-4 border-l-2 border-amber-700/60 italic text-scroll-adaptive opacity-80">
+                  <div className="space-y-2 pl-4 border-l-2 border-[rgb(180,140,60)]/50 italic text-scroll-adaptive opacity-90">
                     <p>"Dobivam previše upita, a nemam vremena za sve pohvatati."</p>
                     <p>"Sve je razbacano, ne znam tko mi glavu nosi."</p>
                     <p>"Gubim sate svaki dan ponavljajući isto, da na kraju ne bude ništa."</p>
@@ -84,11 +84,11 @@ const OurStorySection = () => {
                 </StaggeredText>
                 
                 <StaggeredText delay={900}>
-                  <div className="pt-4 mt-4 border-t border-black/20">
+                  <div className="pt-4 mt-4 border-t border-[rgb(85,80,72)]/30">
                     <p className="text-scroll-heading font-bold uppercase tracking-tight">
                       Jedno pitanje za vas:
                     </p>
-                    <p className="text-scroll-adaptive opacity-60 mt-2">
+                    <p className="text-scroll-adaptive opacity-70 mt-2">
                       Na što biste radije potrošili vrijeme koje će vam danas ukrasti poruke?
                     </p>
                   </div>
@@ -101,12 +101,12 @@ const OurStorySection = () => {
                   href="https://app.upitomat.hr/auth"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-8 py-4 text-lg bg-amber-800 text-white font-bold uppercase tracking-wide border-2 border-amber-900 focus-brutal transition-all duration-300 hover:translate-y-[-2px] hover:shadow-[0_0_30px_4px_rgba(146,64,14,0.5)]"
-                  style={{ boxShadow: '0 0 25px 3px rgba(146,64,14,0.4)' }}
+                  className="px-8 py-4 text-lg bg-[rgb(120,95,50)] text-white font-bold uppercase tracking-wide border-2 border-[rgb(140,110,55)] focus-brutal transition-all duration-300 hover:translate-y-[-2px] hover:bg-[rgb(140,110,55)] hover:shadow-[0_0_35px_6px_rgba(180,140,60,0.4)]"
+                  style={{ boxShadow: '0 0 25px 4px rgba(180,140,60,0.3)' }}
                 >
                   Isprobajte Upitomat
                 </a>
-                <p className="text-sm text-scroll-adaptive opacity-60">
+                <p className="text-sm text-scroll-adaptive opacity-70">
                   Besplatno, bez obveze
                 </p>
               </StaggeredText>

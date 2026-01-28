@@ -1,22 +1,22 @@
 import { useEffect, useState, useCallback } from 'react';
 
 // Define color stops for each section (in order) with story switches
-// Format: bg (RGB), accent (HSL), glow (HSL), isLightMode (for text adaptation), transitionIntensity
+// Format: bg (RGB), accent (HSL), glow (HSL), isLightMode (for text adaptation), transitionIntensity, noVignette
 const sectionColors = [
   // Hero - deep charcoal with subtle gold
-  { bg: [12, 12, 12], accent: [45, 70, 50], glow: [45, 80, 50], light: false, intensity: 1 },
+  { bg: [12, 12, 12], accent: [45, 70, 50], glow: [45, 80, 50], light: false, intensity: 1, noVignette: false },
   // Features - slightly warmer dark
-  { bg: [18, 16, 14], accent: [48, 65, 45], glow: [50, 75, 48], light: false, intensity: 1.2 },
-  // Calculator - STORY SWITCH: Warm gold/cream (light mode) - DRAMATIC CHANGE
-  { bg: [255, 235, 190], accent: [42, 95, 40], glow: [45, 90, 50], light: true, intensity: 2 },
-  // Partners - back to deep dark - another dramatic shift
-  { bg: [10, 10, 10], accent: [50, 70, 48], glow: [48, 80, 52], light: false, intensity: 1.5 },
+  { bg: [18, 16, 14], accent: [48, 65, 45], glow: [50, 75, 48], light: false, intensity: 1.2, noVignette: false },
+  // Calculator - STORY SWITCH: Warm cream (light mode) - seamless gradient transition
+  { bg: [252, 248, 240], accent: [42, 85, 45], glow: [45, 75, 55], light: true, intensity: 1.8, noVignette: true },
+  // Partners - back to deep dark - smooth transition
+  { bg: [10, 10, 10], accent: [50, 70, 48], glow: [48, 80, 52], light: false, intensity: 1.5, noVignette: false },
   // Pricing - neutral dark with warm undertone
-  { bg: [20, 18, 15], accent: [45, 75, 52], glow: [45, 85, 50], light: false, intensity: 1.2 },
-  // Our Story - STORY SWITCH: Rich warm gold (light mode) - DRAMATIC CHANGE
-  { bg: [250, 225, 175], accent: [40, 90, 45], glow: [42, 95, 55], light: true, intensity: 2 },
+  { bg: [20, 18, 15], accent: [45, 75, 52], glow: [45, 85, 50], light: false, intensity: 1.2, noVignette: false },
+  // Our Story - STORY SWITCH: Warm cream (light mode) - seamless gradient transition
+  { bg: [252, 248, 240], accent: [40, 80, 50], glow: [42, 85, 55], light: true, intensity: 1.8, noVignette: true },
   // CTA - deep cinematic dark with intense gold accents
-  { bg: [8, 8, 8], accent: [48, 80, 55], glow: [45, 90, 60], light: false, intensity: 1.5 },
+  { bg: [8, 8, 8], accent: [48, 80, 55], glow: [45, 90, 60], light: false, intensity: 1.5, noVignette: false },
 ];
 
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
@@ -51,6 +51,7 @@ const sectionColorsRGB = sectionColors.map(section => ({
   glow: hslToRgb(section.glow[0], section.glow[1], section.glow[2]),
   light: section.light,
   intensity: section.intensity,
+  noVignette: section.noVignette,
 }));
 
 const ScrollDrivenBackground = () => {
@@ -115,8 +116,8 @@ const ScrollDrivenBackground = () => {
     const nextSection = Math.min(currentSection + 1, numSections - 1);
     const t = sectionProgress - currentSection;
     
-    // Smooth easing with more pronounced transitions
-    const eased = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+    // Smoother easing for seamless transitions
+    const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
     
     const c1 = sectionColorsRGB[currentSection];
     const c2 = sectionColorsRGB[nextSection];
@@ -130,10 +131,17 @@ const ScrollDrivenBackground = () => {
                     c1.light && !c2.light ? 1 - eased :
                     !c1.light && c2.light ? eased : 0;
     
+    // Calculate vignette visibility (fade out in light sections)
+    const noVignette = c1.noVignette && c2.noVignette ? 1 :
+                       c1.noVignette && !c2.noVignette ? 1 - eased :
+                       !c1.noVignette && c2.noVignette ? eased : 0;
+    
     // Update CSS custom properties for global text adaptation
     document.documentElement.style.setProperty('--scroll-light-mode', isLight.toString());
-    document.documentElement.style.setProperty('--scroll-text-color', isLight > 0.5 ? '12, 10, 8' : '255, 255, 255');
-    document.documentElement.style.setProperty('--scroll-heading-color', isLight > 0.5 ? '20, 15, 10' : '255, 220, 100');
+    document.documentElement.style.setProperty('--scroll-no-vignette', noVignette.toString());
+    // Use anthracite (#333) for light sections instead of pure black
+    document.documentElement.style.setProperty('--scroll-text-color', isLight > 0.5 ? '45, 42, 38' : '255, 255, 255');
+    document.documentElement.style.setProperty('--scroll-heading-color', isLight > 0.5 ? '55, 50, 42' : '255, 220, 100');
   }, [scrollProgress]);
 
   // Calculate current section intensity for enhanced transitions
@@ -157,6 +165,10 @@ const ScrollDrivenBackground = () => {
   const vignetteIntensity = 0.35 + Math.sin(scrollProgress * Math.PI * 3) * 0.2 + (currentIntensity - 1) * 0.1;
   const vignetteSize = 70 - scrollProgress * 20 + Math.sin(breathePhase * Math.PI * 2) * 8;
   const vignetteShift = Math.sin(scrollProgress * Math.PI * 2) * 5;
+  
+  // Calculate vignette opacity based on section (fade out for light sections)
+  const noVignetteValue = parseFloat(document.documentElement.style.getPropertyValue('--scroll-no-vignette') || '0');
+  const vignetteOpacity = 1 - noVignetteValue;
 
   return (
     <>
@@ -284,10 +296,49 @@ const ScrollDrivenBackground = () => {
         }}
       />
 
-      {/* Dynamic cinematic vignette - ENHANCED movement and breathing */}
+      {/* Shimmer effect for light sections - replaces vignette */}
       <div 
-        className="fixed inset-0 pointer-events-none z-0 transition-all duration-300"
+        className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-700"
         style={{
+          opacity: vignetteOpacity < 0.5 ? (1 - vignetteOpacity * 2) * 0.6 : 0,
+          background: `
+            linear-gradient(
+              120deg,
+              transparent 0%,
+              rgba(255, 252, 245, 0.15) 20%,
+              rgba(255, 252, 245, 0.25) 40%,
+              rgba(255, 252, 245, 0.15) 60%,
+              transparent 80%
+            )
+          `,
+          backgroundSize: '200% 100%',
+          animation: vignetteOpacity < 0.5 ? 'shimmer-wave 12s ease-in-out infinite' : 'none',
+        }}
+      />
+      
+      {/* Soft light waves for light sections */}
+      <div 
+        className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-700"
+        style={{
+          opacity: vignetteOpacity < 0.5 ? (1 - vignetteOpacity * 2) * 0.4 : 0,
+          background: `
+            radial-gradient(ellipse 80% 50% at ${30 + Math.sin(breathePhase * Math.PI * 2) * 20}% ${40 + Math.cos(breathePhase * Math.PI * 2) * 15}%, 
+              rgba(180, 140, 60, 0.08) 0%, 
+              transparent 50%
+            ),
+            radial-gradient(ellipse 60% 40% at ${70 - Math.sin(breathePhase * Math.PI * 2) * 15}% ${60 + Math.cos(breathePhase * Math.PI * 2) * 10}%, 
+              rgba(180, 140, 60, 0.06) 0%, 
+              transparent 45%
+            )
+          `,
+        }}
+      />
+
+      {/* Dynamic cinematic vignette - fades out in light sections */}
+      <div 
+        className="fixed inset-0 pointer-events-none z-0 transition-all duration-500"
+        style={{
+          opacity: vignetteOpacity,
           background: `
             radial-gradient(
               ellipse ${vignetteSize}% ${vignetteSize * 0.8}% at ${50 + vignetteShift + glowOffset1 * 0.4}% ${50 + glowOffset2 * 0.3}%, 
@@ -304,6 +355,7 @@ const ScrollDrivenBackground = () => {
       <div 
         className="fixed inset-0 pointer-events-none z-0 transition-all duration-500"
         style={{
+          opacity: vignetteOpacity,
           background: `
             radial-gradient(
               ellipse ${vignetteSize + 15}% ${(vignetteSize + 15) * 0.85}% at ${50 - vignetteShift * 0.8 - glowOffset2 * 0.25}% ${50 - glowOffset1 * 0.2}%, 
@@ -316,8 +368,9 @@ const ScrollDrivenBackground = () => {
       
       {/* Tertiary vignette - subtle edge darkening that pulses */}
       <div 
-        className="fixed inset-0 pointer-events-none z-0"
+        className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-500"
         style={{
+          opacity: vignetteOpacity * 0.8,
           background: `
             radial-gradient(
               ellipse 90% 75% at 50% ${50 + breathePhase * 10 - 5}%, 
