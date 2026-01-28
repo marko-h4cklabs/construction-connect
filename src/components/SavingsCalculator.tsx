@@ -77,10 +77,10 @@ const SavingsCalculator = () => {
           <div className="grid md:grid-cols-2 gap-6 md:gap-10">
             {/* Left Side - Inputs */}
             <StaggeredText delay={200}>
-              <div className="bg-[rgb(45,42,38)]/8 backdrop-blur-sm border border-[rgb(85,80,72)]/30 p-5 md:p-8 transition-all duration-300 hover:border-[rgb(180,140,60)]/40">
+              <div className="bg-[rgba(248,244,235,0.4)] backdrop-blur-sm border-2 border-[rgb(74,74,74)]/40 p-5 md:p-8 transition-all duration-300 hover:border-[rgb(120,95,50)]/60">
                 <div className="flex items-center gap-3 mb-6 md:mb-8">
-                  <div className="w-10 h-10 border border-[rgb(85,80,72)]/40 bg-[rgb(45,42,38)]/5 flex items-center justify-center group icon-pulse-hover">
-                    <Calculator className="w-5 h-5 text-scroll-adaptive group-hover:text-[rgb(180,140,60)] transition-colors duration-300 icon-glow-hover" strokeWidth={1.5} />
+                  <div className="w-10 h-10 border-2 border-[rgb(74,74,74)]/50 bg-[rgba(248,244,235,0.5)] flex items-center justify-center group icon-pulse-hover">
+                    <Calculator className="w-5 h-5 text-[rgb(74,74,74)] group-hover:text-[rgb(120,95,50)] transition-colors duration-300" strokeWidth={1.5} />
                   </div>
                   <h3 className="text-lg md:text-xl font-bold text-scroll-heading uppercase tracking-tight">Vaši parametri</h3>
                 </div>
@@ -97,7 +97,7 @@ const SavingsCalculator = () => {
                     min={1}
                     max={10}
                     step={1}
-                    className="w-full [&_[role=slider]]:bg-[rgb(120,95,50)] [&_[role=slider]]:border-[rgb(140,110,55)] [&_.bg-primary]:bg-[rgb(160,125,50)]"
+                    className="w-full [&_[role=slider]]:bg-[rgb(120,95,50)] [&_[role=slider]]:border-2 [&_[role=slider]]:border-[rgb(140,110,55)] [&_.bg-primary]:bg-[rgb(120,95,50)]"
                   />
                   <div className="flex justify-between text-xs text-scroll-adaptive opacity-60 mt-2">
                     <span>1h</span>
@@ -117,7 +117,7 @@ const SavingsCalculator = () => {
                     min={10}
                     max={150}
                     step={5}
-                    className="w-full [&_[role=slider]]:bg-[rgb(120,95,50)] [&_[role=slider]]:border-[rgb(140,110,55)] [&_.bg-primary]:bg-[rgb(160,125,50)]"
+                    className="w-full [&_[role=slider]]:bg-[rgb(120,95,50)] [&_[role=slider]]:border-2 [&_[role=slider]]:border-[rgb(140,110,55)] [&_.bg-primary]:bg-[rgb(120,95,50)]"
                   />
                   <div className="flex justify-between text-xs text-scroll-adaptive opacity-60 mt-2">
                     <span>10€</span>
@@ -137,7 +137,7 @@ const SavingsCalculator = () => {
                     min={1}
                     max={7}
                     step={1}
-                    className="w-full [&_[role=slider]]:bg-[rgb(120,95,50)] [&_[role=slider]]:border-[rgb(140,110,55)] [&_.bg-primary]:bg-[rgb(160,125,50)]"
+                    className="w-full [&_[role=slider]]:bg-[rgb(120,95,50)] [&_[role=slider]]:border-2 [&_[role=slider]]:border-[rgb(140,110,55)] [&_.bg-primary]:bg-[rgb(120,95,50)]"
                   />
                   <div className="flex justify-between text-xs text-scroll-adaptive opacity-60 mt-2">
                     <span>1 dan</span>
@@ -152,10 +152,10 @@ const SavingsCalculator = () => {
               <h3 className="text-lg md:text-xl font-bold text-scroll-heading uppercase tracking-tight mb-2">Vaši rezultati:</h3>
               
               {/* Time Saved */}
-              <div className="bg-[rgb(45,42,38)]/8 backdrop-blur-sm border border-[rgb(85,80,72)]/30 p-4 md:p-5 hover:border-[rgb(180,140,60)]/50 transition-all duration-300 group">
+              <div className="bg-[rgba(248,244,235,0.4)] backdrop-blur-sm border-2 border-[rgb(74,74,74)]/40 p-4 md:p-5 hover:border-[rgb(120,95,50)]/70 transition-all duration-300 group">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 border border-[rgb(85,80,72)]/40 bg-[rgb(45,42,38)]/5 flex items-center justify-center shrink-0 group-hover:border-[rgb(180,140,60)]/60 group-hover:bg-[rgb(180,140,60)]/10 transition-all duration-300 icon-pulse-hover">
-                    <Clock className="w-6 h-6 text-scroll-adaptive group-hover:text-[rgb(180,140,60)] transition-colors duration-300" strokeWidth={1.5} />
+                  <div className="w-12 h-12 border-2 border-[rgb(74,74,74)]/50 bg-[rgba(248,244,235,0.5)] flex items-center justify-center shrink-0 group-hover:border-[rgb(120,95,50)]/80 group-hover:bg-[rgba(120,95,50,0.08)] transition-all duration-300">
+                    <Clock className="w-6 h-6 text-[rgb(74,74,74)] group-hover:text-[rgb(120,95,50)] group-hover:scale-[1.03] transition-all duration-300" strokeWidth={1.5} />
                   </div>
                   <div>
                     <span className="text-3xl md:text-4xl font-black text-scroll-heading tabular-nums">
@@ -167,10 +167,10 @@ const SavingsCalculator = () => {
               </div>
 
               {/* Money Saved */}
-              <div className="bg-[rgb(45,42,38)]/8 backdrop-blur-sm border border-[rgb(85,80,72)]/30 p-4 md:p-5 hover:border-[rgb(180,140,60)]/50 transition-all duration-300 group">
+              <div className="bg-[rgba(248,244,235,0.4)] backdrop-blur-sm border-2 border-[rgb(74,74,74)]/40 p-4 md:p-5 hover:border-[rgb(120,95,50)]/70 transition-all duration-300 group">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 border border-[rgb(85,80,72)]/40 bg-[rgb(45,42,38)]/5 flex items-center justify-center shrink-0 group-hover:border-[rgb(180,140,60)]/60 group-hover:bg-[rgb(180,140,60)]/10 transition-all duration-300 icon-pulse-hover">
-                    <Euro className="w-6 h-6 text-scroll-adaptive group-hover:text-[rgb(180,140,60)] transition-colors duration-300" strokeWidth={1.5} />
+                  <div className="w-12 h-12 border-2 border-[rgb(74,74,74)]/50 bg-[rgba(248,244,235,0.5)] flex items-center justify-center shrink-0 group-hover:border-[rgb(120,95,50)]/80 group-hover:bg-[rgba(120,95,50,0.08)] transition-all duration-300">
+                    <Euro className="w-6 h-6 text-[rgb(74,74,74)] group-hover:text-[rgb(120,95,50)] group-hover:scale-[1.03] transition-all duration-300" strokeWidth={1.5} />
                   </div>
                   <div>
                     <span className="text-3xl md:text-4xl font-black text-scroll-heading tabular-nums">
@@ -182,10 +182,10 @@ const SavingsCalculator = () => {
               </div>
 
               {/* ROI */}
-              <div className="bg-[rgb(45,42,38)]/8 backdrop-blur-sm border border-[rgb(85,80,72)]/30 p-4 md:p-5 hover:border-[rgb(180,140,60)]/50 transition-all duration-300 group">
+              <div className="bg-[rgba(248,244,235,0.4)] backdrop-blur-sm border-2 border-[rgb(74,74,74)]/40 p-4 md:p-5 hover:border-[rgb(120,95,50)]/70 transition-all duration-300 group">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 border border-[rgb(85,80,72)]/40 bg-[rgb(45,42,38)]/5 flex items-center justify-center shrink-0 group-hover:border-[rgb(180,140,60)]/60 group-hover:bg-[rgb(180,140,60)]/10 transition-all duration-300 icon-pulse-hover">
-                    <TrendingUp className="w-6 h-6 text-scroll-adaptive group-hover:text-[rgb(180,140,60)] transition-colors duration-300" strokeWidth={1.5} />
+                  <div className="w-12 h-12 border-2 border-[rgb(74,74,74)]/50 bg-[rgba(248,244,235,0.5)] flex items-center justify-center shrink-0 group-hover:border-[rgb(120,95,50)]/80 group-hover:bg-[rgba(120,95,50,0.08)] transition-all duration-300">
+                    <TrendingUp className="w-6 h-6 text-[rgb(74,74,74)] group-hover:text-[rgb(120,95,50)] group-hover:scale-[1.03] transition-all duration-300" strokeWidth={1.5} />
                   </div>
                   <div>
                     <span className="text-3xl md:text-4xl font-black text-scroll-heading tabular-nums">

@@ -45,11 +45,20 @@
     --scroll-text-color: 255, 255, 255;
     --scroll-heading-color: 255, 220, 100;
     
-    /* Premium light section colors - Anthracite with gold */
+    /* Premium light section colors - Warm anthracite palette (NO pure black) */
+    --anthracite-dark: 43, 43, 43;       /* #2B2B2B - primary text */
+    --anthracite-medium: 48, 48, 48;     /* #303030 - headings */
+    --anthracite-light: 74, 74, 74;      /* #4A4A4A - secondary text */
+    --bronze-dark: 120, 95, 50;          /* Metal gold/bronze - accents */
+    --bronze-medium: 140, 110, 55;       /* Warmer bronze */
+    --bronze-light: 160, 125, 50;        /* Lighter bronze highlight */
+    --cream-bg: 252, 248, 240;           /* Cream background */
+    --cream-warm: 248, 244, 235;         /* Warmer cream for depth */
+    
+    /* Legacy tokens for backwards compatibility */
     --anthracite: 45, 42, 38;
-    --anthracite-light: 85, 80, 72;
+    --anthracite-old-light: 85, 80, 72;
     --warm-gold: 180, 140, 60;
-    --cream-bg: 252, 248, 240;
     
     --sidebar-background: 0 0% 7%;
     --sidebar-foreground: 50 100% 50%;
@@ -132,13 +141,28 @@
     transition: color 0.5s ease-out;
   }
   
-  /* Premium light section text - Anthracite with gold shimmer */
+  /* Premium light section text - Anthracite palette (NO pure black) */
   .text-anthracite {
-    color: rgb(var(--anthracite));
+    color: rgb(var(--anthracite-dark));
   }
   
-  .text-anthracite-light {
+  .text-anthracite-secondary {
     color: rgb(var(--anthracite-light));
+  }
+  
+  .text-bronze-accent {
+    color: rgb(var(--bronze-dark));
+  }
+  
+  /* Premium box borders for light sections */
+  .border-premium-light {
+    border-color: rgb(var(--anthracite-light));
+    border-width: 2px;
+  }
+  
+  .border-bronze {
+    border-color: rgb(var(--bronze-dark));
+    border-width: 2px;
   }
   
   /* Shimmer animation for light sections */
@@ -165,9 +189,21 @@
   @keyframes icon-glow {
     0%, 100% {
       filter: drop-shadow(0 0 0 transparent);
+      transform: scale(1);
     }
     50% {
-      filter: drop-shadow(0 0 8px rgba(180, 140, 60, 0.5));
+      filter: drop-shadow(0 0 4px rgba(120, 95, 50, 0.25));
+      transform: scale(1.03);
+    }
+  }
+  
+  /* Premium hover effect for light section icons */
+  @keyframes icon-bronze-shift {
+    0%, 100% {
+      color: rgb(var(--anthracite-light));
+    }
+    50% {
+      color: rgb(var(--bronze-dark));
     }
   }
   
