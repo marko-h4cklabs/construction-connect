@@ -30,7 +30,7 @@ const PricingSection = () => {
         "2 platforme uključene",
         "Upitomat Inbox",
         "Personalizirani chatbot",
-        "Osnovna analitika",
+        "Napredna analitika",
       ],
     },
     {
@@ -49,6 +49,7 @@ const PricingSection = () => {
         "Upitomat Inbox",
         "Personalizirani chatbot",
         "Napredna analitika",
+        "Neograničena simulacija",
         "24/7 Prioritetna podrška",
       ],
     },
@@ -150,24 +151,29 @@ const PricingSection = () => {
               </ul>
 
               {/* CTA Button */}
-              <button
-                onClick={() => handleSelectPlan(plan.id)}
-                className={`
-                  w-full py-3 px-6 font-bold uppercase tracking-wide transition-all duration-150 border-2 focus-brutal
-                  ${plan.popular
-                    ? "btn-brutal"
-                    : "border-border bg-muted text-foreground hover:border-primary hover:bg-muted/80"
-                  }
-                `}
-              >
-                Odaberi {plan.name}
-              </button>
+              <div className="flex flex-col items-center gap-2">
+                <button
+                  onClick={() => handleSelectPlan(plan.id)}
+                  className={`
+                    w-full py-3 px-6 font-bold uppercase tracking-wide transition-all duration-150 border-2 focus-brutal hover:translate-y-[-2px]
+                    ${plan.popular
+                      ? "btn-glow bg-primary text-primary-foreground border-foreground"
+                      : "border-border bg-muted text-foreground hover:border-primary hover:bg-muted/80"
+                    }
+                  `}
+                >
+                  Odaberi {plan.name}
+                </button>
+                <span className="text-sm text-muted-foreground tracking-wide">
+                  Besplatno, bez obveze
+                </span>
+              </div>
             </div>
           ))}
         </div>
 
         {/* Note */}
-        <p className="text-center text-sm text-muted-foreground mt-8 uppercase tracking-wide">
+        <p className="text-center text-sm text-muted-foreground mt-8 tracking-wide">
           Plan možete promijeniti kada god želite
         </p>
       </div>

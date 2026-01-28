@@ -9,13 +9,13 @@ const CTASection = () => {
           <div className="flex flex-col items-center gap-3">
             <a
               href="https://app.upitomat.hr/auth"
-              className="btn-brutal px-8 py-4 text-lg focus-brutal"
+              className="btn-glow px-8 py-4 text-lg bg-primary text-primary-foreground font-bold uppercase tracking-wide border-2 border-foreground focus-brutal transition-all duration-150 hover:translate-y-[-2px]"
             >
               Isprobajte Upitomat
             </a>
-            <p className="text-sm text-muted-foreground uppercase tracking-wide">
+            <span className="text-sm text-muted-foreground tracking-wide">
               Besplatno, bez obveze
-            </p>
+            </span>
           </div>
         </div>
       </div>

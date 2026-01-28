@@ -85,7 +85,7 @@ const SavingsCalculator = () => {
               {/* Slider 1 */}
               <div className="mb-6 md:mb-8">
                 <div className="flex justify-between items-center mb-3">
-                  <label className="text-foreground font-semibold text-sm md:text-base uppercase tracking-tight">Broj sati dnevno na upite?</label>
+                  <label className="text-foreground font-semibold text-sm md:text-base tracking-tight">Broj sati dnevno na upite?</label>
                   <span className="text-primary font-black text-lg md:text-xl tabular-nums">{hoursPerDay}h</span>
                 </div>
                 <Slider
@@ -96,7 +96,7 @@ const SavingsCalculator = () => {
                   step={1}
                   className="w-full"
                 />
-                <div className="flex justify-between text-xs text-muted-foreground mt-2 uppercase">
+                <div className="flex justify-between text-xs text-muted-foreground mt-2">
                   <span>1h</span>
                   <span>10h</span>
                 </div>
@@ -105,7 +105,7 @@ const SavingsCalculator = () => {
               {/* Slider 2 */}
               <div className="mb-6 md:mb-8">
                 <div className="flex justify-between items-center mb-3">
-                  <label className="text-foreground font-semibold text-sm md:text-base uppercase tracking-tight">Koliko vrijedi vaš jedan sat?</label>
+                  <label className="text-foreground font-semibold text-sm md:text-base tracking-tight">Koliko vrijedi vaš jedan sat?</label>
                   <span className="text-primary font-black text-lg md:text-xl tabular-nums">{hourlyRate}€</span>
                 </div>
                 <Slider
@@ -116,7 +116,7 @@ const SavingsCalculator = () => {
                   step={5}
                   className="w-full"
                 />
-                <div className="flex justify-between text-xs text-muted-foreground mt-2 uppercase">
+                <div className="flex justify-between text-xs text-muted-foreground mt-2">
                   <span>10€</span>
                   <span>150€</span>
                 </div>
@@ -125,7 +125,7 @@ const SavingsCalculator = () => {
               {/* Slider 3 */}
               <div>
                 <div className="flex justify-between items-center mb-3">
-                  <label className="text-foreground font-semibold text-sm md:text-base uppercase tracking-tight">Koliko dana tjedno radite?</label>
+                  <label className="text-foreground font-semibold text-sm md:text-base tracking-tight">Koliko dana tjedno radite?</label>
                   <span className="text-primary font-black text-lg md:text-xl tabular-nums">{workDaysPerWeek} dana</span>
                 </div>
                 <Slider
@@ -136,7 +136,7 @@ const SavingsCalculator = () => {
                   step={1}
                   className="w-full"
                 />
-                <div className="flex justify-between text-xs text-muted-foreground mt-2 uppercase">
+                <div className="flex justify-between text-xs text-muted-foreground mt-2">
                   <span>1 dan</span>
                   <span>7 dana</span>
                 </div>
@@ -157,7 +157,7 @@ const SavingsCalculator = () => {
                     <span className="text-3xl md:text-4xl font-black text-foreground tabular-nums">
                       + {animatedTimeSaved}h
                     </span>
-                    <p className="text-secondary font-bold text-sm md:text-base uppercase tracking-tight">Ušteda vremena mjesečno</p>
+                    <p className="text-secondary font-bold text-sm md:text-base tracking-tight">Ušteda vremena mjesečno</p>
                   </div>
                 </div>
               </div>
@@ -172,7 +172,7 @@ const SavingsCalculator = () => {
                     <span className="text-3xl md:text-4xl font-black text-foreground tabular-nums">
                       + {animatedMoneySaved}€
                     </span>
-                    <p className="text-secondary font-bold text-sm md:text-base uppercase tracking-tight">Ušteda novaca mjesečno</p>
+                    <p className="text-secondary font-bold text-sm md:text-base tracking-tight">Ušteda novaca mjesečno</p>
                   </div>
                 </div>
               </div>
@@ -187,21 +187,23 @@ const SavingsCalculator = () => {
                     <span className="text-3xl md:text-4xl font-black text-foreground tabular-nums">
                       + {animatedRoi}%
                     </span>
-                    <p className="text-secondary font-bold text-sm md:text-base uppercase tracking-tight">Povrat/Rast</p>
+                    <p className="text-secondary font-bold text-sm md:text-base tracking-tight">Povrat/Rast</p>
                   </div>
                 </div>
               </div>
 
               {/* CTA Button */}
-              <a
-                href="https://app.upitomat.hr/auth"
-                className="btn-brutal mt-2 md:mt-4 w-full text-center py-4 text-base md:text-lg focus-brutal"
-              >
-                Isprobajte Upitomat odmah
-              </a>
-              <p className="text-center text-xs md:text-sm text-muted-foreground uppercase tracking-wide">
-                Procjene se temelje na implementacijama. Točne brojke prolazimo na demo pozivu.
-              </p>
+              <div className="flex flex-col items-center gap-2 mt-2 md:mt-4">
+                <a
+                  href="https://app.upitomat.hr/auth"
+                  className="btn-glow w-full text-center py-4 text-base md:text-lg bg-primary text-primary-foreground font-bold uppercase tracking-wide border-2 border-foreground focus-brutal transition-all duration-150 hover:translate-y-[-2px]"
+                >
+                  Isprobajte Upitomat
+                </a>
+                <span className="text-sm text-muted-foreground tracking-wide">
+                  Besplatno, bez obveze
+                </span>
+              </div>
             </div>
           </div>
         </div>

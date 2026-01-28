@@ -49,7 +49,8 @@ const FeatureShowcase = () => {
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-2xl md:text-4xl font-black text-foreground mb-4">
-            Što <span className="text-gradient">Upitomat</span> radi za vas?
+            <span className="block">Što <span className="text-gradient">Upitomat</span> radi</span>
+            <span className="block">za vas?</span>
           </h2>
           <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
             Odaberite funkcionalnost i pogledajte kako izgleda u praksi
@@ -130,7 +131,7 @@ const FeatureShowcase = () => {
 
                 {/* Feature label overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <div className="bg-background/95 border-2 border-border px-4 py-3">
+                  <div className="bg-background/70 backdrop-blur-sm border-2 border-border px-4 py-3">
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 border-2 border-primary bg-primary/20 flex items-center justify-center">
                         <activeFeature.icon className="w-4 h-4 text-primary" />
