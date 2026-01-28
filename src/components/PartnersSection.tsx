@@ -30,9 +30,9 @@ const PartnersSection = () => {
       {/* Video Testimonials */}
       <VideoTestimonials />
       
-      {/* Logo Marquee - Below testimonials */}
+      {/* Logo Marquee */}
       <div className="mt-6 md:mt-10">
-        <p className="text-center text-sm text-muted-foreground mb-2">
+        <p className="text-center text-sm text-muted-foreground mb-2 uppercase tracking-wide">
           Firme koje nam vjeruju
         </p>
         <LogoMarquee />
