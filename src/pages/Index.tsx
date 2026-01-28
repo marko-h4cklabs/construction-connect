@@ -8,47 +8,49 @@ import PartnersSection from "@/components/PartnersSection";
 import PricingSection from "@/components/PricingSection";
 import Footer from "@/components/Footer";
 import BackgroundEffects from "@/components/BackgroundEffects";
-import SectionWrapper from "@/components/SectionWrapper";
+import PremiumSection from "@/components/PremiumSection";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background relative overflow-x-hidden">
+    <div className="min-h-screen bg-background relative overflow-x-hidden scroll-smooth snap-y snap-mandatory">
       <BackgroundEffects />
       <div className="relative z-10">
         <Navbar />
         <main>
-          {/* Hero - always dark */}
-          <HeroSection />
+          {/* Hero - Full screen snap */}
+          <PremiumSection variant="dark" className="pt-20">
+            <HeroSection />
+          </PremiumSection>
           
-          {/* Feature Showcase - dark with reveal */}
-          <SectionWrapper variant="dark">
+          {/* Feature Showcase */}
+          <PremiumSection variant="dark">
             <FeatureShowcase />
-          </SectionWrapper>
+          </PremiumSection>
           
-          {/* Calculator - LIGHT (yellow bg, black text) - contrast section */}
-          <SectionWrapper variant="light">
+          {/* Calculator - Premium gold gradient instead of flat yellow */}
+          <PremiumSection variant="gold" id="kalkulator">
             <SavingsCalculator />
-          </SectionWrapper>
+          </PremiumSection>
           
-          {/* Partners - dark */}
-          <SectionWrapper variant="dark">
+          {/* Partners */}
+          <PremiumSection variant="dark">
             <PartnersSection />
-          </SectionWrapper>
+          </PremiumSection>
           
-          {/* Pricing - dark */}
-          <SectionWrapper variant="dark">
+          {/* Pricing */}
+          <PremiumSection variant="dark">
             <PricingSection />
-          </SectionWrapper>
+          </PremiumSection>
           
-          {/* Our Story - LIGHT (yellow bg, black text) - contrast section */}
-          <SectionWrapper variant="light">
+          {/* Our Story - Premium gold gradient */}
+          <PremiumSection variant="gold" id="nasa-prica">
             <OurStorySection />
-          </SectionWrapper>
+          </PremiumSection>
           
-          {/* Final CTA - dark */}
-          <SectionWrapper variant="dark">
+          {/* Final CTA */}
+          <PremiumSection variant="gradient" className="min-h-[60vh]">
             <CTASection />
-          </SectionWrapper>
+          </PremiumSection>
         </main>
         <Footer />
       </div>

@@ -5,19 +5,31 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-primary text-primary-foreground border-t-2 border-primary-foreground/20">
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex flex-col gap-6">
+    <footer className="relative bg-background border-t border-border/50">
+      {/* Subtle gradient overlay */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'linear-gradient(180deg, hsl(45 30% 8% / 0.5) 0%, transparent 100%)',
+        }}
+      />
+      
+      <div className="relative z-10 container mx-auto px-4 py-10">
+        <div className="flex flex-col gap-8">
           {/* Top row - Logo and Location */}
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             {/* Logo */}
-            <div className="flex items-center gap-2">
-              <img src={logo} alt="Upitomat logo" className="w-8 h-8" />
-              <span className="font-black text-lg uppercase tracking-tight">Upitomat</span>
+            <div className="flex items-center gap-3 group">
+              <img 
+                src={logo} 
+                alt="Upitomat logo" 
+                className="w-8 h-8 transition-transform duration-300 group-hover:scale-110" 
+              />
+              <span className="font-black text-lg uppercase tracking-tight text-foreground">Upitomat</span>
             </div>
 
             {/* Location */}
-            <div className="flex items-center gap-2 text-primary-foreground/80 text-sm tracking-wide">
+            <div className="flex items-center gap-2 text-muted-foreground text-sm tracking-wide">
               <MapPin className="w-4 h-4" />
               <span>Sjedište u Zagrebu</span>
             </div>
@@ -29,7 +41,7 @@ const Footer = () => {
               href="https://www.instagram.com/upitomat/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-150 p-2 border border-primary-foreground/30 hover:border-primary-foreground/60"
+              className="text-muted-foreground hover:text-primary transition-all duration-300 p-3 border border-border/50 hover:border-primary/50 bg-background/50 hover:bg-primary/5 hover:shadow-[0_0_15px_hsl(50_100%_50%/0.15)]"
               aria-label="Instagram"
             >
               <Instagram className="w-5 h-5" />
@@ -38,7 +50,7 @@ const Footer = () => {
               href="https://www.facebook.com/profile.php?id=61586140888256"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-150 p-2 border border-primary-foreground/30 hover:border-primary-foreground/60"
+              className="text-muted-foreground hover:text-primary transition-all duration-300 p-3 border border-border/50 hover:border-primary/50 bg-background/50 hover:bg-primary/5 hover:shadow-[0_0_15px_hsl(50_100%_50%/0.15)]"
               aria-label="Facebook"
             >
               <Facebook className="w-5 h-5" />
@@ -47,7 +59,7 @@ const Footer = () => {
               href="#"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-150 p-2 border border-primary-foreground/30 hover:border-primary-foreground/60"
+              className="text-muted-foreground hover:text-primary transition-all duration-300 p-3 border border-border/50 hover:border-primary/50 bg-background/50 hover:bg-primary/5 hover:shadow-[0_0_15px_hsl(50_100%_50%/0.15)]"
               aria-label="LinkedIn"
             >
               <Linkedin className="w-5 h-5" />
@@ -56,7 +68,7 @@ const Footer = () => {
               href="#"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-150 p-2 border border-primary-foreground/30 hover:border-primary-foreground/60"
+              className="text-muted-foreground hover:text-primary transition-all duration-300 p-3 border border-border/50 hover:border-primary/50 bg-background/50 hover:bg-primary/5 hover:shadow-[0_0_15px_hsl(50_100%_50%/0.15)]"
               aria-label="YouTube"
             >
               <Youtube className="w-5 h-5" />
@@ -65,7 +77,7 @@ const Footer = () => {
               href="#"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-150 p-2 border border-primary-foreground/30 hover:border-primary-foreground/60"
+              className="text-muted-foreground hover:text-primary transition-all duration-300 p-3 border border-border/50 hover:border-primary/50 bg-background/50 hover:bg-primary/5 hover:shadow-[0_0_15px_hsl(50_100%_50%/0.15)]"
               aria-label="Email"
             >
               <Mail className="w-5 h-5" />
@@ -74,15 +86,18 @@ const Footer = () => {
               href="#"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-foreground/80 hover:text-primary-foreground transition-colors duration-150 p-2 border border-primary-foreground/30 hover:border-primary-foreground/60"
+              className="text-muted-foreground hover:text-primary transition-all duration-300 p-3 border border-border/50 hover:border-primary/50 bg-background/50 hover:bg-primary/5 hover:shadow-[0_0_15px_hsl(50_100%_50%/0.15)]"
               aria-label="WhatsApp"
             >
               <MessageCircle className="w-5 h-5" />
             </a>
           </div>
 
+          {/* Divider */}
+          <div className="h-px bg-gradient-to-r from-transparent via-border/50 to-transparent" />
+
           {/* Copyright */}
-          <p className="text-primary-foreground/60 text-sm tracking-wide text-center">
+          <p className="text-muted-foreground/60 text-sm tracking-wide text-center">
             © {currentYear} Upitomat. Sva prava pridržana.
           </p>
         </div>
