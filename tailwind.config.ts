@@ -85,7 +85,7 @@ export default {
         },
         "marquee": {
           "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(-33.333%)" },
         },
         "aurora-1": {
           "0%, 100%": { transform: "translate(0, 0) scale(1)" },
@@ -108,7 +108,7 @@ export default {
         "fade-up": "fade-up 0.6s ease-out forwards",
         "fade-in": "fade-in 0.4s ease-out forwards",
         "marquee": "marquee 25s linear infinite",
-        "marquee-mobile": "marquee 10s linear infinite",
+        "marquee-mobile": "marquee 6s linear infinite",
         "aurora-1": "aurora-1 15s ease-in-out infinite",
         "aurora-2": "aurora-2 18s ease-in-out infinite",
         "aurora-3": "aurora-3 12s ease-in-out infinite",

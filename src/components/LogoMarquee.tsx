@@ -1,22 +1,22 @@
 import { partners } from "./PartnersSection";
 
 const LogoMarquee = () => {
-  // Duplicate array twice for seamless infinite loop
-  const duplicatedPartners = [...partners, ...partners];
+  // Duplicate array 3 times for truly seamless infinite loop
+  const duplicatedPartners = [...partners, ...partners, ...partners];
 
   return (
-    <div className="py-8 md:py-12 overflow-hidden">
+    <div className="py-6 md:py-10 overflow-hidden">
       <div className="relative">
         {/* Fade edges */}
         <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
         
-        {/* Scrolling track */}
-        <div className="flex animate-marquee-mobile md:animate-marquee">
+        {/* Scrolling track - seamless loop */}
+        <div className="flex animate-marquee-mobile md:animate-marquee" style={{ width: "fit-content" }}>
           {duplicatedPartners.map((partner, index) => (
             <div
               key={`${partner.name}-${index}`}
-              className="flex-shrink-0 mx-6 md:mx-10 flex items-center justify-center"
+              className="flex-shrink-0 mx-5 md:mx-8 flex items-center justify-center"
             >
               <img
                 src={partner.logo}

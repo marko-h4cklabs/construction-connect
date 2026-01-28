@@ -158,7 +158,7 @@ const VideoCard = ({ testimonial, isActive }: VideoCardProps) => {
 
   return (
     <div className="flex flex-col items-center">
-      {/* Video Container - 9:16 aspect ratio with glow effect */}
+      {/* Video Container - 9:16 aspect ratio with subtle glow effect */}
       <div
         className={`relative overflow-hidden rounded-2xl bg-muted transition-all duration-400 ${
           isActive
@@ -166,15 +166,15 @@ const VideoCard = ({ testimonial, isActive }: VideoCardProps) => {
             : "w-[180px] h-[320px] md:w-[220px] md:h-[390px]"
         }`}
         style={{
-          boxShadow: "0 0 20px 4px hsl(50 100% 50% / 0.5), 0 0 40px 8px hsl(50 100% 50% / 0.25), inset 0 0 0 2px hsl(50 100% 50% / 0.6)"
+          boxShadow: "0 0 10px 2px hsl(50 100% 50% / 0.25), 0 0 20px 4px hsl(50 100% 50% / 0.12)"
         }}
       >
-        {/* Yellow glow border overlay */}
+        {/* Subtle yellow border overlay */}
         <div 
           className="absolute inset-0 rounded-2xl pointer-events-none z-10"
           style={{
-            border: "2px solid hsl(50 100% 50% / 0.7)",
-            boxShadow: "inset 0 0 15px 2px hsl(50 100% 50% / 0.3)"
+            border: "1.5px solid hsl(50 100% 50% / 0.4)",
+            boxShadow: "inset 0 0 8px 1px hsl(50 100% 50% / 0.15)"
           }}
         />
         
