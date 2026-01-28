@@ -1,30 +1,30 @@
 import { useEffect, useState, useCallback, useMemo } from 'react';
 
 // Define color stops for each section (in order) with story switches
-// Format: bg (RGB), accent (HSL), glow (HSL), isLightMode (for text adaptation), transitionIntensity, noVignette
+// Format: bg (RGB), accent (HSL), glow (HSL), isLightMode (for text adaptation), transitionIntensity, noVignette, noGrid, isEditorial
 const sectionColors = [
   // Hero - deep charcoal with subtle gold
-  { bg: [12, 12, 12], accent: [45, 70, 50], glow: [45, 80, 50], light: false, intensity: 1, noVignette: false },
+  { bg: [12, 12, 12], accent: [45, 70, 50], glow: [45, 80, 50], light: false, intensity: 1, noVignette: false, noGrid: false, isEditorial: false },
   // Features - slightly warmer dark
-  { bg: [18, 16, 14], accent: [48, 65, 45], glow: [50, 75, 48], light: false, intensity: 1.2, noVignette: false },
+  { bg: [18, 16, 14], accent: [48, 65, 45], glow: [50, 75, 48], light: false, intensity: 1.2, noVignette: false, noGrid: false, isEditorial: false },
   // Pre-Calculator transition zone - fade out dark elements
-  { bg: [80, 75, 68], accent: [42, 60, 40], glow: [45, 65, 45], light: false, intensity: 0.6, noVignette: true },
+  { bg: [80, 75, 68], accent: [42, 60, 40], glow: [45, 65, 45], light: false, intensity: 0.6, noVignette: true, noGrid: false, isEditorial: false },
   // Calculator - Warm cream with bronze accents (NO bright yellow/gold)
-  { bg: [252, 248, 240], accent: [35, 45, 35], glow: [38, 50, 40], light: true, intensity: 1.8, noVignette: true },
+  { bg: [252, 248, 240], accent: [35, 45, 35], glow: [38, 50, 40], light: true, intensity: 1.8, noVignette: true, noGrid: false, isEditorial: false },
   // Post-Calculator transition - gradual return to dark
-  { bg: [60, 55, 48], accent: [42, 55, 38], glow: [45, 60, 42], light: false, intensity: 0.7, noVignette: true },
+  { bg: [60, 55, 48], accent: [42, 55, 38], glow: [45, 60, 42], light: false, intensity: 0.7, noVignette: true, noGrid: false, isEditorial: false },
   // Partners - back to deep dark - smooth transition
-  { bg: [10, 10, 10], accent: [50, 70, 48], glow: [48, 80, 52], light: false, intensity: 1.5, noVignette: false },
+  { bg: [10, 10, 10], accent: [50, 70, 48], glow: [48, 80, 52], light: false, intensity: 1.5, noVignette: false, noGrid: false, isEditorial: false },
   // Pricing - neutral dark with warm undertone
-  { bg: [20, 18, 15], accent: [45, 75, 52], glow: [45, 85, 50], light: false, intensity: 1.2, noVignette: false },
+  { bg: [20, 18, 15], accent: [45, 75, 52], glow: [45, 85, 50], light: false, intensity: 1.2, noVignette: false, noGrid: false, isEditorial: false },
   // Pre-Story transition zone
-  { bg: [75, 70, 62], accent: [38, 55, 38], glow: [42, 60, 42], light: false, intensity: 0.6, noVignette: true },
-  // Our Story - Warm cream with bronze accents
-  { bg: [252, 248, 240], accent: [35, 45, 35], glow: [38, 50, 40], light: true, intensity: 1.8, noVignette: true },
+  { bg: [75, 70, 62], accent: [38, 55, 38], glow: [42, 60, 42], light: false, intensity: 0.6, noVignette: true, noGrid: true },
+  // Our Story - Warm cream with bronze accents (EDITORIAL - no grid, no vignette, no tech effects)
+  { bg: [252, 248, 240], accent: [35, 45, 35], glow: [38, 50, 40], light: true, intensity: 1.8, noVignette: true, noGrid: true, isEditorial: true },
   // Post-Story transition
-  { bg: [55, 50, 44], accent: [40, 50, 36], glow: [44, 55, 40], light: false, intensity: 0.7, noVignette: true },
+  { bg: [55, 50, 44], accent: [40, 50, 36], glow: [44, 55, 40], light: false, intensity: 0.7, noVignette: true, noGrid: true, isEditorial: false },
   // CTA - deep cinematic dark with intense gold accents
-  { bg: [8, 8, 8], accent: [48, 80, 55], glow: [45, 90, 60], light: false, intensity: 1.5, noVignette: false },
+  { bg: [8, 8, 8], accent: [48, 80, 55], glow: [45, 90, 60], light: false, intensity: 1.5, noVignette: false, noGrid: false, isEditorial: false },
 ];
 
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
@@ -60,6 +60,8 @@ const sectionColorsRGB = sectionColors.map(section => ({
   light: section.light,
   intensity: section.intensity,
   noVignette: section.noVignette,
+  noGrid: section.noGrid,
+  isEditorial: section.isEditorial,
 }));
 
 const ScrollDrivenBackground = () => {
@@ -144,9 +146,21 @@ const ScrollDrivenBackground = () => {
                        c1.noVignette && !c2.noVignette ? 1 - eased :
                        !c1.noVignette && c2.noVignette ? eased : 0;
     
+    // Calculate grid visibility (fade out in editorial/no-grid sections)
+    const noGrid = c1.noGrid && c2.noGrid ? 1 :
+                   c1.noGrid && !c2.noGrid ? 1 - eased :
+                   !c1.noGrid && c2.noGrid ? eased : 0;
+    
+    // Calculate editorial mode (completely different treatment)
+    const isEditorial = c1.isEditorial && c2.isEditorial ? 1 :
+                        c1.isEditorial && !c2.isEditorial ? 1 - eased :
+                        !c1.isEditorial && c2.isEditorial ? eased : 0;
+    
     // Update CSS custom properties for global text adaptation
     document.documentElement.style.setProperty('--scroll-light-mode', isLight.toString());
     document.documentElement.style.setProperty('--scroll-no-vignette', noVignette.toString());
+    document.documentElement.style.setProperty('--scroll-no-grid', noGrid.toString());
+    document.documentElement.style.setProperty('--scroll-is-editorial', isEditorial.toString());
     
     // Premium anthracite colors for light sections (NO pure black)
     // Dark: #2B2B2B (43,43,43), Light secondary: #4A4A4A (74,74,74)
@@ -185,6 +199,13 @@ const ScrollDrivenBackground = () => {
   // Calculate vignette opacity based on section (fade out for light sections)
   const noVignetteValue = parseFloat(document.documentElement.style.getPropertyValue('--scroll-no-vignette') || '0');
   const vignetteOpacity = 1 - noVignetteValue;
+  
+  // Calculate grid opacity based on section (fade out for editorial sections)
+  const noGridValue = parseFloat(document.documentElement.style.getPropertyValue('--scroll-no-grid') || '0');
+  const gridVisibility = 1 - noGridValue;
+  
+  // Check if we're in editorial mode (Our Story section)
+  const isEditorialValue = parseFloat(document.documentElement.style.getPropertyValue('--scroll-is-editorial') || '0');
 
   return (
     <>
@@ -201,8 +222,11 @@ const ScrollDrivenBackground = () => {
         }}
       />
 
-      {/* Animated floating glow orbs - ENHANCED */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      {/* Animated floating glow orbs - ENHANCED (fade out in editorial mode) */}
+      <div 
+        className="fixed inset-0 pointer-events-none z-0 overflow-hidden transition-opacity duration-700"
+        style={{ opacity: 1 - isEditorialValue }}
+      >
         {/* Primary large glow - follows scroll dramatically */}
         <div 
           className="absolute w-[60vw] h-[60vh] rounded-full blur-[120px] transition-all duration-700"
@@ -244,10 +268,11 @@ const ScrollDrivenBackground = () => {
         />
       </div>
 
-      {/* Scroll-reactive grid with breathing - adapts to light/dark */}
+      {/* Scroll-reactive grid with breathing - adapts to light/dark, fades in editorial */}
       <div 
         className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-500"
         style={{
+          opacity: gridVisibility,
           backgroundImage: `
             linear-gradient(${rgbToString(currentAccent, gridOpacity * 0.8)} 1px, transparent 1px),
             linear-gradient(90deg, ${rgbToString(currentAccent, gridOpacity * 0.8)} 1px, transparent 1px)
@@ -312,23 +337,23 @@ const ScrollDrivenBackground = () => {
         }}
       />
 
-      {/* === LIGHT SECTION PREMIUM EFFECTS === */}
+      {/* === LIGHT SECTION PREMIUM EFFECTS (NOT in editorial sections) === */}
       
-      {/* A) Ultra-fine material texture - luxury paper/ceramic grain */}
+      {/* A) Ultra-fine material texture - luxury paper/ceramic grain (NOT in editorial) */}
       <div 
         className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-1000"
         style={{
-          opacity: vignetteOpacity < 0.5 ? (1 - vignetteOpacity * 2) * 0.035 : 0,
+          opacity: (vignetteOpacity < 0.5 && isEditorialValue < 0.3) ? (1 - vignetteOpacity * 2) * 0.035 : 0,
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='5' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E")`,
           mixBlendMode: 'multiply',
         }}
       />
       
-      {/* B) Animated geometry - thin floating lines (VERY subtle) */}
+      {/* B) Animated geometry - thin floating lines (NOT in editorial - Our Story has its own treatment) */}
       <div 
         className="fixed inset-0 pointer-events-none z-0 overflow-hidden transition-opacity duration-1000"
         style={{
-          opacity: vignetteOpacity < 0.5 ? (1 - vignetteOpacity * 2) : 0,
+          opacity: (vignetteOpacity < 0.5 && isEditorialValue < 0.3) ? (1 - vignetteOpacity * 2) : 0,
         }}
       >
         {/* Horizontal drifting line 1 */}
@@ -382,11 +407,11 @@ const ScrollDrivenBackground = () => {
         />
       </div>
       
-      {/* C) Light refraction effect - ultra subtle passing light */}
+      {/* C) Light refraction effect - ultra subtle passing light (NOT in editorial) */}
       <div 
         className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-1000"
         style={{
-          opacity: vignetteOpacity < 0.5 ? (1 - vignetteOpacity * 2) * 0.25 : 0,
+          opacity: (vignetteOpacity < 0.5 && isEditorialValue < 0.3) ? (1 - vignetteOpacity * 2) * 0.25 : 0,
           background: `
             radial-gradient(
               ellipse 100% 60% at ${30 + Math.sin((breathePhase + scrollProgress * 0.3) * Math.PI * 2) * 25}% ${20 + Math.cos(breathePhase * Math.PI) * 15}%, 
@@ -397,11 +422,11 @@ const ScrollDrivenBackground = () => {
         }}
       />
       
-      {/* D) Rhythm-based scroll-reactive subtle glow */}
+      {/* D) Rhythm-based scroll-reactive subtle glow (NOT in editorial) */}
       <div 
         className="fixed inset-0 pointer-events-none z-0 transition-all duration-700"
         style={{
-          opacity: vignetteOpacity < 0.5 ? (1 - vignetteOpacity * 2) * 0.15 : 0,
+          opacity: (vignetteOpacity < 0.5 && isEditorialValue < 0.3) ? (1 - vignetteOpacity * 2) * 0.15 : 0,
           background: `
             radial-gradient(ellipse 70% 45% at ${40 + scrollProgress * 20}% ${35 + Math.sin(scrollProgress * Math.PI * 3) * 10}%, 
               rgba(180, 160, 120, 0.08) 0%, 
