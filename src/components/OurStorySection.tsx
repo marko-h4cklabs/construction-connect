@@ -68,8 +68,10 @@ const OurStorySection = () => {
                 <p className="text-scroll-adaptive opacity-80 italic">"Gubim sate svaki dan ponavljajući isto, da na kraju ne bude ništa."</p>
               </div>
               
-              <p className="text-scroll-heading font-bold text-lg md:text-xl">
-                I to s nama jednostavno ne stoji.
+              <p className="text-lg md:text-xl font-bold text-[rgb(43,43,43)] relative inline-block">
+                <span className="relative z-10 px-2 py-1 bg-gradient-to-r from-[rgba(180,140,60,0.25)] via-[rgba(180,140,60,0.35)] to-[rgba(180,140,60,0.25)]" style={{ boxShadow: '0 0 20px 4px rgba(180,140,60,0.2)' }}>
+                  I to s nama jednostavno ne stoji.
+                </span>
               </p>
               
               <p className="text-scroll-adaptive opacity-90 text-base md:text-lg leading-relaxed">
@@ -77,8 +79,12 @@ const OurStorySection = () => {
               </p>
               
               <div className="pt-4 border-t-[2px] border-[rgb(64,64,64)]/40">
-                <p className="text-scroll-heading font-semibold mb-2">Jedno pitanje za vas:</p>
-                <p className="text-scroll-adaptive opacity-80">Na što biste radije potrošili vrijeme koje će vam danas ukrasti poruke?</p>
+                <p className="font-semibold mb-2 text-[rgb(43,43,43)] relative inline-block">
+                  <span className="relative z-10 px-2 py-1 bg-gradient-to-r from-[rgba(180,140,60,0.25)] via-[rgba(180,140,60,0.35)] to-[rgba(180,140,60,0.25)]" style={{ boxShadow: '0 0 20px 4px rgba(180,140,60,0.2)' }}>
+                    Jedno pitanje za vas:
+                  </span>
+                </p>
+                <p className="text-scroll-adaptive opacity-80 mt-2">Na što biste radije potrošili vrijeme koje će vam danas ukrasti poruke?</p>
               </div>
             </div>
           </StaggeredText>
