@@ -31,8 +31,8 @@ const PartnersSection = () => {
       <VideoTestimonials />
       
       {/* Logo Marquee - Below testimonials */}
-      <div className="mt-8 md:mt-12">
-        <p className="text-center text-sm text-muted-foreground mb-4">
+      <div className="mt-6 md:mt-10">
+        <p className="text-center text-sm text-muted-foreground mb-2">
           Firme koje nam vjeruju
         </p>
         <LogoMarquee />
