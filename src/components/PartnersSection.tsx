@@ -7,6 +7,8 @@ import srnecStyle from "@/assets/partners/srnec-style-new.jpg";
 import vrtnaOaza from "@/assets/partners/vrtna-oaza-new.jpg";
 import edenville from "@/assets/partners/edenville-new.jpg";
 import inovix from "@/assets/partners/inovix-new.jpg";
+import VideoTestimonials from "./VideoTestimonials";
+import LogoMarquee from "./LogoMarquee";
 
 const partners = [
   { name: "Render13", logo: render13 },
@@ -24,25 +26,16 @@ export { partners };
 
 const PartnersSection = () => {
   return (
-    <section id="klijenti" className="py-6 md:py-24 scroll-mt-24">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-12">
-          Firme sa kojima surađujemo
-        </h2>
-        <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-5xl mx-auto">
-          {partners.map((partner) => (
-            <div
-              key={partner.name}
-              className="bg-background/50 backdrop-blur-sm rounded-xl p-5 md:p-8 flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 aspect-[3/2]"
-            >
-              <img
-                src={partner.logo}
-                alt={partner.name}
-                className="max-h-20 md:max-h-28 w-auto object-contain"
-              />
-            </div>
-          ))}
-        </div>
+    <section id="klijenti" className="py-6 md:py-16 scroll-mt-24">
+      {/* Video Testimonials */}
+      <VideoTestimonials />
+      
+      {/* Logo Marquee - Below testimonials */}
+      <div className="mt-8 md:mt-12">
+        <p className="text-center text-sm text-muted-foreground mb-4">
+          Firme koje nam vjeruju
+        </p>
+        <LogoMarquee />
       </div>
     </section>
   );
