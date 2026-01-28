@@ -108,7 +108,7 @@ export default {
         "fade-up": "fade-up 0.6s ease-out forwards",
         "fade-in": "fade-in 0.4s ease-out forwards",
         "marquee": "marquee 25s linear infinite",
-        "marquee-mobile": "marquee 15s linear infinite",
+        "marquee-mobile": "marquee 10s linear infinite",
         "aurora-1": "aurora-1 15s ease-in-out infinite",
         "aurora-2": "aurora-2 18s ease-in-out infinite",
         "aurora-3": "aurora-3 12s ease-in-out infinite",
