@@ -9,16 +9,12 @@ import PartnersSection from "@/components/PartnersSection";
 import Footer from "@/components/Footer";
 import ScrollDrivenBackground from "@/components/ScrollDrivenBackground";
 import PremiumSection from "@/components/PremiumSection";
-import CursorRipple from "@/components/CursorRipple";
 
 const Index = () => {
   return (
     <div className="min-h-screen relative overflow-x-hidden scroll-smooth snap-y snap-mandatory">
       {/* Dynamic scroll-driven background */}
       <ScrollDrivenBackground />
-      
-      {/* Cursor ripple effect for light sections */}
-      <CursorRipple />
       
       <div className="relative z-10">
         <Navbar />
