@@ -311,8 +311,8 @@ const ScrollDrivenBackground = () => {
       {(() => {
         // Calculate light mode factor for grid color
         const isLightSection = vignetteOpacity < 0.5;
-        // SAME grid intensity for both sections (no multiplier difference)
-        const gridIntensityMultiplier = 1.0;
+        // STRONGER grid on light sections (2.5x), normal on dark
+        const gridIntensityMultiplier = isLightSection ? 2.5 : 1.0;
         // Varying line opacity based on breathe phase - creates fade/strengthen effect
         const lineVariation1 = 0.8 + Math.sin(breathePhase * Math.PI * 4) * 0.2;
         const lineVariation2 = 0.8 + Math.cos(breathePhase * Math.PI * 3 + 1) * 0.2;
@@ -396,108 +396,8 @@ const ScrollDrivenBackground = () => {
         }}
       />
 
-      {/* === LIGHT SECTION PREMIUM EFFECTS (NOT in editorial sections) === */}
-      
-      {/* A) Ultra-fine material texture - luxury paper/ceramic grain (NOT in editorial) */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-1000"
-        style={{
-          opacity: (vignetteOpacity < 0.5 && isEditorialValue < 0.3) ? (1 - vignetteOpacity * 2) * 0.035 : 0,
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='5' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E")`,
-          mixBlendMode: 'multiply',
-        }}
-      />
-      
-      {/* B) Animated geometry - thin floating lines (NOT in editorial - Our Story has its own treatment) */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-0 overflow-hidden transition-opacity duration-1000"
-        style={{
-          opacity: (vignetteOpacity < 0.5 && isEditorialValue < 0.3) ? (1 - vignetteOpacity * 2) : 0,
-        }}
-      >
-        {/* Horizontal drifting line 1 */}
-        <div 
-          className="absolute w-[120%] h-[1px] transition-all duration-[3000ms] ease-linear"
-          style={{
-            background: 'linear-gradient(90deg, transparent 0%, rgba(120, 100, 70, 0.05) 30%, rgba(120, 100, 70, 0.08) 50%, rgba(120, 100, 70, 0.05) 70%, transparent 100%)',
-            top: `${25 + Math.sin(breathePhase * Math.PI * 2) * 3}%`,
-            left: `${-10 + Math.sin(scrollProgress * Math.PI * 2 + breathePhase * Math.PI) * 8}%`,
-          }}
-        />
-        {/* Horizontal drifting line 2 */}
-        <div 
-          className="absolute w-[100%] h-[1px] transition-all duration-[4000ms] ease-linear"
-          style={{
-            background: 'linear-gradient(90deg, transparent 0%, rgba(100, 85, 60, 0.04) 40%, rgba(100, 85, 60, 0.06) 50%, rgba(100, 85, 60, 0.04) 60%, transparent 100%)',
-            top: `${55 + Math.cos(breathePhase * Math.PI * 2) * 4}%`,
-            left: `${5 - Math.cos(scrollProgress * Math.PI * 1.5) * 6}%`,
-          }}
-        />
-        {/* Vertical subtle line */}
-        <div 
-          className="absolute h-[80%] w-[1px] transition-all duration-[5000ms] ease-linear"
-          style={{
-            background: 'linear-gradient(180deg, transparent 0%, rgba(110, 95, 65, 0.03) 20%, rgba(110, 95, 65, 0.05) 50%, rgba(110, 95, 65, 0.03) 80%, transparent 100%)',
-            left: `${75 + Math.sin(breathePhase * Math.PI) * 5}%`,
-            top: `${10 + Math.sin(scrollProgress * Math.PI * 2) * 3}%`,
-          }}
-        />
-        {/* Floating circle accent */}
-        <div 
-          className="absolute w-[200px] h-[200px] rounded-full border transition-all duration-[6000ms] ease-linear"
-          style={{
-            borderColor: 'rgba(100, 80, 50, 0.03)',
-            borderWidth: '1px',
-            left: `${20 + Math.sin(breathePhase * Math.PI * 2) * 8}%`,
-            top: `${35 + Math.cos(breathePhase * Math.PI * 2) * 5}%`,
-            transform: `scale(${1 + Math.sin(breathePhase * Math.PI) * 0.08})`,
-          }}
-        />
-        {/* Second floating circle */}
-        <div 
-          className="absolute w-[150px] h-[150px] rounded-full border transition-all duration-[7000ms] ease-linear"
-          style={{
-            borderColor: 'rgba(90, 75, 50, 0.025)',
-            borderWidth: '1px',
-            right: `${15 + Math.cos(breathePhase * Math.PI * 2) * 6}%`,
-            bottom: `${25 + Math.sin(breathePhase * Math.PI * 2) * 4}%`,
-            transform: `scale(${1 + Math.cos(breathePhase * Math.PI) * 0.06})`,
-          }}
-        />
-      </div>
-      
-      {/* C) Light refraction effect - ultra subtle passing light (NOT in editorial) */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-1000"
-        style={{
-          opacity: (vignetteOpacity < 0.5 && isEditorialValue < 0.3) ? (1 - vignetteOpacity * 2) * 0.25 : 0,
-          background: `
-            radial-gradient(
-              ellipse 100% 60% at ${30 + Math.sin((breathePhase + scrollProgress * 0.3) * Math.PI * 2) * 25}% ${20 + Math.cos(breathePhase * Math.PI) * 15}%, 
-              rgba(255, 252, 248, 0.4) 0%, 
-              transparent 50%
-            )
-          `,
-        }}
-      />
-      
-      {/* D) Rhythm-based scroll-reactive subtle glow (NOT in editorial) */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-0 transition-all duration-700"
-        style={{
-          opacity: (vignetteOpacity < 0.5 && isEditorialValue < 0.3) ? (1 - vignetteOpacity * 2) * 0.15 : 0,
-          background: `
-            radial-gradient(ellipse 70% 45% at ${40 + scrollProgress * 20}% ${35 + Math.sin(scrollProgress * Math.PI * 3) * 10}%, 
-              rgba(180, 160, 120, 0.08) 0%, 
-              transparent 60%
-            ),
-            radial-gradient(ellipse 50% 35% at ${60 - scrollProgress * 15}% ${65 - Math.cos(scrollProgress * Math.PI * 2) * 8}%, 
-              rgba(160, 140, 100, 0.06) 0%, 
-              transparent 50%
-            )
-          `,
-        }}
-      />
+      {/* === LIGHT SECTION - CLEAN, NO DARK EFFECTS === */}
+      {/* All bronze/dark decorative elements removed for pure white aesthetic */}
 
       {/* Dynamic cinematic vignette - fades out in light sections */}
       <div 
@@ -546,48 +446,18 @@ const ScrollDrivenBackground = () => {
         }}
       />
       
-      {/* LIGHT SECTION VIGNETTE - extra white glow, stronger intensity */}
+      {/* LIGHT SECTION VIGNETTE - very subtle, pure white */}
       <div 
         className="fixed inset-0 pointer-events-none z-0 transition-all duration-500"
         style={{
-          opacity: 1 - vignetteOpacity,
+          opacity: (1 - vignetteOpacity) * 0.3,
           background: `
             radial-gradient(
-              ellipse ${vignetteSize}% ${vignetteSize * 0.8}% at ${50 + vignetteShift + glowOffset1 * 0.4}% ${50 + glowOffset2 * 0.3}%, 
-              transparent 10%, 
-              rgba(255, 255, 255, ${vignetteIntensity * 0.7}) 50%,
-              rgba(255, 255, 255, ${vignetteIntensity * 1.0}) 70%,
-              rgba(255, 255, 255, ${vignetteIntensity * 1.4}) 100%
-            )
-          `,
-        }}
-      />
-      
-      {/* Secondary white vignette layer - orbiting effect (mirror of dark) */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-0 transition-all duration-500"
-        style={{
-          opacity: 1 - vignetteOpacity,
-          background: `
-            radial-gradient(
-              ellipse ${vignetteSize + 15}% ${(vignetteSize + 15) * 0.85}% at ${50 - vignetteShift * 0.8 - glowOffset2 * 0.25}% ${50 - glowOffset1 * 0.2}%, 
+              ellipse ${vignetteSize}% ${vignetteSize * 0.8}% at 50% 50%, 
               transparent 20%, 
-              rgba(255, 255, 255, ${vignetteIntensity * 0.6}) 100%
-            )
-          `,
-        }}
-      />
-      
-      {/* Tertiary white vignette - edge brightening that pulses */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-500"
-        style={{
-          opacity: 1 - vignetteOpacity,
-          background: `
-            radial-gradient(
-              ellipse 90% 75% at 50% ${50 + breathePhase * 10 - 5}%, 
-              transparent 35%, 
-              rgba(255, 255, 255, ${0.25 + breathePhase * 0.15}) 100%
+              rgba(255, 255, 255, 0.6) 60%,
+              rgba(255, 255, 255, 0.85) 80%,
+              rgba(255, 255, 255, 1) 100%
             )
           `,
         }}
