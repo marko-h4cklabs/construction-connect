@@ -530,18 +530,48 @@ const ScrollDrivenBackground = () => {
         }}
       />
       
-      {/* LIGHT SECTION VIGNETTE - subtle shadow-like effect for cream backgrounds */}
+      {/* LIGHT SECTION VIGNETTE - white glow identical to dark section vignette */}
       <div 
-        className="fixed inset-0 pointer-events-none z-0 transition-all duration-700"
+        className="fixed inset-0 pointer-events-none z-0 transition-all duration-500"
         style={{
-          opacity: (1 - vignetteOpacity) * 0.65,
+          opacity: 1 - vignetteOpacity,
           background: `
             radial-gradient(
-              ellipse 85% 70% at 50% 50%, 
-              transparent 30%, 
-              rgba(60, 50, 40, 0.08) 60%,
-              rgba(50, 40, 30, 0.15) 80%,
-              rgba(40, 30, 25, 0.25) 100%
+              ellipse ${vignetteSize}% ${vignetteSize * 0.8}% at ${50 + vignetteShift + glowOffset1 * 0.4}% ${50 + glowOffset2 * 0.3}%, 
+              transparent 15%, 
+              rgba(255, 255, 255, ${vignetteIntensity * 0.5}) 60%,
+              rgba(255, 255, 255, ${vignetteIntensity * 0.8}) 80%,
+              rgba(255, 255, 255, ${vignetteIntensity * 1.1}) 100%
+            )
+          `,
+        }}
+      />
+      
+      {/* Secondary white vignette layer - orbiting effect (mirror of dark) */}
+      <div 
+        className="fixed inset-0 pointer-events-none z-0 transition-all duration-500"
+        style={{
+          opacity: 1 - vignetteOpacity,
+          background: `
+            radial-gradient(
+              ellipse ${vignetteSize + 15}% ${(vignetteSize + 15) * 0.85}% at ${50 - vignetteShift * 0.8 - glowOffset2 * 0.25}% ${50 - glowOffset1 * 0.2}%, 
+              transparent 25%, 
+              rgba(255, 255, 255, ${vignetteIntensity * 0.4}) 100%
+            )
+          `,
+        }}
+      />
+      
+      {/* Tertiary white vignette - subtle edge brightening that pulses */}
+      <div 
+        className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-500"
+        style={{
+          opacity: (1 - vignetteOpacity) * 0.8,
+          background: `
+            radial-gradient(
+              ellipse 90% 75% at 50% ${50 + breathePhase * 10 - 5}%, 
+              transparent 40%, 
+              rgba(255, 255, 255, ${0.15 + breathePhase * 0.1}) 100%
             )
           `,
         }}
