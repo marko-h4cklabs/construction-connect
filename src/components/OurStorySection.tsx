@@ -16,42 +16,40 @@ const OurStorySection = () => {
         </StaggeredText>
 
         <div className="max-w-4xl mx-auto">
-          {/* Overlapping photos */}
+          {/* Fan-style photos - side by side like holding cards */}
           <StaggeredText delay={200}>
-            <div className="relative h-[280px] md:h-[380px] mb-10 md:mb-14">
-              {/* First photo - left, rotated */}
+            <div className="flex justify-center items-end gap-4 md:gap-6 mb-10 md:mb-14">
+              {/* First photo - left card, slight tilt */}
               <div 
-                className="absolute left-1/2 -translate-x-[70%] md:-translate-x-[65%] top-0 w-[55%] md:w-[48%] aspect-square bg-[rgba(248,244,235,0.4)] backdrop-blur-sm border-[3px] border-[rgb(20,20,20)] p-2 md:p-3 transition-all duration-500 hover:z-20 hover:scale-105 hover:shadow-[0_8px_30px_rgba(0,0,0,0.25)] -rotate-6"
-                style={{ zIndex: 10 }}
+                className="w-[42%] md:w-[35%] max-w-[220px] bg-[rgba(248,244,235,0.4)] backdrop-blur-sm border-[1.5px] border-[rgb(64,64,64)] p-2 transition-all duration-500 hover:scale-105 hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)] -rotate-3 origin-bottom"
               >
-                <div className="w-full h-full overflow-hidden border-2 border-[rgb(20,20,20)]/60">
+                <div className="w-full aspect-[3/4] overflow-hidden border border-[rgb(64,64,64)]/50">
                   <img 
                     src={partner1} 
                     alt="Partner 1" 
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="absolute bottom-4 left-4 right-4 md:bottom-5 md:left-5 md:right-5">
-                  <p className="text-scroll-heading font-bold text-sm md:text-base">Ime Osobe</p>
-                  <p className="text-scroll-adaptive opacity-70 text-xs md:text-sm">Suosnivač</p>
+                <div className="pt-2 pb-1 px-1">
+                  <p className="text-scroll-heading font-semibold text-xs md:text-sm">Ime Osobe</p>
+                  <p className="text-scroll-adaptive opacity-60 text-[10px] md:text-xs">Suosnivač</p>
                 </div>
               </div>
               
-              {/* Second photo - right, rotated opposite */}
+              {/* Second photo - right card, opposite tilt */}
               <div 
-                className="absolute left-1/2 -translate-x-[30%] md:-translate-x-[35%] top-4 md:top-6 w-[55%] md:w-[48%] aspect-square bg-[rgba(248,244,235,0.4)] backdrop-blur-sm border-[3px] border-[rgb(20,20,20)] p-2 md:p-3 transition-all duration-500 hover:z-20 hover:scale-105 hover:shadow-[0_8px_30px_rgba(0,0,0,0.25)] rotate-4"
-                style={{ zIndex: 9 }}
+                className="w-[42%] md:w-[35%] max-w-[220px] bg-[rgba(248,244,235,0.4)] backdrop-blur-sm border-[1.5px] border-[rgb(64,64,64)] p-2 transition-all duration-500 hover:scale-105 hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)] rotate-3 origin-bottom"
               >
-                <div className="w-full h-full overflow-hidden border-2 border-[rgb(20,20,20)]/60">
+                <div className="w-full aspect-[3/4] overflow-hidden border border-[rgb(64,64,64)]/50">
                   <img 
                     src={partner2} 
                     alt="Partner 2" 
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="absolute bottom-4 left-4 right-4 md:bottom-5 md:left-5 md:right-5">
-                  <p className="text-scroll-heading font-bold text-sm md:text-base">Ime Osobe</p>
-                  <p className="text-scroll-adaptive opacity-70 text-xs md:text-sm">Suosnivač</p>
+                <div className="pt-2 pb-1 px-1">
+                  <p className="text-scroll-heading font-semibold text-xs md:text-sm">Ime Osobe</p>
+                  <p className="text-scroll-adaptive opacity-60 text-[10px] md:text-xs">Suosnivač</p>
                 </div>
               </div>
             </div>
@@ -59,12 +57,12 @@ const OurStorySection = () => {
 
           {/* Story content */}
           <StaggeredText delay={400}>
-            <div className="bg-[rgba(248,244,235,0.4)] backdrop-blur-sm border-[3px] border-[rgb(20,20,20)] p-6 md:p-8 space-y-6">
+            <div className="bg-[rgba(248,244,235,0.4)] backdrop-blur-sm border-[2px] border-[rgb(64,64,64)] p-6 md:p-8 space-y-6">
               <p className="text-scroll-adaptive opacity-90 text-base md:text-lg leading-relaxed">
                 <span className="font-semibold text-scroll-heading">Upitomat</span> je nastao iz problema koje smo saznali iz prve ruke surađujući sa hrvatskim firmama.
               </p>
               
-              <div className="pl-4 border-l-[3px] border-[rgb(20,20,20)]/60 space-y-2">
+              <div className="pl-4 border-l-[2px] border-[rgb(64,64,64)]/60 space-y-2">
                 <p className="text-scroll-adaptive opacity-80 italic">"Dobivam previše upita, a nemam vremena za sve pohvatati."</p>
                 <p className="text-scroll-adaptive opacity-80 italic">"Sve je razbacano, ne znam tko mi glavu nosi."</p>
                 <p className="text-scroll-adaptive opacity-80 italic">"Gubim sate svaki dan ponavljajući isto, da na kraju ne bude ništa."</p>
@@ -78,7 +76,7 @@ const OurStorySection = () => {
                 Marljiv i kvalitetan rad zaslužuje biti nagrađen, a ne kažnjen. Zato smo kreirali Upitomat — kako bi vam poruke prestale uzimati dan, a posao opet imao mir i red.
               </p>
               
-              <div className="pt-4 border-t-[3px] border-[rgb(20,20,20)]/40">
+              <div className="pt-4 border-t-[2px] border-[rgb(64,64,64)]/40">
                 <p className="text-scroll-heading font-semibold mb-2">Jedno pitanje za vas:</p>
                 <p className="text-scroll-adaptive opacity-80">Na što biste radije potrošili vrijeme koje će vam danas ukrasti poruke?</p>
               </div>
@@ -88,7 +86,7 @@ const OurStorySection = () => {
                   href="https://app.upitomat.hr/auth"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full text-center py-4 text-base md:text-lg bg-[rgb(120,95,50)] text-white font-bold uppercase tracking-wide border-[3px] border-[rgb(90,70,35)] focus-brutal transition-all duration-300 hover:translate-y-[-2px] hover:bg-[rgb(140,110,55)] hover:shadow-[0_0_35px_6px_rgba(180,140,60,0.4)]"
+                  className="w-full text-center py-4 text-base md:text-lg bg-[rgb(120,95,50)] text-white font-bold uppercase tracking-wide border-[2px] border-[rgb(90,70,35)] focus-brutal transition-all duration-300 hover:translate-y-[-2px] hover:bg-[rgb(140,110,55)] hover:shadow-[0_0_35px_6px_rgba(180,140,60,0.4)]"
                   style={{ boxShadow: '0 0 25px 4px rgba(180,140,60,0.3)' }}
                 >
                   Isprobajte Upitomat
