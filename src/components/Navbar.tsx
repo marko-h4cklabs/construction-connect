@@ -41,8 +41,8 @@ const Navbar = () => {
 
   const navLinks = [
     { id: "proces", label: "Proces" },
-    { id: "kalkulator", label: "Kalkulator" },
     { id: "klijenti", label: "Klijenti" },
+    { id: "kalkulator", label: "Kalkulator" },
     { id: "nasa-prica", label: "Naša priča" },
   ];
 
