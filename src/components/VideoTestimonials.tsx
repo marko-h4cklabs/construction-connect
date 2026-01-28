@@ -12,25 +12,25 @@ const testimonials: Testimonial[] = [
   {
     id: "1",
     youtubeId: "aGUxN86sdYg",
-    clientName: "Marko",
+    clientName: "Mario",
     clientRole: "Render13",
   },
   {
     id: "2",
     youtubeId: "mmiIzEl6kbo",
-    clientName: "Ana",
-    clientRole: "Simper Tech",
+    clientName: "Danijela",
+    clientRole: "Edictus",
   },
   {
     id: "3",
     youtubeId: "62wwkhpzCDw",
-    clientName: "Ivan",
-    clientRole: "Edictus",
+    clientName: "Krešo",
+    clientRole: "Ćakule",
   },
   {
     id: "4",
     youtubeId: "FisfEq0p2vQ",
-    clientName: "Petra",
+    clientName: "Marita",
     clientRole: "Shiatsu Shen",
   },
 ];
@@ -158,16 +158,25 @@ const VideoCard = ({ testimonial, isActive }: VideoCardProps) => {
 
   return (
     <div className="flex flex-col items-center">
-      {/* Video Container - 9:16 aspect ratio */}
+      {/* Video Container - 9:16 aspect ratio with glow effect */}
       <div
         className={`relative overflow-hidden rounded-2xl bg-muted transition-all duration-400 ${
           isActive
-            ? "w-[220px] h-[390px] md:w-[280px] md:h-[500px] ring-2 ring-primary/50 shadow-2xl"
+            ? "w-[220px] h-[390px] md:w-[280px] md:h-[500px]"
             : "w-[180px] h-[320px] md:w-[220px] md:h-[390px]"
         }`}
+        style={{
+          boxShadow: "0 0 20px 4px hsl(50 100% 50% / 0.5), 0 0 40px 8px hsl(50 100% 50% / 0.25), inset 0 0 0 2px hsl(50 100% 50% / 0.6)"
+        }}
       >
-        {/* Instagram-style gradient border */}
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-primary via-secondary to-primary opacity-20 pointer-events-none" />
+        {/* Yellow glow border overlay */}
+        <div 
+          className="absolute inset-0 rounded-2xl pointer-events-none z-10"
+          style={{
+            border: "2px solid hsl(50 100% 50% / 0.7)",
+            boxShadow: "inset 0 0 15px 2px hsl(50 100% 50% / 0.3)"
+          }}
+        />
         
         <iframe
           ref={iframeRef}
