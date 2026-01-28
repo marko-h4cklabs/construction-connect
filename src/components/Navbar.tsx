@@ -43,7 +43,6 @@ const Navbar = () => {
     { id: "proces", label: "Proces" },
     { id: "kalkulator", label: "Kalkulator" },
     { id: "klijenti", label: "Klijenti" },
-    { id: "cijene", label: "Cijene" },
     { id: "nasa-prica", label: "Naša priča" },
   ];
 

@@ -5,7 +5,7 @@ import SavingsCalculator from "@/components/SavingsCalculator";
 import OurStorySection from "@/components/OurStorySection";
 import CTASection from "@/components/CTASection";
 import PartnersSection from "@/components/PartnersSection";
-import PricingSection from "@/components/PricingSection";
+
 import Footer from "@/components/Footer";
 import ScrollDrivenBackground from "@/components/ScrollDrivenBackground";
 import PremiumSection from "@/components/PremiumSection";
@@ -37,11 +37,6 @@ const Index = () => {
           {/* Partners */}
           <PremiumSection>
             <PartnersSection />
-          </PremiumSection>
-          
-          {/* Pricing */}
-          <PremiumSection>
-            <PricingSection />
           </PremiumSection>
           
           {/* Our Story */}

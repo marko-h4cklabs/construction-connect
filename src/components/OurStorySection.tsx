@@ -80,21 +80,6 @@ const OurStorySection = () => {
                 <p className="text-scroll-heading font-semibold mb-2">Jedno pitanje za vas:</p>
                 <p className="text-scroll-adaptive opacity-80">Na što biste radije potrošili vrijeme koje će vam danas ukrasti poruke?</p>
               </div>
-              
-              <div className="flex flex-col items-center gap-2 pt-4">
-                <a
-                  href="https://app.upitomat.hr/auth"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full text-center py-4 text-base md:text-lg bg-[rgb(120,95,50)] text-white font-bold uppercase tracking-wide border-[2px] border-[rgb(90,70,35)] focus-brutal transition-all duration-300 hover:translate-y-[-2px] hover:bg-[rgb(140,110,55)] hover:shadow-[0_0_35px_6px_rgba(180,140,60,0.4)]"
-                  style={{ boxShadow: '0 0 25px 4px rgba(180,140,60,0.3)' }}
-                >
-                  Isprobajte Upitomat
-                </a>
-                <span className="text-sm text-scroll-adaptive opacity-70">
-                  Besplatno, bez obveze
-                </span>
-              </div>
             </div>
           </StaggeredText>
         </div>
