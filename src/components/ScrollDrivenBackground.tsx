@@ -101,7 +101,7 @@ const ScrollDrivenBackground = () => {
     };
   }, [updateScroll]);
 
-  // Breathing animation for grid
+  // Breathing animation for grid with varying line intensity
   useEffect(() => {
     let startTime = Date.now();
     let rafId: number;
@@ -110,7 +110,8 @@ const ScrollDrivenBackground = () => {
       const elapsed = (Date.now() - startTime) % 10000;
       const phase = elapsed / 10000;
       setBreathePhase(phase);
-      setGridOpacity(0.18 + Math.sin(phase * Math.PI * 2) * 0.10);
+      // Base grid opacity - will be multiplied by light/dark factor
+      setGridOpacity(0.12 + Math.sin(phase * Math.PI * 2) * 0.06);
       rafId = requestAnimationFrame(breathe);
     };
     
@@ -126,8 +127,22 @@ const ScrollDrivenBackground = () => {
     const nextSection = Math.min(currentSection + 1, numSections - 1);
     const t = sectionProgress - currentSection;
     
-    // Smoother easing for seamless transitions
-    const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    // FAST transition easing - happens quickly in the "gap" between sections
+    // Only transition in the middle 30% of the section boundary (0.35 to 0.65)
+    // This ensures color change happens in empty space, not during content
+    let eased: number;
+    if (t < 0.35) {
+      eased = 0; // Stay at current section color
+    } else if (t > 0.65) {
+      eased = 1; // Fully at next section color
+    } else {
+      // Fast transition in the 0.35-0.65 range (maps to 0-1)
+      const transitionT = (t - 0.35) / 0.30;
+      // Smooth ease-in-out for the fast transition
+      eased = transitionT < 0.5 
+        ? 2 * transitionT * transitionT 
+        : 1 - Math.pow(-2 * transitionT + 2, 2) / 2;
+    }
     
     const c1 = sectionColorsRGB[currentSection];
     const c2 = sectionColorsRGB[nextSection];
@@ -268,33 +283,53 @@ const ScrollDrivenBackground = () => {
         />
       </div>
 
-      {/* Scroll-reactive grid with breathing - adapts to light/dark, fades in editorial */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-500"
-        style={{
-          opacity: gridVisibility,
-          backgroundImage: `
-            linear-gradient(${rgbToString(currentAccent, gridOpacity * 1.2)} 1.5px, transparent 1.5px),
-            linear-gradient(90deg, ${rgbToString(currentAccent, gridOpacity * 1.2)} 1.5px, transparent 1.5px)
-          `,
-          backgroundSize: '80px 80px',
-          backgroundPosition: `0 ${scrollProgress * -40}px`,
-          maskImage: `
-            radial-gradient(ellipse 55% 45% at ${20 + scrollProgress * 15}% ${12 + scrollProgress * 20}%, black 0%, transparent 85%),
-            radial-gradient(ellipse 50% 40% at ${78 - scrollProgress * 12}% ${22 + scrollProgress * 15}%, black 0%, transparent 80%),
-            radial-gradient(ellipse 45% 35% at ${88 - scrollProgress * 20}% ${55 + scrollProgress * 8}%, black 0%, transparent 75%),
-            radial-gradient(ellipse 55% 42% at ${12 + scrollProgress * 18}% ${52 + scrollProgress * 12}%, black 0%, transparent 85%),
-            radial-gradient(ellipse 48% 36% at ${62 - scrollProgress * 8}% ${78 - scrollProgress * 15}%, black 0%, transparent 80%)
-          `,
-          WebkitMaskImage: `
-            radial-gradient(ellipse 55% 45% at ${20 + scrollProgress * 15}% ${12 + scrollProgress * 20}%, black 0%, transparent 85%),
-            radial-gradient(ellipse 50% 40% at ${78 - scrollProgress * 12}% ${22 + scrollProgress * 15}%, black 0%, transparent 80%),
-            radial-gradient(ellipse 45% 35% at ${88 - scrollProgress * 20}% ${55 + scrollProgress * 8}%, black 0%, transparent 75%),
-            radial-gradient(ellipse 55% 42% at ${12 + scrollProgress * 18}% ${52 + scrollProgress * 12}%, black 0%, transparent 85%),
-            radial-gradient(ellipse 48% 36% at ${62 - scrollProgress * 8}% ${78 - scrollProgress * 15}%, black 0%, transparent 80%)
-          `,
-        }}
-      />
+      {/* Scroll-reactive grid with breathing - STRONGER on light, WEAKER on dark, with varying line intensity */}
+      {(() => {
+        // Calculate light mode factor for grid intensity
+        const isLightSection = vignetteOpacity < 0.5;
+        // Light sections: stronger grid (1.8x), Dark sections: weaker grid (0.7x)
+        const gridIntensityMultiplier = isLightSection ? 1.8 : 0.7;
+        // Varying line opacity based on breathe phase - creates fade/strengthen effect
+        const lineVariation1 = 0.8 + Math.sin(breathePhase * Math.PI * 4) * 0.2;
+        const lineVariation2 = 0.8 + Math.cos(breathePhase * Math.PI * 3 + 1) * 0.2;
+        const baseOpacity = gridOpacity * gridIntensityMultiplier;
+        // Light sections use dark anthracite color, dark sections use accent
+        const gridColor = isLightSection 
+          ? `rgba(64, 64, 64, ${baseOpacity * lineVariation1})`
+          : rgbToString(currentAccent, baseOpacity * lineVariation1 * 0.8);
+        const gridColor2 = isLightSection
+          ? `rgba(64, 64, 64, ${baseOpacity * lineVariation2})`
+          : rgbToString(currentAccent, baseOpacity * lineVariation2 * 0.8);
+        
+        return (
+          <div 
+            className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-500"
+            style={{
+              opacity: gridVisibility,
+              backgroundImage: `
+                linear-gradient(${gridColor} 1.5px, transparent 1.5px),
+                linear-gradient(90deg, ${gridColor2} 1.5px, transparent 1.5px)
+              `,
+              backgroundSize: '80px 80px',
+              backgroundPosition: `0 ${scrollProgress * -40}px`,
+              maskImage: `
+                radial-gradient(ellipse 55% 45% at ${20 + scrollProgress * 15}% ${12 + scrollProgress * 20}%, black 0%, transparent 85%),
+                radial-gradient(ellipse 50% 40% at ${78 - scrollProgress * 12}% ${22 + scrollProgress * 15}%, black 0%, transparent 80%),
+                radial-gradient(ellipse 45% 35% at ${88 - scrollProgress * 20}% ${55 + scrollProgress * 8}%, black 0%, transparent 75%),
+                radial-gradient(ellipse 55% 42% at ${12 + scrollProgress * 18}% ${52 + scrollProgress * 12}%, black 0%, transparent 85%),
+                radial-gradient(ellipse 48% 36% at ${62 - scrollProgress * 8}% ${78 - scrollProgress * 15}%, black 0%, transparent 80%)
+              `,
+              WebkitMaskImage: `
+                radial-gradient(ellipse 55% 45% at ${20 + scrollProgress * 15}% ${12 + scrollProgress * 20}%, black 0%, transparent 85%),
+                radial-gradient(ellipse 50% 40% at ${78 - scrollProgress * 12}% ${22 + scrollProgress * 15}%, black 0%, transparent 80%),
+                radial-gradient(ellipse 45% 35% at ${88 - scrollProgress * 20}% ${55 + scrollProgress * 8}%, black 0%, transparent 75%),
+                radial-gradient(ellipse 55% 42% at ${12 + scrollProgress * 18}% ${52 + scrollProgress * 12}%, black 0%, transparent 85%),
+                radial-gradient(ellipse 48% 36% at ${62 - scrollProgress * 8}% ${78 - scrollProgress * 15}%, black 0%, transparent 80%)
+              `,
+            }}
+          />
+        );
+      })()}
 
       {/* Section transition highlight - ENHANCED with more dramatic pulse */}
       <div 

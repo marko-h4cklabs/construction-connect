@@ -31,7 +31,7 @@ const OurStorySection = () => {
                   />
                 </div>
                 <div className="pt-2 pb-1 px-1">
-                  <p className="text-scroll-heading font-semibold text-xs md:text-sm">Ime Osobe</p>
+                  <p className="text-scroll-heading font-semibold text-xs md:text-sm">Marko</p>
                   <p className="text-scroll-adaptive opacity-60 text-[10px] md:text-xs">Suosnivač</p>
                 </div>
               </div>
@@ -48,7 +48,7 @@ const OurStorySection = () => {
                   />
                 </div>
                 <div className="pt-2 pb-1 px-1">
-                  <p className="text-scroll-heading font-semibold text-xs md:text-sm">Ime Osobe</p>
+                  <p className="text-scroll-heading font-semibold text-xs md:text-sm">Erik</p>
                   <p className="text-scroll-adaptive opacity-60 text-[10px] md:text-xs">Suosnivač</p>
                 </div>
               </div>
