@@ -1,4 +1,29 @@
+import { useEffect, useState } from 'react';
+
 const BackgroundEffects = () => {
+  const [gridOpacity, setGridOpacity] = useState(0.12);
+
+  useEffect(() => {
+    // Subtle breathing animation for grid visibility
+    const breathe = () => {
+      const duration = 8000; // 8 seconds per cycle
+      const startTime = Date.now();
+      
+      const animate = () => {
+        const elapsed = (Date.now() - startTime) % duration;
+        const progress = elapsed / duration;
+        // Sine wave oscillation between 0.08 and 0.18
+        const opacity = 0.13 + Math.sin(progress * Math.PI * 2) * 0.05;
+        setGridOpacity(opacity);
+        requestAnimationFrame(animate);
+      };
+      
+      animate();
+    };
+    
+    breathe();
+  }, []);
+
   return (
     <>
       {/* Fixed background */}
@@ -54,13 +79,13 @@ const BackgroundEffects = () => {
           }}
         />
 
-        {/* Organic fading grid - using SVG mask for random disappearing effect */}
+        {/* Animated organic fading grid */}
         <div 
-          className="absolute inset-0"
+          className="absolute inset-0 transition-opacity duration-1000"
           style={{
             backgroundImage: `
-              linear-gradient(hsl(50 100% 50% / 0.12) 1px, transparent 1px),
-              linear-gradient(90deg, hsl(50 100% 50% / 0.12) 1px, transparent 1px)
+              linear-gradient(hsl(50 100% 50% / ${gridOpacity}) 1px, transparent 1px),
+              linear-gradient(90deg, hsl(50 100% 50% / ${gridOpacity}) 1px, transparent 1px)
             `,
             backgroundSize: '80px 80px',
             maskImage: `

@@ -8,31 +8,47 @@ import PartnersSection from "@/components/PartnersSection";
 import PricingSection from "@/components/PricingSection";
 import Footer from "@/components/Footer";
 import BackgroundEffects from "@/components/BackgroundEffects";
-import ScrollReveal from "@/components/ScrollReveal";
+import SectionWrapper from "@/components/SectionWrapper";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="min-h-screen bg-background relative overflow-x-hidden">
       <BackgroundEffects />
       <div className="relative z-10">
         <Navbar />
         <main>
+          {/* Hero - always dark */}
           <HeroSection />
-          <ScrollReveal>
+          
+          {/* Feature Showcase - dark with reveal */}
+          <SectionWrapper variant="dark">
             <FeatureShowcase />
-          </ScrollReveal>
-          <ScrollReveal delay={100}>
+          </SectionWrapper>
+          
+          {/* Calculator - LIGHT (yellow bg, black text) - contrast section */}
+          <SectionWrapper variant="light">
             <SavingsCalculator />
-          </ScrollReveal>
-          <ScrollReveal delay={100}>
+          </SectionWrapper>
+          
+          {/* Partners - dark */}
+          <SectionWrapper variant="dark">
             <PartnersSection />
-          </ScrollReveal>
-          <ScrollReveal delay={100}>
+          </SectionWrapper>
+          
+          {/* Pricing - dark */}
+          <SectionWrapper variant="dark">
             <PricingSection />
-          </ScrollReveal>
-          <ScrollReveal delay={100}>
+          </SectionWrapper>
+          
+          {/* Our Story - LIGHT (yellow bg, black text) - contrast section */}
+          <SectionWrapper variant="light">
             <OurStorySection />
-          </ScrollReveal>
+          </SectionWrapper>
+          
+          {/* Final CTA - dark */}
+          <SectionWrapper variant="dark">
+            <CTASection />
+          </SectionWrapper>
         </main>
         <Footer />
       </div>

@@ -7,7 +7,7 @@ const OurStorySection = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Headline - mobile */}
-          <h2 className="text-2xl md:text-4xl font-black text-foreground mb-8 text-center lg:text-left lg:hidden uppercase tracking-tight">
+          <h2 className="text-2xl md:text-4xl font-black text-primary-foreground mb-8 text-center lg:text-left lg:hidden uppercase tracking-tight">
             Naša priča
           </h2>
 
@@ -15,7 +15,7 @@ const OurStorySection = () => {
             {/* Images */}
             <div className="order-1 lg:order-1">
               <div className="relative w-full h-52 md:h-96 flex items-center justify-center">
-                <div className="absolute left-4 md:left-8 w-40 md:w-52 aspect-square border-2 border-border overflow-hidden transform -rotate-6 hover:-rotate-3 transition-transform duration-150 hover:border-primary">
+                <div className="absolute left-4 md:left-8 w-40 md:w-52 aspect-square border-2 border-primary-foreground/30 overflow-hidden transform -rotate-6 hover:-rotate-3 transition-transform duration-150 hover:border-primary-foreground">
                   <img 
                     src={partner1} 
                     alt="Partner 1" 
@@ -23,7 +23,7 @@ const OurStorySection = () => {
                   />
                 </div>
                 
-                <div className="absolute right-4 md:right-8 w-40 md:w-52 aspect-square border-2 border-border overflow-hidden transform rotate-6 hover:rotate-3 transition-transform duration-150 z-10 hover:border-primary">
+                <div className="absolute right-4 md:right-8 w-40 md:w-52 aspect-square border-2 border-primary-foreground/30 overflow-hidden transform rotate-6 hover:rotate-3 transition-transform duration-150 z-10 hover:border-primary-foreground">
                   <img 
                     src={partner2} 
                     alt="Partner 2" 
@@ -35,22 +35,22 @@ const OurStorySection = () => {
 
             {/* Content */}
             <div className="order-2 lg:order-2">
-              <h2 className="hidden lg:block text-3xl md:text-4xl font-black text-foreground mb-6 uppercase tracking-tight">
+              <h2 className="hidden lg:block text-3xl md:text-4xl font-black text-primary-foreground mb-6 uppercase tracking-tight">
                 Naša priča
               </h2>
               
-              <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <div className="space-y-4 text-primary-foreground/70 leading-relaxed">
                 <p>
                   Upitomat je nastao iz problema kojih smo saznali iz prve ruke surađujući sa hrvatskim firmama.
                 </p>
                 
-                <div className="space-y-2 pl-4 border-l-2 border-primary italic">
+                <div className="space-y-2 pl-4 border-l-2 border-primary-foreground italic text-primary-foreground">
                   <p>"Dobivam previše upita, a nemam vremena za sve pohvatati."</p>
                   <p>"Sve je razbacano, ne znam tko mi glavu nosi."</p>
                   <p>"Gubim sate svaki dan ponavljajući isto, da na kraju ne bude ništa."</p>
                 </div>
                 
-                <p className="font-bold text-foreground">
+                <p className="font-bold text-primary-foreground">
                   I to s nama jednostavno ne stoji.
                 </p>
                 
@@ -58,7 +58,7 @@ const OurStorySection = () => {
                   Marljiv i kvalitetan rad zaslužuje biti nagrađen, a ne kažnjen.
                 </p>
                 
-                <p className="font-bold text-foreground">
+                <p className="font-bold text-primary-foreground">
                   Zato smo kreirali Upitomat.
                 </p>
                 
@@ -66,11 +66,11 @@ const OurStorySection = () => {
                   Kako bi vam poruke prestale uzimati dan, a posao opet imao mir i red.
                 </p>
                 
-                <div className="pt-4 mt-4 border-t-2 border-border">
-                  <p className="text-foreground font-bold uppercase tracking-tight">
+                <div className="pt-4 mt-4 border-t-2 border-primary-foreground/30">
+                  <p className="text-primary-foreground font-bold uppercase tracking-tight">
                     Jedno pitanje za vas:
                   </p>
-                  <p className="text-lg text-foreground mt-2">
+                  <p className="text-primary-foreground/70 mt-2">
                     Na što biste radije potrošili vrijeme koje će vam danas ukrasti poruke?
                   </p>
                 </div>
@@ -80,11 +80,14 @@ const OurStorySection = () => {
               <div className="flex flex-col items-center lg:items-start gap-3 mt-8">
                 <a
                   href="https://app.upitomat.hr/auth"
-                  className="btn-brutal px-8 py-4 text-lg focus-brutal"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-8 py-4 text-lg bg-primary-foreground text-primary font-bold uppercase tracking-wide border-2 border-primary-foreground focus-brutal transition-all duration-150 hover:translate-y-[-2px]"
+                  style={{ boxShadow: '0 0 20px 2px hsl(0 0% 5% / 0.4)' }}
                 >
                   Isprobajte Upitomat
                 </a>
-                <p className="text-sm text-muted-foreground uppercase tracking-wide">
+                <p className="text-sm text-primary-foreground/70">
                   Besplatno, bez obveze
                 </p>
               </div>

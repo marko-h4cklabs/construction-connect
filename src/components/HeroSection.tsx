@@ -5,9 +5,9 @@ const HeroSection = () => {
         <div className="max-w-4xl mx-auto text-center">
           {/* Headline - one word per line */}
           <h1
-            className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-foreground leading-[0.9] tracking-tighter"
+            className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-foreground leading-[0.85] tracking-tighter"
           >
-            <span className="text-gradient block">Nemate</span>
+            <span className="text-gradient block mb-2 md:mb-4">Nemate</span>
             <span className="text-gradient block">vremena.</span>
           </h1>
 
