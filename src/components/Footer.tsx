@@ -35,62 +35,68 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Social Links */}
-          <div className="flex items-center justify-center gap-3 flex-wrap">
-            <a
-              href="https://www.instagram.com/upitomat/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-all duration-300 p-3 border border-border/50 hover:border-primary/50 bg-background/50 hover:bg-primary/5 hover:shadow-[0_0_15px_hsl(50_100%_50%/0.15)]"
-              aria-label="Instagram"
-            >
-              <Instagram className="w-5 h-5" />
-            </a>
-            <a
-              href="https://www.facebook.com/profile.php?id=61586140888256"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-all duration-300 p-3 border border-border/50 hover:border-primary/50 bg-background/50 hover:bg-primary/5 hover:shadow-[0_0_15px_hsl(50_100%_50%/0.15)]"
-              aria-label="Facebook"
-            >
-              <Facebook className="w-5 h-5" />
-            </a>
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-all duration-300 p-3 border border-border/50 hover:border-primary/50 bg-background/50 hover:bg-primary/5 hover:shadow-[0_0_15px_hsl(50_100%_50%/0.15)]"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="w-5 h-5" />
-            </a>
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-all duration-300 p-3 border border-border/50 hover:border-primary/50 bg-background/50 hover:bg-primary/5 hover:shadow-[0_0_15px_hsl(50_100%_50%/0.15)]"
-              aria-label="YouTube"
-            >
-              <Youtube className="w-5 h-5" />
-            </a>
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-all duration-300 p-3 border border-border/50 hover:border-primary/50 bg-background/50 hover:bg-primary/5 hover:shadow-[0_0_15px_hsl(50_100%_50%/0.15)]"
-              aria-label="Email"
-            >
-              <Mail className="w-5 h-5" />
-            </a>
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-all duration-300 p-3 border border-border/50 hover:border-primary/50 bg-background/50 hover:bg-primary/5 hover:shadow-[0_0_15px_hsl(50_100%_50%/0.15)]"
-              aria-label="WhatsApp"
-            >
-              <MessageCircle className="w-5 h-5" />
-            </a>
+          {/* Social Links - 3x2 grid */}
+          <div className="flex flex-col items-center gap-3">
+            {/* First row - 3 icons */}
+            <div className="flex items-center justify-center gap-3">
+              <a
+                href="https://www.instagram.com/upitomat/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-all duration-300 p-3 border border-border/50 hover:border-primary/50 bg-background/50 hover:bg-primary/5 hover:shadow-[0_0_15px_hsl(50_100%_50%/0.15)]"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61586140888256"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-all duration-300 p-3 border border-border/50 hover:border-primary/50 bg-background/50 hover:bg-primary/5 hover:shadow-[0_0_15px_hsl(50_100%_50%/0.15)]"
+                aria-label="Facebook"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-all duration-300 p-3 border border-border/50 hover:border-primary/50 bg-background/50 hover:bg-primary/5 hover:shadow-[0_0_15px_hsl(50_100%_50%/0.15)]"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+            </div>
+            {/* Second row - 3 icons */}
+            <div className="flex items-center justify-center gap-3">
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-all duration-300 p-3 border border-border/50 hover:border-primary/50 bg-background/50 hover:bg-primary/5 hover:shadow-[0_0_15px_hsl(50_100%_50%/0.15)]"
+                aria-label="YouTube"
+              >
+                <Youtube className="w-5 h-5" />
+              </a>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-all duration-300 p-3 border border-border/50 hover:border-primary/50 bg-background/50 hover:bg-primary/5 hover:shadow-[0_0_15px_hsl(50_100%_50%/0.15)]"
+                aria-label="Email"
+              >
+                <Mail className="w-5 h-5" />
+              </a>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-all duration-300 p-3 border border-border/50 hover:border-primary/50 bg-background/50 hover:bg-primary/5 hover:shadow-[0_0_15px_hsl(50_100%_50%/0.15)]"
+                aria-label="WhatsApp"
+              >
+                <MessageCircle className="w-5 h-5" />
+              </a>
+            </div>
           </div>
 
           {/* Divider */}

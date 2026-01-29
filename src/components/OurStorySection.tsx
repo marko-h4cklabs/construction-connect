@@ -72,12 +72,12 @@ const OurStorySection = () => {
               <div className="max-w-xl mx-auto px-4 md:px-0">
                 
                 {/* Block 1: Intro paragraph */}
-                <p className="text-muted-foreground text-base md:text-lg leading-[1.8] mb-10 md:mb-14">
+                <p className="text-muted-foreground text-sm md:text-base leading-[1.8] mb-6 md:mb-8">
                   <span className="font-semibold text-foreground">Upitomat</span> je nastao iz problema koje smo saznali iz prve ruke surađujući sa hrvatskim firmama.
                 </p>
                 
                 {/* Block 2: Quotes - grouped with subtle yellow marker */}
-                <div className="relative mb-10 md:mb-14 py-6">
+                <div className="relative mb-6 md:mb-8 py-4">
                   {/* Subtle yellow vertical line marker */}
                   <div 
                     className="absolute left-0 md:left-4 top-0 bottom-0 w-0.5"
@@ -86,7 +86,7 @@ const OurStorySection = () => {
                     }}
                   />
                   
-                  <div className="space-y-6 md:space-y-8 pl-4 md:pl-10 text-left">
+                  <div className="space-y-4 md:space-y-5 pl-4 md:pl-10 text-left">
                     <p className="text-muted-foreground/80 italic leading-[1.8] text-sm md:text-base">
                       "Dobivam previše upita, a nemam vremena za sve pohvatati."
                     </p>
@@ -99,27 +99,27 @@ const OurStorySection = () => {
                   </div>
                 </div>
                 
-                {/* Block 3: Highlighted statement - more space, stronger contrast */}
-                <div className="py-8 md:py-12 mb-10 md:mb-14">
-                  <p className="text-xl md:text-2xl font-bold text-primary leading-[1.6]">
-                    I to s nama jednostavno ne stoji.
+                {/* Block 3: Highlighted statement - CAPS, same base font size */}
+                <div className="py-5 md:py-6 mb-6 md:mb-8">
+                  <p className="text-sm md:text-base font-bold text-primary leading-[1.6] uppercase tracking-wide">
+                    I TO S NAMA JEDNOSTAVNO NE STOJI.
                   </p>
                 </div>
                 
                 {/* Block 4: Conclusion + Question */}
-                <div className="space-y-10 md:space-y-14">
+                <div className="space-y-6 md:space-y-8">
                   {/* Conclusion paragraph */}
-                  <p className="text-muted-foreground text-base md:text-lg leading-[1.8]">
+                  <p className="text-muted-foreground text-sm md:text-base leading-[1.8]">
                     Marljiv i kvalitetan rad zaslužuje biti nagrađen, a ne kažnjen. Zato smo kreirali Upitomat — kako bi vam poruke prestale uzimati dan, a posao opet imao mir i red.
                   </p>
                   
-                  {/* Question block with more breathing room */}
-                  <div className="pt-8 md:pt-10">
-                    <h3 className="text-sm md:text-base font-semibold text-foreground/80 uppercase tracking-wide mb-6">
+                  {/* Question block */}
+                  <div className="pt-4 md:pt-6">
+                    <h3 className="text-sm md:text-base font-semibold text-foreground/80 uppercase tracking-wide mb-4">
                       Jedno pitanje za vas:
                     </h3>
-                    <div className="py-6 md:py-8">
-                      <p className="text-muted-foreground text-base md:text-lg leading-[1.8]">
+                    <div className="py-3 md:py-4">
+                      <p className="text-muted-foreground text-sm md:text-base leading-[1.8]">
                         Na što biste radije potrošili vrijeme koje će vam danas ukrasti poruke?
                       </p>
                     </div>

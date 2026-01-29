@@ -203,34 +203,31 @@ const SavingsCalculator = () => {
                 Vaši rezultati
               </h3>
               
-              {/* Results - Typography focused, minimal borders */}
-              <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 lg:gap-24 relative z-10">
-                {/* Time Saved - Primary/Dominant */}
+              {/* Results - Typography focused, all same size */}
+              <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 lg:gap-16 relative z-10">
+                {/* Time Saved */}
                 <div 
-                  className={`text-center transition-all duration-500 ${highlightedResult === 'all' ? 'scale-105' : 'scale-100'}`}
+                  className={`text-center transition-all duration-500 ${highlightedResult === 'all' ? 'scale-102' : 'scale-100'}`}
                 >
                   <div className="flex items-center justify-center gap-3 mb-2">
-                    <Clock className="w-5 h-5 text-muted-foreground/40" strokeWidth={1.5} />
+                    <Clock className="w-4 h-4 text-muted-foreground/30" strokeWidth={1.5} />
                   </div>
                   <div 
-                    className={`transition-all duration-500 ${highlightedResult === 'all' ? 'drop-shadow-[0_0_20px_hsl(50_100%_50%/0.4)]' : ''}`}
+                    className={`transition-all duration-500 ${highlightedResult === 'all' ? 'drop-shadow-[0_0_15px_hsl(50_100%_50%/0.25)]' : ''}`}
                   >
-                    <span 
-                      className="text-5xl md:text-6xl lg:text-7xl font-black text-primary tabular-nums block"
-                      style={{ filter: 'brightness(1.1)' }}
-                    >
+                    <span className="text-3xl md:text-4xl lg:text-5xl font-black text-primary tabular-nums block">
                       +{animatedTimeSaved}h
                     </span>
                   </div>
-                  <p className="text-muted-foreground/70 font-medium text-sm md:text-base tracking-tight normal-case mt-2">
+                  <p className="text-muted-foreground/60 font-medium text-xs md:text-sm tracking-tight normal-case mt-2">
                     Ušteda vremena mjesečno
                   </p>
                 </div>
 
                 {/* Vertical separator - desktop only */}
-                <div className="hidden md:block w-px h-20 bg-gradient-to-b from-transparent via-border/50 to-transparent" />
+                <div className="hidden md:block w-px h-16 bg-gradient-to-b from-transparent via-border/30 to-transparent" />
 
-                {/* Money Saved - Secondary */}
+                {/* Money Saved */}
                 <div 
                   className={`text-center transition-all duration-500 ${highlightedResult === 'all' ? 'scale-102' : 'scale-100'}`}
                 >
@@ -240,7 +237,7 @@ const SavingsCalculator = () => {
                   <div 
                     className={`transition-all duration-500 ${highlightedResult === 'all' ? 'drop-shadow-[0_0_15px_hsl(50_100%_50%/0.25)]' : ''}`}
                   >
-                    <span className="text-3xl md:text-4xl lg:text-5xl font-black text-primary/90 tabular-nums block">
+                    <span className="text-3xl md:text-4xl lg:text-5xl font-black text-primary tabular-nums block">
                       +{animatedMoneySaved}€
                     </span>
                   </div>
@@ -252,7 +249,7 @@ const SavingsCalculator = () => {
                 {/* Vertical separator - desktop only */}
                 <div className="hidden md:block w-px h-16 bg-gradient-to-b from-transparent via-border/30 to-transparent" />
 
-                {/* ROI - Tertiary */}
+                {/* ROI */}
                 <div 
                   className={`text-center transition-all duration-500 ${highlightedResult === 'all' ? 'scale-102' : 'scale-100'}`}
                 >
@@ -262,7 +259,7 @@ const SavingsCalculator = () => {
                   <div 
                     className={`transition-all duration-500 ${highlightedResult === 'all' ? 'drop-shadow-[0_0_15px_hsl(50_100%_50%/0.25)]' : ''}`}
                   >
-                    <span className="text-3xl md:text-4xl lg:text-5xl font-black text-primary/90 tabular-nums block">
+                    <span className="text-3xl md:text-4xl lg:text-5xl font-black text-primary tabular-nums block">
                       +{animatedRoi}%
                     </span>
                   </div>
@@ -278,16 +275,16 @@ const SavingsCalculator = () => {
                   href="https://app.upitomat.hr/auth"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-12 md:px-16 py-4 text-base md:text-lg bg-primary text-primary-foreground font-bold uppercase tracking-wide border-2 border-foreground focus-brutal transition-all duration-300 hover:translate-y-[-2px]"
-                  style={{ boxShadow: '0 0 25px 3px hsl(50 100% 50% / 0.25)' }}
+                  className="inline-block px-8 py-4 text-base md:text-lg bg-primary text-primary-foreground font-black uppercase tracking-wide border-2 border-foreground transition-all duration-300 hover:translate-y-[-2px]"
+                  style={{ boxShadow: '0 0 20px 3px hsl(50 100% 50% / 0.2)' }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = '0 0 35px 6px hsl(50 100% 50% / 0.4)';
+                    e.currentTarget.style.boxShadow = '0 0 30px 5px hsl(50 100% 50% / 0.35)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow = '0 0 25px 3px hsl(50 100% 50% / 0.25)';
+                    e.currentTarget.style.boxShadow = '0 0 20px 3px hsl(50 100% 50% / 0.2)';
                   }}
                 >
-                  Isprobajte Upitomat
+                  ISPROBAJTE UPITOMAT
                 </a>
                 <span className="text-sm text-muted-foreground tracking-wide">
                   besplatno, bez obveze
