@@ -30,19 +30,17 @@ const SectionDivider = ({ className = '' }: SectionDividerProps) => {
       ref={dividerRef}
       className={`relative h-16 md:h-24 flex items-center justify-center overflow-hidden ${className}`}
     >
-      {/* Gradient fade line that draws in */}
+      {/* Gradient fade line that draws in - narrower, centered */}
       <div 
-        className={`absolute inset-x-0 h-[2px] transition-all duration-1000 ease-out ${
+        className={`absolute left-1/2 -translate-x-1/2 w-[60%] md:w-[50%] h-[1px] transition-all duration-1000 ease-out ${
           isVisible ? 'opacity-100' : 'opacity-0'
         }`}
         style={{
           background: `linear-gradient(90deg, 
             transparent 0%, 
-            hsl(50 100% 50% / 0.15) 15%,
-            hsl(50 100% 50% / 0.4) 35%,
-            hsl(50 100% 50% / 0.6) 50%,
-            hsl(50 100% 50% / 0.4) 65%,
-            hsl(50 100% 50% / 0.15) 85%,
+            hsl(50 100% 50% / 0.2) 20%,
+            hsl(50 100% 50% / 0.5) 50%,
+            hsl(50 100% 50% / 0.2) 80%,
             transparent 100%
           )`,
           transform: isVisible ? 'scaleX(1)' : 'scaleX(0)',
@@ -50,14 +48,14 @@ const SectionDivider = ({ className = '' }: SectionDividerProps) => {
         }}
       />
       
-      {/* Soft glow that fades in */}
+      {/* Soft glow that fades in - narrower */}
       <div 
-        className={`absolute inset-x-0 h-16 md:h-20 transition-all duration-1200 delay-300 ${
+        className={`absolute left-1/2 -translate-x-1/2 w-[50%] md:w-[40%] h-12 md:h-16 transition-all duration-1200 delay-300 ${
           isVisible ? 'opacity-100' : 'opacity-0'
         }`}
         style={{
-          background: `radial-gradient(ellipse 60% 100% at 50% 50%, 
-            hsl(50 100% 50% / 0.08) 0%, 
+          background: `radial-gradient(ellipse 100% 100% at 50% 50%, 
+            hsl(50 100% 50% / 0.06) 0%, 
             transparent 70%
           )`,
         }}

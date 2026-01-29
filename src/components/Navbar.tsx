@@ -85,7 +85,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center">
             <a 
               href="https://app.upitomat.hr/auth"
-              className="px-5 py-2 text-sm font-bold uppercase tracking-wide bg-primary text-primary-foreground border border-primary transition-all duration-300 hover:shadow-[0_0_20px_hsl(50_100%_50%/0.35)] hover:translate-y-[-1px]"
+              className="px-4 py-2 text-sm font-bold uppercase tracking-wide bg-primary text-primary-foreground border border-primary transition-all duration-300 hover:shadow-[0_0_20px_hsl(50_100%_50%/0.35)] hover:translate-y-[-1px]"
               style={{ boxShadow: '0 0 15px hsl(50 100% 50% / 0.2)' }}
             >
               Isprobajte Upitomat
@@ -102,30 +102,39 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu */}
+        {/* Mobile Menu - Centered popup window style */}
         {isOpen && (
-          <div className="md:hidden py-6 border-t border-border/30 bg-background/95 backdrop-blur-md animate-fade-in">
-            <div className="flex flex-col gap-1">
-              {navLinks.map((link, index) => (
-                <a
-                  key={link.id}
-                  href={`#${link.id}`}
-                  onClick={(e) => handleNavClick(e, link.id)}
-                  className="text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all duration-300 font-semibold uppercase text-sm tracking-wide py-3 px-4 border-l-2 border-transparent hover:border-primary"
-                  style={{ 
-                    animationDelay: `${index * 50}ms`,
-                  }}
-                >
-                  {link.label}
-                </a>
-              ))}
-              <div className="pt-4 mt-4 border-t border-border/30 px-4">
-                <a 
-                  href="https://app.upitomat.hr/auth"
-                  className="px-5 py-3 text-sm w-full text-center block font-bold uppercase tracking-wide bg-primary text-primary-foreground border border-primary transition-all duration-300 hover:shadow-[0_0_20px_hsl(50_100%_50%/0.35)]"
-                  style={{ boxShadow: '0 0 15px hsl(50 100% 50% / 0.2)' }}
-                >
-                  Isprobajte Upitomat
-                </a>
+          <div className="md:hidden fixed inset-0 top-16 z-40 flex items-start justify-center pt-4 px-4">
+            {/* Backdrop */}
+            <div 
+              className="absolute inset-0 bg-background/80 backdrop-blur-sm"
+              onClick={() => setIsOpen(false)}
+            />
+            {/* Menu Window - 70% width, centered */}
+            <div className="relative w-[70%] max-w-xs bg-background/95 backdrop-blur-md border-2 border-border animate-fade-in">
+              <div className="flex flex-col py-4">
+                {navLinks.map((link, index) => (
+                  <a
+                    key={link.id}
+                    href={`#${link.id}`}
+                    onClick={(e) => handleNavClick(e, link.id)}
+                    className="text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all duration-300 font-semibold uppercase text-sm tracking-wide py-3 px-5 border-l-2 border-transparent hover:border-primary"
+                    style={{ 
+                      animationDelay: `${index * 50}ms`,
+                    }}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+                <div className="pt-4 mt-4 border-t border-border/30 px-4">
+                  <a 
+                    href="https://app.upitomat.hr/auth"
+                    className="px-4 py-3 text-sm w-[80%] mx-auto text-center block font-bold uppercase tracking-wide bg-primary text-primary-foreground border border-primary transition-all duration-300 hover:shadow-[0_0_20px_hsl(50_100%_50%/0.35)]"
+                    style={{ boxShadow: '0 0 15px hsl(50 100% 50% / 0.2)' }}
+                  >
+                    Isprobajte Upitomat
+                  </a>
+                </div>
               </div>
             </div>
           </div>

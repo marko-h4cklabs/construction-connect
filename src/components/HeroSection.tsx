@@ -31,7 +31,7 @@ const HeroSection = () => {
               href="https://app.upitomat.hr/auth"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative px-8 py-4 text-base md:text-lg bg-primary text-primary-foreground font-bold uppercase tracking-wide border-2 border-foreground focus-brutal transition-all duration-300 hover:translate-y-[-2px]"
+              className="group relative px-6 py-4 text-base md:text-lg bg-primary text-primary-foreground font-bold uppercase tracking-wide border-2 border-foreground focus-brutal transition-all duration-300 hover:translate-y-[-2px]"
               style={{ 
                 boxShadow: '0 0 30px 4px hsl(50 100% 50% / 0.3)',
               }}
