@@ -69,7 +69,7 @@ const FeatureShowcase = () => {
             <span className="block">Što <span className="text-gradient">Upitomat</span> radi</span>
             <span className="block">za vas?</span>
           </h2>
-          <p className="text-base md:text-lg text-muted-foreground max-w-[80%] mx-auto">
+          <p className="text-base md:text-lg text-muted-foreground max-w-[85%] mx-auto">
             Odaberite funkcionalnost i pogledajte kako izgleda u praksi
           </p>
         </StaggeredText>
@@ -147,8 +147,8 @@ const FeatureShowcase = () => {
 
             {/* Video Preview - autoplay, loop, no controls */}
             <StaggeredText delay={400} className="relative order-first lg:order-last">
-              {/* Main video container with extended bottom for dock */}
-              <div className="relative pb-14 md:pb-16">
+              {/* Main video container */}
+              <div className="relative">
                 {/* Video box */}
                 <div className="relative overflow-hidden bg-card/60 backdrop-blur-sm aspect-[16/10] group transition-all duration-500 hover:shadow-[0_0_40px_-10px_hsl(50_100%_50%/0.2)]">
                   <div className="absolute inset-0 transition-transform duration-700 will-change-transform group-hover:scale-105">
@@ -168,42 +168,45 @@ const FeatureShowcase = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-transparent to-transparent pointer-events-none" />
                 </div>
 
-                {/* Fused dock - overlaps main container */}
+                {/* Fused dock - center aligned with bottom edge of video (50% overlap) */}
                 <div 
-                  className="absolute left-1/2 -translate-x-1/2 bottom-0 w-[85%] md:w-[75%] z-10 animate-fade-in"
+                  className="absolute left-1/2 -translate-x-1/2 w-[88%] md:w-[78%] z-10 animate-fade-in"
                   style={{
+                    bottom: '-24px',
                     animationDelay: '200ms',
                   }}
                 >
                   {/* Gradient connector - seamless blend from main block */}
                   <div 
-                    className="absolute -top-6 left-0 right-0 h-8 pointer-events-none"
+                    className="absolute -top-8 left-0 right-0 h-10 pointer-events-none"
                     style={{
-                      background: 'linear-gradient(180deg, transparent 0%, hsl(var(--card) / 0.6) 100%)',
-                      maskImage: 'radial-gradient(ellipse 80% 100% at 50% 100%, black 0%, transparent 100%)',
-                      WebkitMaskImage: 'radial-gradient(ellipse 80% 100% at 50% 100%, black 0%, transparent 100%)',
+                      background: 'linear-gradient(180deg, transparent 0%, hsl(var(--card) / 0.7) 100%)',
+                      maskImage: 'radial-gradient(ellipse 85% 100% at 50% 100%, black 0%, transparent 100%)',
+                      WebkitMaskImage: 'radial-gradient(ellipse 85% 100% at 50% 100%, black 0%, transparent 100%)',
                     }}
                   />
                   
                   {/* Dock content */}
                   <div 
-                    className="relative bg-card/80 backdrop-blur-md rounded-xl px-4 py-3 md:px-5 md:py-4 transition-all duration-500"
+                    className="relative bg-card/85 backdrop-blur-md rounded-2xl px-4 py-3 md:px-6 md:py-4 transition-all duration-500"
                     style={{
-                      boxShadow: '0 8px 32px -8px hsl(0 0% 0% / 0.4), 0 4px 16px -4px hsl(0 0% 0% / 0.2)',
+                      boxShadow: '0 12px 40px -10px hsl(0 0% 0% / 0.5), 0 6px 20px -6px hsl(0 0% 0% / 0.3)',
                     }}
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
+                    <div className="flex items-center gap-3 md:gap-4">
+                      <div className="w-9 h-9 md:w-11 md:h-11 rounded-xl bg-primary/20 flex items-center justify-center flex-shrink-0">
                         <activeFeature.icon className="w-4 h-4 md:w-5 md:h-5 text-primary" />
                       </div>
-                      <div className="min-w-0">
-                        <h4 className="font-bold text-foreground text-sm md:text-base uppercase tracking-tight truncate">{activeFeature.title}</h4>
-                        <p className="text-xs md:text-sm text-muted-foreground line-clamp-1">{activeFeature.description}</p>
+                      <div className="min-w-0 flex-1">
+                        <h4 className="font-bold text-foreground text-sm md:text-base uppercase tracking-tight">{activeFeature.title}</h4>
+                        <p className="text-xs md:text-sm text-muted-foreground">{activeFeature.description}</p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+              {/* Spacer for dock overflow */}
+              <div className="h-8 md:h-10" />
             </StaggeredText>
           </div>
         </div>

@@ -7,10 +7,10 @@ const OurStorySection = () => {
     <section className="py-12 md:py-20 scroll-mt-24 our-story-section overflow-hidden">
       <div className="container mx-auto px-4">
         <StaggeredText className="text-center mb-8 md:mb-12">
-          <h2 className="text-xl md:text-2xl font-black text-foreground mb-3 uppercase tracking-tight">
-            Naša priča
+          <h2 className="text-2xl md:text-4xl font-black text-foreground mb-3 uppercase tracking-tight">
+            Naša <span className="text-gradient">priča</span>
           </h2>
-          <p className="text-muted-foreground text-base md:text-lg max-w-[80%] mx-auto">
+          <p className="text-muted-foreground text-base md:text-lg max-w-[85%] mx-auto">
             Kako je Upitomat nastao i zašto radimo ono što radimo.
           </p>
         </StaggeredText>
@@ -69,7 +69,7 @@ const OurStorySection = () => {
               }}
             >
               {/* Max-width container - 80% width */}
-              <div className="max-w-[80%] mx-auto px-4 md:px-0">
+              <div className="max-w-[85%] mx-auto px-4 md:px-0">
                 
                 {/* Block 1: Intro paragraph */}
                 <p className="text-muted-foreground text-base leading-[1.8] mb-6 md:mb-8">
