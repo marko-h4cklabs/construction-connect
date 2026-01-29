@@ -92,7 +92,7 @@ const VideoTestimonials = () => {
           <h2 className="text-xl md:text-2xl font-black text-foreground mb-4 uppercase tracking-tight">
             Što kažu naši <span className="text-gradient">klijenti</span>
           </h2>
-          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-muted-foreground max-w-[80%] mx-auto">
             Pogledajte iskustva firmi koje koriste Upitomat
           </p>
         </div>

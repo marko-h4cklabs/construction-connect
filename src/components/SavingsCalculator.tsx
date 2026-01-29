@@ -73,7 +73,7 @@ const SavingsCalculator = () => {
           <h2 className="text-2xl md:text-4xl font-black text-foreground mb-3 uppercase tracking-tight">
             Koliko bi Upitomat uštedio <span className="text-gradient">vama</span>?
           </h2>
-          <p className="text-muted-foreground text-sm md:text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-base md:text-lg max-w-[80%] mx-auto">
             Unesite svoje brojke i odmah vidite uštedu vremena i dodatnu prodaju.
           </p>
         </StaggeredText>
