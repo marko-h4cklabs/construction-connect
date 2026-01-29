@@ -159,68 +159,107 @@ const SavingsCalculator = () => {
               </div>
             </StaggeredText>
 
-            {/* Right Side - Results */}
-            <StaggeredText delay={400} className="flex flex-col gap-4">
-              <h3 className="text-lg md:text-xl font-bold text-foreground uppercase tracking-tight mb-2">Vaši rezultati:</h3>
+            {/* Right Side - Results with vertical gradient background */}
+            <StaggeredText delay={400} className="flex flex-col gap-5 relative">
+              {/* Vertical gradient light wash */}
+              <div 
+                className="absolute inset-0 -mx-4 -my-2 pointer-events-none"
+                style={{
+                  background: 'linear-gradient(180deg, transparent 0%, hsl(50 100% 50% / 0.03) 30%, hsl(50 100% 50% / 0.05) 50%, hsl(50 100% 50% / 0.03) 70%, transparent 100%)',
+                  filter: 'blur(40px)',
+                }}
+              />
               
-              {/* Time Saved */}
-              <div className="bg-card/40 backdrop-blur-sm border-2 border-border p-4 md:p-5 hover:border-primary/60 transition-all duration-500 group hover:shadow-[0_0_30px_-8px_hsl(50_100%_50%/0.25)] hover:translate-y-[-2px]">
+              <h3 className="text-lg md:text-xl font-bold text-foreground uppercase tracking-tight mb-1 relative z-10">Vaši rezultati:</h3>
+              
+              {/* Time Saved - Primary/Dominant */}
+              <div className="relative z-10 bg-card/50 backdrop-blur-md rounded-lg p-5 md:p-6 transition-all duration-500 group hover:translate-y-[-3px]"
+                style={{ 
+                  boxShadow: '0 8px 32px -8px hsl(0 0% 0% / 0.4), 0 4px 16px -4px hsl(50 100% 50% / 0.08)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = '0 12px 40px -8px hsl(0 0% 0% / 0.5), 0 6px 20px -4px hsl(50 100% 50% / 0.15)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '0 8px 32px -8px hsl(0 0% 0% / 0.4), 0 4px 16px -4px hsl(50 100% 50% / 0.08)';
+                }}
+              >
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 border-2 border-border bg-muted/30 flex items-center justify-center shrink-0 group-hover:border-primary/60 group-hover:bg-primary/10 transition-all duration-300">
-                    <Clock className="w-6 h-6 text-muted-foreground group-hover:text-primary group-hover:scale-[1.05] transition-all duration-300" strokeWidth={1.5} />
+                  <div className="w-10 h-10 rounded-md bg-muted/20 flex items-center justify-center shrink-0">
+                    <Clock className="w-5 h-5 text-muted-foreground/60" strokeWidth={1.5} />
                   </div>
                   <div>
-                    <span className="text-3xl md:text-4xl font-black text-foreground tabular-nums">
+                    <span className="text-3xl md:text-4xl font-black text-primary tabular-nums" style={{ filter: 'brightness(1.15)' }}>
                       + {animatedTimeSaved}h
                     </span>
-                    <p className="text-muted-foreground font-bold text-sm md:text-base tracking-tight normal-case">Ušteda vremena mjesečno</p>
+                    <p className="text-muted-foreground/70 font-medium text-xs md:text-sm tracking-tight normal-case mt-0.5">Ušteda vremena mjesečno</p>
                   </div>
                 </div>
               </div>
 
-              {/* Money Saved */}
-              <div className="bg-card/40 backdrop-blur-sm border-2 border-border p-4 md:p-5 hover:border-primary/60 transition-all duration-500 group hover:shadow-[0_0_30px_-8px_hsl(50_100%_50%/0.25)] hover:translate-y-[-2px]" style={{ transitionDelay: '50ms' }}>
+              {/* Money Saved - Secondary */}
+              <div className="relative z-10 bg-card/40 backdrop-blur-md rounded-lg p-4 md:p-5 transition-all duration-500 group hover:translate-y-[-2px]"
+                style={{ 
+                  boxShadow: '0 6px 24px -6px hsl(0 0% 0% / 0.35), 0 3px 12px -3px hsl(50 100% 50% / 0.05)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = '0 10px 32px -6px hsl(0 0% 0% / 0.45), 0 5px 16px -3px hsl(50 100% 50% / 0.1)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '0 6px 24px -6px hsl(0 0% 0% / 0.35), 0 3px 12px -3px hsl(50 100% 50% / 0.05)';
+                }}
+              >
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 border-2 border-border bg-muted/30 flex items-center justify-center shrink-0 group-hover:border-primary/60 group-hover:bg-primary/10 transition-all duration-300">
-                    <Euro className="w-6 h-6 text-muted-foreground group-hover:text-primary group-hover:scale-[1.05] transition-all duration-300" strokeWidth={1.5} />
+                  <div className="w-9 h-9 rounded-md bg-muted/20 flex items-center justify-center shrink-0">
+                    <Euro className="w-4 h-4 text-muted-foreground/50" strokeWidth={1.5} />
                   </div>
                   <div>
-                    <span className="text-3xl md:text-4xl font-black text-foreground tabular-nums">
+                    <span className="text-2xl md:text-3xl font-black text-primary tabular-nums">
                       + {animatedMoneySaved}€
                     </span>
-                    <p className="text-muted-foreground font-bold text-sm md:text-base tracking-tight normal-case">Ušteda novaca mjesečno</p>
+                    <p className="text-muted-foreground/60 font-medium text-xs md:text-sm tracking-tight normal-case mt-0.5">Ušteda novaca mjesečno</p>
                   </div>
                 </div>
               </div>
 
-              {/* ROI */}
-              <div className="bg-card/40 backdrop-blur-sm border-2 border-border p-4 md:p-5 hover:border-primary/60 transition-all duration-500 group hover:shadow-[0_0_30px_-8px_hsl(50_100%_50%/0.25)] hover:translate-y-[-2px]" style={{ transitionDelay: '100ms' }}>
+              {/* ROI - Tertiary */}
+              <div className="relative z-10 bg-card/40 backdrop-blur-md rounded-lg p-4 md:p-5 transition-all duration-500 group hover:translate-y-[-2px]"
+                style={{ 
+                  boxShadow: '0 6px 24px -6px hsl(0 0% 0% / 0.35), 0 3px 12px -3px hsl(50 100% 50% / 0.05)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = '0 10px 32px -6px hsl(0 0% 0% / 0.45), 0 5px 16px -3px hsl(50 100% 50% / 0.1)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '0 6px 24px -6px hsl(0 0% 0% / 0.35), 0 3px 12px -3px hsl(50 100% 50% / 0.05)';
+                }}
+              >
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 border-2 border-border bg-muted/30 flex items-center justify-center shrink-0 group-hover:border-primary/60 group-hover:bg-primary/10 transition-all duration-300">
-                    <TrendingUp className="w-6 h-6 text-muted-foreground group-hover:text-primary group-hover:scale-[1.05] transition-all duration-300" strokeWidth={1.5} />
+                  <div className="w-9 h-9 rounded-md bg-muted/20 flex items-center justify-center shrink-0">
+                    <TrendingUp className="w-4 h-4 text-muted-foreground/50" strokeWidth={1.5} />
                   </div>
                   <div>
-                    <span className="text-3xl md:text-4xl font-black text-foreground tabular-nums">
+                    <span className="text-2xl md:text-3xl font-black text-primary tabular-nums">
                       + {animatedRoi}%
                     </span>
-                    <p className="text-muted-foreground font-bold text-sm md:text-base tracking-tight normal-case">Povrat/Rast</p>
+                    <p className="text-muted-foreground/60 font-medium text-xs md:text-sm tracking-tight normal-case mt-0.5">Povrat/Rast</p>
                   </div>
                 </div>
               </div>
 
-              {/* CTA Button */}
-              <div className="flex flex-col items-center gap-2 mt-2 md:mt-4">
+              {/* CTA Button - More breathing room */}
+              <div className="relative z-10 flex flex-col items-center gap-2 mt-6 md:mt-8 pt-4">
                 <a
                   href="https://app.upitomat.hr/auth"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-[80%] mx-auto text-center py-4 text-base md:text-lg bg-primary text-primary-foreground font-bold uppercase tracking-wide border-2 border-foreground focus-brutal transition-all duration-300 hover:translate-y-[-2px]"
-                  style={{ boxShadow: '0 0 30px 4px hsl(50 100% 50% / 0.3)' }}
+                  style={{ boxShadow: '0 0 25px 3px hsl(50 100% 50% / 0.25)' }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = '0 0 40px 8px hsl(50 100% 50% / 0.45)';
+                    e.currentTarget.style.boxShadow = '0 0 35px 6px hsl(50 100% 50% / 0.4)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow = '0 0 30px 4px hsl(50 100% 50% / 0.3)';
+                    e.currentTarget.style.boxShadow = '0 0 25px 3px hsl(50 100% 50% / 0.25)';
                   }}
                 >
                   Isprobajte Upitomat
