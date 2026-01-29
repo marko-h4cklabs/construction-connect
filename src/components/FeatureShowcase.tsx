@@ -147,7 +147,7 @@ const FeatureShowcase = () => {
 
             {/* Video Preview - autoplay, loop, no controls */}
             <StaggeredText delay={400} className="relative order-first lg:order-last">
-              <div className="relative overflow-hidden bg-card border-2 border-border aspect-[4/3] group hover:border-primary/50 transition-all duration-500 hover:shadow-[0_0_40px_-10px_hsl(50_100%_50%/0.2)]">
+              <div className="relative overflow-hidden bg-card border-2 border-border aspect-[16/10] group hover:border-primary/50 transition-all duration-500 hover:shadow-[0_0_40px_-10px_hsl(50_100%_50%/0.2)]">
                 <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
                   <video
                     ref={videoRef}
@@ -157,7 +157,7 @@ const FeatureShowcase = () => {
                     loop
                     muted
                     playsInline
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                 </div>
 
