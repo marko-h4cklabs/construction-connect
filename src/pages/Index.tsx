@@ -5,7 +5,7 @@ import SavingsCalculator from "@/components/SavingsCalculator";
 import OurStorySection from "@/components/OurStorySection";
 import CTASection from "@/components/CTASection";
 import PartnersSection from "@/components/PartnersSection";
-
+import SectionDivider from "@/components/SectionDivider";
 import Footer from "@/components/Footer";
 import ScrollDrivenBackground from "@/components/ScrollDrivenBackground";
 import PremiumSection from "@/components/PremiumSection";
@@ -24,25 +24,35 @@ const Index = () => {
             <HeroSection />
           </PremiumSection>
           
+          <SectionDivider />
+          
           {/* Feature Showcase */}
           <PremiumSection>
             <FeatureShowcase />
           </PremiumSection>
           
-          {/* Partners/Clients - DARK SECTION (last dark section) */}
+          <SectionDivider />
+          
+          {/* Partners/Clients */}
           <PremiumSection id="klijenti">
             <PartnersSection />
           </PremiumSection>
           
-          {/* Calculator - LIGHT SECTION (first light section, stays light) */}
+          <SectionDivider />
+          
+          {/* Calculator */}
           <PremiumSection id="kalkulator">
             <SavingsCalculator />
           </PremiumSection>
+          
+          <SectionDivider />
           
           {/* Our Story */}
           <PremiumSection id="nasa-prica">
             <OurStorySection />
           </PremiumSection>
+          
+          <SectionDivider />
           
           {/* Final CTA */}
           <PremiumSection className="min-h-[60vh]">
