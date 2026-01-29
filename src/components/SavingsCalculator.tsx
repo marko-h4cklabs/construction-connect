@@ -37,6 +37,7 @@ const SavingsCalculator = () => {
   const [hourlyRate, setHourlyRate] = useState(25);
   const [workDaysPerWeek, setWorkDaysPerWeek] = useState(5);
   const [sliderGlow, setSliderGlow] = useState<string | null>(null);
+  const [highlightedResult, setHighlightedResult] = useState<string | null>(null);
   
   const [timeSavedMonthly, setTimeSavedMonthly] = useState(0);
   const [moneySavedMonthly, setMoneySavedMonthly] = useState(0);
@@ -57,6 +58,11 @@ const SavingsCalculator = () => {
     setTimeSavedMonthly(hoursSaved);
     setMoneySavedMonthly(moneySaved);
     setRoi(Math.max(roiPercent, 0));
+    
+    // Trigger highlight animation on all results when parameters change
+    setHighlightedResult('all');
+    const timer = setTimeout(() => setHighlightedResult(null), 600);
+    return () => clearTimeout(timer);
   }, [hoursPerDay, hourlyRate, workDaysPerWeek]);
 
   return (
@@ -72,23 +78,24 @@ const SavingsCalculator = () => {
           </p>
         </StaggeredText>
 
-        {/* Calculator Container */}
+        {/* Calculator Container - tighter coupling between sections */}
         <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-6 md:gap-10">
-            {/* Left Side - Inputs */}
-            <StaggeredText delay={200}>
-              <div className="bg-card/40 backdrop-blur-sm border-2 border-border p-5 md:p-8 transition-all duration-500 hover:border-primary/50 hover:shadow-[0_0_40px_-10px_hsl(50_100%_50%/0.2)]">
-                <div className="flex items-center gap-3 mb-6 md:mb-8">
-                  <div className="w-10 h-10 border-2 border-border bg-muted/50 flex items-center justify-center group transition-all duration-300 hover:border-primary/50 hover:bg-primary/10">
-                    <Calculator className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-300" strokeWidth={1.5} />
-                  </div>
-                  <h3 className="text-lg md:text-xl font-bold text-foreground uppercase tracking-tight">Vaši parametri</h3>
+          {/* Parameters Section */}
+          <StaggeredText delay={200}>
+            <div className="bg-card/40 backdrop-blur-sm border-2 border-border p-5 md:p-8 transition-all duration-500 hover:border-primary/50 hover:shadow-[0_0_40px_-10px_hsl(50_100%_50%/0.2)]">
+              <div className="flex items-center gap-3 mb-6 md:mb-8">
+                <div className="w-10 h-10 border-2 border-border bg-muted/50 flex items-center justify-center group transition-all duration-300 hover:border-primary/50 hover:bg-primary/10">
+                  <Calculator className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-300" strokeWidth={1.5} />
                 </div>
+                <h3 className="text-lg md:text-xl font-bold text-foreground uppercase tracking-tight">Vaši parametri</h3>
+              </div>
 
+              {/* Sliders in a grid for better control panel feel */}
+              <div className="grid md:grid-cols-3 gap-6 md:gap-8">
                 {/* Slider 1 */}
-                <div className="mb-6 md:mb-8">
+                <div>
                   <div className="flex justify-between items-center mb-3">
-                    <label className="text-muted-foreground font-semibold text-sm md:text-base tracking-tight normal-case">Broj sati dnevno na upite?</label>
+                    <label className="text-muted-foreground font-semibold text-sm md:text-base tracking-tight normal-case">Sati dnevno na upite?</label>
                     <span className="text-foreground font-black text-lg md:text-xl tabular-nums">{hoursPerDay}h</span>
                   </div>
                   <div className={`transition-all duration-300 ${sliderGlow === 'hours' ? 'drop-shadow-[0_0_16px_hsl(145_70%_42%/0.5)]' : ''}`}>
@@ -110,9 +117,9 @@ const SavingsCalculator = () => {
                 </div>
 
                 {/* Slider 2 */}
-                <div className="mb-6 md:mb-8">
+                <div>
                   <div className="flex justify-between items-center mb-3">
-                    <label className="text-muted-foreground font-semibold text-sm md:text-base tracking-tight normal-case">Koliko vrijedi vaš jedan sat?</label>
+                    <label className="text-muted-foreground font-semibold text-sm md:text-base tracking-tight normal-case">Vrijednost vašeg sata?</label>
                     <span className="text-foreground font-black text-lg md:text-xl tabular-nums">{hourlyRate}€</span>
                   </div>
                   <div className={`transition-all duration-300 ${sliderGlow === 'rate' ? 'drop-shadow-[0_0_16px_hsl(145_70%_42%/0.5)]' : ''}`}>
@@ -136,8 +143,8 @@ const SavingsCalculator = () => {
                 {/* Slider 3 */}
                 <div>
                   <div className="flex justify-between items-center mb-3">
-                    <label className="text-muted-foreground font-semibold text-sm md:text-base tracking-tight normal-case">Koliko dana tjedno radite?</label>
-                    <span className="text-foreground font-black text-lg md:text-xl tabular-nums">{workDaysPerWeek} dana</span>
+                    <label className="text-muted-foreground font-semibold text-sm md:text-base tracking-tight normal-case">Radnih dana tjedno?</label>
+                    <span className="text-foreground font-black text-lg md:text-xl tabular-nums">{workDaysPerWeek}</span>
                   </div>
                   <div className={`transition-all duration-300 ${sliderGlow === 'days' ? 'drop-shadow-[0_0_16px_hsl(145_70%_42%/0.5)]' : ''}`}>
                     <Slider
@@ -157,103 +164,121 @@ const SavingsCalculator = () => {
                   </div>
                 </div>
               </div>
-            </StaggeredText>
+            </div>
+          </StaggeredText>
 
-            {/* Right Side - Results with vertical gradient background */}
-            <StaggeredText delay={400} className="flex flex-col gap-5 relative">
-              {/* Vertical gradient light wash */}
+          {/* Subtle transition zone between sections */}
+          <div 
+            className="h-6 md:h-8 relative"
+            style={{
+              background: 'linear-gradient(180deg, hsl(var(--card) / 0.4) 0%, hsl(var(--card) / 0.2) 50%, transparent 100%)',
+            }}
+          >
+            {/* Subtle glow line */}
+            <div 
+              className="absolute left-1/2 -translate-x-1/2 bottom-0 w-1/3 h-px"
+              style={{
+                background: 'linear-gradient(90deg, transparent 0%, hsl(50 100% 50% / 0.3) 50%, transparent 100%)',
+              }}
+            />
+          </div>
+
+          {/* Results Section - Output aesthetic */}
+          <StaggeredText delay={400}>
+            <div 
+              className="relative py-8 md:py-12 px-5 md:px-8"
+              style={{
+                background: 'linear-gradient(180deg, transparent 0%, hsl(var(--card) / 0.15) 20%, hsl(var(--card) / 0.2) 50%, hsl(var(--card) / 0.15) 80%, transparent 100%)',
+              }}
+            >
+              {/* Light wash behind results */}
               <div 
-                className="absolute inset-0 -mx-4 -my-2 pointer-events-none"
+                className="absolute inset-0 pointer-events-none"
                 style={{
-                  background: 'linear-gradient(180deg, transparent 0%, hsl(50 100% 50% / 0.03) 30%, hsl(50 100% 50% / 0.05) 50%, hsl(50 100% 50% / 0.03) 70%, transparent 100%)',
-                  filter: 'blur(40px)',
+                  background: 'radial-gradient(ellipse 60% 40% at 50% 40%, hsl(50 100% 50% / 0.04) 0%, transparent 70%)',
                 }}
               />
               
-              <h3 className="text-lg md:text-xl font-bold text-foreground uppercase tracking-tight mb-1 relative z-10">Vaši rezultati:</h3>
+              <h3 className="text-lg md:text-xl font-bold text-foreground uppercase tracking-tight mb-8 md:mb-10 text-center relative z-10">
+                Vaši rezultati
+              </h3>
               
-              {/* Time Saved - Primary/Dominant */}
-              <div className="relative z-10 bg-card/50 backdrop-blur-md rounded-lg p-5 md:p-6 transition-all duration-500 group hover:translate-y-[-3px]"
-                style={{ 
-                  boxShadow: '0 8px 32px -8px hsl(0 0% 0% / 0.4), 0 4px 16px -4px hsl(50 100% 50% / 0.08)',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 12px 40px -8px hsl(0 0% 0% / 0.5), 0 6px 20px -4px hsl(50 100% 50% / 0.15)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = '0 8px 32px -8px hsl(0 0% 0% / 0.4), 0 4px 16px -4px hsl(50 100% 50% / 0.08)';
-                }}
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-md bg-muted/20 flex items-center justify-center shrink-0">
-                    <Clock className="w-5 h-5 text-muted-foreground/60" strokeWidth={1.5} />
+              {/* Results - Typography focused, minimal borders */}
+              <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 lg:gap-24 relative z-10">
+                {/* Time Saved - Primary/Dominant */}
+                <div 
+                  className={`text-center transition-all duration-500 ${highlightedResult === 'all' ? 'scale-105' : 'scale-100'}`}
+                >
+                  <div className="flex items-center justify-center gap-3 mb-2">
+                    <Clock className="w-5 h-5 text-muted-foreground/40" strokeWidth={1.5} />
                   </div>
-                  <div>
-                    <span className="text-3xl md:text-4xl font-black text-primary tabular-nums" style={{ filter: 'brightness(1.15)' }}>
-                      + {animatedTimeSaved}h
+                  <div 
+                    className={`transition-all duration-500 ${highlightedResult === 'all' ? 'drop-shadow-[0_0_20px_hsl(50_100%_50%/0.4)]' : ''}`}
+                  >
+                    <span 
+                      className="text-5xl md:text-6xl lg:text-7xl font-black text-primary tabular-nums block"
+                      style={{ filter: 'brightness(1.1)' }}
+                    >
+                      +{animatedTimeSaved}h
                     </span>
-                    <p className="text-muted-foreground/70 font-medium text-xs md:text-sm tracking-tight normal-case mt-0.5">Ušteda vremena mjesečno</p>
                   </div>
+                  <p className="text-muted-foreground/70 font-medium text-sm md:text-base tracking-tight normal-case mt-2">
+                    Ušteda vremena mjesečno
+                  </p>
                 </div>
-              </div>
 
-              {/* Money Saved - Secondary */}
-              <div className="relative z-10 bg-card/40 backdrop-blur-md rounded-lg p-4 md:p-5 transition-all duration-500 group hover:translate-y-[-2px]"
-                style={{ 
-                  boxShadow: '0 6px 24px -6px hsl(0 0% 0% / 0.35), 0 3px 12px -3px hsl(50 100% 50% / 0.05)',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 10px 32px -6px hsl(0 0% 0% / 0.45), 0 5px 16px -3px hsl(50 100% 50% / 0.1)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = '0 6px 24px -6px hsl(0 0% 0% / 0.35), 0 3px 12px -3px hsl(50 100% 50% / 0.05)';
-                }}
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-9 h-9 rounded-md bg-muted/20 flex items-center justify-center shrink-0">
-                    <Euro className="w-4 h-4 text-muted-foreground/50" strokeWidth={1.5} />
+                {/* Vertical separator - desktop only */}
+                <div className="hidden md:block w-px h-20 bg-gradient-to-b from-transparent via-border/50 to-transparent" />
+
+                {/* Money Saved - Secondary */}
+                <div 
+                  className={`text-center transition-all duration-500 ${highlightedResult === 'all' ? 'scale-102' : 'scale-100'}`}
+                >
+                  <div className="flex items-center justify-center gap-3 mb-2">
+                    <Euro className="w-4 h-4 text-muted-foreground/30" strokeWidth={1.5} />
                   </div>
-                  <div>
-                    <span className="text-2xl md:text-3xl font-black text-primary tabular-nums">
-                      + {animatedMoneySaved}€
+                  <div 
+                    className={`transition-all duration-500 ${highlightedResult === 'all' ? 'drop-shadow-[0_0_15px_hsl(50_100%_50%/0.25)]' : ''}`}
+                  >
+                    <span className="text-3xl md:text-4xl lg:text-5xl font-black text-primary/90 tabular-nums block">
+                      +{animatedMoneySaved}€
                     </span>
-                    <p className="text-muted-foreground/60 font-medium text-xs md:text-sm tracking-tight normal-case mt-0.5">Ušteda novaca mjesečno</p>
                   </div>
+                  <p className="text-muted-foreground/60 font-medium text-xs md:text-sm tracking-tight normal-case mt-2">
+                    Ušteda novaca mjesečno
+                  </p>
                 </div>
-              </div>
 
-              {/* ROI - Tertiary */}
-              <div className="relative z-10 bg-card/40 backdrop-blur-md rounded-lg p-4 md:p-5 transition-all duration-500 group hover:translate-y-[-2px]"
-                style={{ 
-                  boxShadow: '0 6px 24px -6px hsl(0 0% 0% / 0.35), 0 3px 12px -3px hsl(50 100% 50% / 0.05)',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 10px 32px -6px hsl(0 0% 0% / 0.45), 0 5px 16px -3px hsl(50 100% 50% / 0.1)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = '0 6px 24px -6px hsl(0 0% 0% / 0.35), 0 3px 12px -3px hsl(50 100% 50% / 0.05)';
-                }}
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-9 h-9 rounded-md bg-muted/20 flex items-center justify-center shrink-0">
-                    <TrendingUp className="w-4 h-4 text-muted-foreground/50" strokeWidth={1.5} />
+                {/* Vertical separator - desktop only */}
+                <div className="hidden md:block w-px h-16 bg-gradient-to-b from-transparent via-border/30 to-transparent" />
+
+                {/* ROI - Tertiary */}
+                <div 
+                  className={`text-center transition-all duration-500 ${highlightedResult === 'all' ? 'scale-102' : 'scale-100'}`}
+                >
+                  <div className="flex items-center justify-center gap-3 mb-2">
+                    <TrendingUp className="w-4 h-4 text-muted-foreground/30" strokeWidth={1.5} />
                   </div>
-                  <div>
-                    <span className="text-2xl md:text-3xl font-black text-primary tabular-nums">
-                      + {animatedRoi}%
+                  <div 
+                    className={`transition-all duration-500 ${highlightedResult === 'all' ? 'drop-shadow-[0_0_15px_hsl(50_100%_50%/0.25)]' : ''}`}
+                  >
+                    <span className="text-3xl md:text-4xl lg:text-5xl font-black text-primary/90 tabular-nums block">
+                      +{animatedRoi}%
                     </span>
-                    <p className="text-muted-foreground/60 font-medium text-xs md:text-sm tracking-tight normal-case mt-0.5">Povrat/Rast</p>
                   </div>
+                  <p className="text-muted-foreground/60 font-medium text-xs md:text-sm tracking-tight normal-case mt-2">
+                    Povrat/Rast
+                  </p>
                 </div>
               </div>
 
               {/* CTA Button - More breathing room */}
-              <div className="relative z-10 flex flex-col items-center gap-2 mt-6 md:mt-8 pt-4">
+              <div className="relative z-10 flex flex-col items-center gap-3 mt-12 md:mt-16">
                 <a
                   href="https://app.upitomat.hr/auth"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-[80%] mx-auto text-center py-4 text-base md:text-lg bg-primary text-primary-foreground font-bold uppercase tracking-wide border-2 border-foreground focus-brutal transition-all duration-300 hover:translate-y-[-2px]"
+                  className="px-12 md:px-16 py-4 text-base md:text-lg bg-primary text-primary-foreground font-bold uppercase tracking-wide border-2 border-foreground focus-brutal transition-all duration-300 hover:translate-y-[-2px]"
                   style={{ boxShadow: '0 0 25px 3px hsl(50 100% 50% / 0.25)' }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.boxShadow = '0 0 35px 6px hsl(50 100% 50% / 0.4)';
@@ -265,11 +290,11 @@ const SavingsCalculator = () => {
                   Isprobajte Upitomat
                 </a>
                 <span className="text-sm text-muted-foreground tracking-wide">
-                  Besplatno, bez obveze
+                  besplatno, bez obveze
                 </span>
               </div>
-            </StaggeredText>
-          </div>
+            </div>
+          </StaggeredText>
         </div>
       </div>
     </section>

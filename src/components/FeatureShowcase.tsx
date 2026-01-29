@@ -2,34 +2,45 @@ import { useState, useRef, useEffect } from "react";
 import { Inbox, Bot, Share2, BarChart3 } from "lucide-react";
 import StaggeredText from "@/components/StaggeredText";
 
+// Import videos
+import inboxVideo from "@/assets/videos/upitomat-inbox.mp4";
+import chatbotVideo from "@/assets/videos/personalizirani-chatbot.mp4";
+import analyticsVideo from "@/assets/videos/analitika-i-uvid.mp4";
+import platformsVideo from "@/assets/videos/povezane-platforme.mp4";
+
+// New order as requested:
+// 1 - Upitomat Inbox
+// 2 - Personalizirani Chatbot
+// 3 - Analitika i Uvid
+// 4 - Povezane Platforme
 const features = [
-  {
-    id: "analytics",
-    icon: BarChart3,
-    title: "Analitika i Uvid",
-    description: "Jasan uvid u rezultate i ponašanje vaših klijenata",
-    videoUrl: "/videos/demo.mp4",
-  },
   {
     id: "inbox",
     icon: Inbox,
     title: "Upitomat Inbox",
     description: "Svi vaši upiti uredno organizirani na jednom mjestu.",
-    videoUrl: "/videos/demo.mp4",
-  },
-  {
-    id: "platforms",
-    icon: Share2,
-    title: "Povezane Platforme",
-    description: "Instagram, Facebook, WhatsApp i ostali kanali, po vašem odabiru.",
-    videoUrl: "/videos/demo.mp4",
+    videoUrl: inboxVideo,
   },
   {
     id: "chatbot",
     icon: Bot,
     title: "Personalizirani Chatbot",
     description: "AI asistent obučen prema vašem načinu rada i komunikacije",
-    videoUrl: "/videos/demo.mp4",
+    videoUrl: chatbotVideo,
+  },
+  {
+    id: "analytics",
+    icon: BarChart3,
+    title: "Analitika i Uvid",
+    description: "Jasan uvid u rezultate i ponašanje vaših klijenata",
+    videoUrl: analyticsVideo,
+  },
+  {
+    id: "platforms",
+    icon: Share2,
+    title: "Povezane Platforme",
+    description: "Instagram, Facebook, WhatsApp i ostali kanali, po vašem odabiru.",
+    videoUrl: platformsVideo,
   },
 ];
 
@@ -134,12 +145,13 @@ const FeatureShowcase = () => {
               </div>
             </StaggeredText>
 
-            {/* Video Preview */}
+            {/* Video Preview - autoplay, loop, no controls */}
             <StaggeredText delay={400} className="relative order-first lg:order-last">
               <div className="relative overflow-hidden bg-card border-2 border-border aspect-[4/3] group hover:border-primary/50 transition-all duration-500 hover:shadow-[0_0_40px_-10px_hsl(50_100%_50%/0.2)]">
                 <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
                   <video
                     ref={videoRef}
+                    key={activeFeature.id}
                     src={activeFeature.videoUrl}
                     autoPlay
                     loop

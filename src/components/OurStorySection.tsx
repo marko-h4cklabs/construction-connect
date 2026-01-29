@@ -59,40 +59,73 @@ const OurStorySection = () => {
             </div>
           </StaggeredText>
 
-          {/* Story content - clean, calm, readable, centered */}
+          {/* Story content - clean, structured in 4 blocks */}
           <StaggeredText delay={400}>
-            <div className="bg-card/20 backdrop-blur-sm border border-border/40 p-6 md:p-10 transition-all duration-500 text-center">
-              
-              {/* Intro block */}
-              <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-6">
-                <span className="font-semibold text-foreground">Upitomat</span> je nastao iz problema koje smo saznali iz prve ruke surađujući sa hrvatskim firmama.
-              </p>
-              
-              {/* Quotes block - grouped, subtle, breathable, centered */}
-              <div className="space-y-3 mb-6 py-4 border-l border-primary/20 pl-4 text-left max-w-xl mx-auto">
-                <p className="text-muted-foreground/70 italic leading-relaxed text-sm md:text-base">"Dobivam previše upita, a nemam vremena za sve pohvatati."</p>
-                <p className="text-muted-foreground/70 italic leading-relaxed text-sm md:text-base">"Sve je razbacano, ne znam tko mi glavu nosi."</p>
-                <p className="text-muted-foreground/70 italic leading-relaxed text-sm md:text-base">"Gubim sate svaki dan ponavljajući isto, da na kraju ne bude ništa."</p>
-              </div>
-              
-              {/* Highlighted statement - clearly separated */}
-              <p className="text-xl md:text-2xl font-bold text-primary py-5 my-5 border-y border-border/30">
-                I to s nama jednostavno ne stoji.
-              </p>
-              
-              {/* Conclusion block */}
-              <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-6">
-                Marljiv i kvalitetan rad zaslužuje biti nagrađen, a ne kažnjen. Zato smo kreirali Upitomat — kako bi vam poruke prestale uzimati dan, a posao opet imao mir i red.
-              </p>
-              
-              {/* Question block - focused */}
-              <div className="pt-5 border-t border-border/30">
-                <h3 className="text-sm md:text-base font-semibold text-foreground/80 uppercase tracking-wide mb-3">
-                  Jedno pitanje za vas:
-                </h3>
-                <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
-                  Na što biste radije potrošili vrijeme koje će vam danas ukrasti poruke?
+            <div 
+              className="relative transition-all duration-500 text-center"
+              style={{
+                // Reduced grid/noise via lower opacity background
+                background: 'linear-gradient(180deg, hsl(var(--card) / 0.1) 0%, transparent 100%)',
+              }}
+            >
+              {/* Max-width container to match card width */}
+              <div className="max-w-xl mx-auto px-4 md:px-0">
+                
+                {/* Block 1: Intro paragraph */}
+                <p className="text-muted-foreground text-base md:text-lg leading-[1.8] mb-10 md:mb-14">
+                  <span className="font-semibold text-foreground">Upitomat</span> je nastao iz problema koje smo saznali iz prve ruke surađujući sa hrvatskim firmama.
                 </p>
+                
+                {/* Block 2: Quotes - grouped with subtle yellow marker */}
+                <div className="relative mb-10 md:mb-14 py-6">
+                  {/* Subtle yellow vertical line marker */}
+                  <div 
+                    className="absolute left-0 md:left-4 top-0 bottom-0 w-0.5"
+                    style={{
+                      background: 'linear-gradient(180deg, transparent 0%, hsl(50 100% 50% / 0.4) 20%, hsl(50 100% 50% / 0.4) 80%, transparent 100%)',
+                    }}
+                  />
+                  
+                  <div className="space-y-6 md:space-y-8 pl-4 md:pl-10 text-left">
+                    <p className="text-muted-foreground/80 italic leading-[1.8] text-sm md:text-base">
+                      "Dobivam previše upita, a nemam vremena za sve pohvatati."
+                    </p>
+                    <p className="text-muted-foreground/80 italic leading-[1.8] text-sm md:text-base">
+                      "Sve je razbacano, ne znam tko mi glavu nosi."
+                    </p>
+                    <p className="text-muted-foreground/80 italic leading-[1.8] text-sm md:text-base">
+                      "Gubim sate svaki dan ponavljajući isto, da na kraju ne bude ništa."
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Block 3: Highlighted statement - more space, stronger contrast */}
+                <div className="py-8 md:py-12 mb-10 md:mb-14">
+                  <p className="text-xl md:text-2xl font-bold text-primary leading-[1.6]">
+                    I to s nama jednostavno ne stoji.
+                  </p>
+                </div>
+                
+                {/* Block 4: Conclusion + Question */}
+                <div className="space-y-10 md:space-y-14">
+                  {/* Conclusion paragraph */}
+                  <p className="text-muted-foreground text-base md:text-lg leading-[1.8]">
+                    Marljiv i kvalitetan rad zaslužuje biti nagrađen, a ne kažnjen. Zato smo kreirali Upitomat — kako bi vam poruke prestale uzimati dan, a posao opet imao mir i red.
+                  </p>
+                  
+                  {/* Question block with more breathing room */}
+                  <div className="pt-8 md:pt-10">
+                    <h3 className="text-sm md:text-base font-semibold text-foreground/80 uppercase tracking-wide mb-6">
+                      Jedno pitanje za vas:
+                    </h3>
+                    <div className="py-6 md:py-8">
+                      <p className="text-muted-foreground text-base md:text-lg leading-[1.8]">
+                        Na što biste radije potrošili vrijeme koje će vam danas ukrasti poruke?
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                
               </div>
             </div>
           </StaggeredText>
