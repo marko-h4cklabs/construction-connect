@@ -90,7 +90,7 @@ const VideoTestimonials = () => {
           }`}
         >
           <h2 className="text-2xl md:text-4xl font-black text-foreground mb-4 uppercase tracking-tight">
-            Što kažu naši klijenti
+            Što kažu naši <span className="text-gradient">klijenti</span>
           </h2>
           <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
             Pogledajte iskustva firmi koje koriste Upitomat
@@ -106,7 +106,7 @@ const VideoTestimonials = () => {
           {/* Left Arrow */}
           <button
             onClick={handlePrev}
-            className="absolute left-0 md:left-4 z-20 w-10 h-10 md:w-12 md:h-12 border border-border bg-background/80 backdrop-blur-sm flex items-center justify-center text-foreground hover:border-primary hover:bg-muted/80 transition-all duration-300 focus-brutal group"
+            className="absolute left-0 md:left-4 z-20 w-10 h-10 md:w-12 md:h-12 border-2 border-border bg-background/80 backdrop-blur-sm flex items-center justify-center text-foreground hover:border-primary hover:bg-muted/80 transition-all duration-300 focus-brutal group"
             aria-label="Prethodni video"
           >
             <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 transition-transform group-hover:-translate-x-0.5" />
@@ -139,7 +139,7 @@ const VideoTestimonials = () => {
           {/* Right Arrow */}
           <button
             onClick={handleNext}
-            className="absolute right-0 md:right-4 z-20 w-10 h-10 md:w-12 md:h-12 border border-border bg-background/80 backdrop-blur-sm flex items-center justify-center text-foreground hover:border-primary hover:bg-muted/80 transition-all duration-300 focus-brutal group"
+            className="absolute right-0 md:right-4 z-20 w-10 h-10 md:w-12 md:h-12 border-2 border-border bg-background/80 backdrop-blur-sm flex items-center justify-center text-foreground hover:border-primary hover:bg-muted/80 transition-all duration-300 focus-brutal group"
             aria-label="Sljedeći video"
           >
             <ChevronRight className="w-5 h-5 md:w-6 md:h-6 transition-transform group-hover:translate-x-0.5" />
@@ -187,15 +187,15 @@ const VideoCard = ({ testimonial, isActive }: VideoCardProps) => {
 
   return (
     <div className="flex flex-col items-center">
-      {/* Video Container */}
+      {/* Video Container with yellow border */}
       <div
-        className={`relative overflow-hidden bg-muted transition-all duration-500 border ${
+        className={`relative overflow-hidden bg-muted transition-all duration-500 border-2 ${
           isActive
-            ? "w-[220px] h-[390px] md:w-[280px] md:h-[500px] border-primary/80"
+            ? "w-[220px] h-[390px] md:w-[280px] md:h-[500px] border-primary"
             : "w-[180px] h-[320px] md:w-[220px] md:h-[390px] border-border/50"
         }`}
         style={isActive ? {
-          boxShadow: "0 0 30px 4px hsl(50 100% 50% / 0.2), 0 0 60px 10px hsl(50 100% 50% / 0.08)"
+          boxShadow: "0 0 40px 6px hsl(50 100% 50% / 0.25), 0 0 80px 15px hsl(50 100% 50% / 0.1)"
         } : {}}
       >
         <iframe

@@ -35,6 +35,7 @@ const features = [
 
 const FeatureShowcase = () => {
   const [activeFeature, setActiveFeature] = useState(features[0]);
+  const [iconAnimated, setIconAnimated] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -42,6 +43,10 @@ const FeatureShowcase = () => {
       videoRef.current.currentTime = 0;
       videoRef.current.play().catch(() => {});
     }
+    // Trigger one-time icon animation
+    setIconAnimated(activeFeature.id);
+    const timer = setTimeout(() => setIconAnimated(null), 600);
+    return () => clearTimeout(timer);
   }, [activeFeature]);
 
   return (
@@ -71,10 +76,10 @@ const FeatureShowcase = () => {
                       key={feature.id}
                       onClick={() => setActiveFeature(feature)}
                       className={`
-                        relative p-4 md:p-6 border text-left transition-all duration-300 focus-brutal group
+                        relative p-4 md:p-6 border-2 text-left transition-all duration-500 focus-brutal group
                         ${isActive 
-                          ? "border-primary bg-primary/10 shadow-[0_0_20px_hsl(50_100%_50%/0.15)]" 
-                          : "border-border bg-card/50 hover:border-primary/50 hover:bg-card/80"
+                          ? "border-primary bg-primary/10 shadow-[0_0_35px_-5px_hsl(50_100%_50%/0.3)]" 
+                          : "border-border bg-card/50 hover:border-primary/50 hover:bg-card/80 hover:shadow-[0_0_25px_-8px_hsl(50_100%_50%/0.2)] hover:translate-y-[-2px]"
                         }
                       `}
                       style={{
@@ -83,7 +88,7 @@ const FeatureShowcase = () => {
                     >
                       {/* Checkbox indicator */}
                       <div className={`
-                        absolute top-3 right-3 w-5 h-5 border flex items-center justify-center
+                        absolute top-3 right-3 w-5 h-5 border-2 flex items-center justify-center
                         transition-all duration-300
                         ${isActive 
                           ? "border-primary bg-primary" 
@@ -97,12 +102,21 @@ const FeatureShowcase = () => {
                         )}
                       </div>
 
-                      {/* Icon */}
+                      {/* Icon with glow on active */}
                       <div className={`
-                        w-10 h-10 md:w-12 md:h-12 border flex items-center justify-center mb-3 md:mb-4 transition-all duration-300
-                        ${isActive ? "border-primary bg-primary/20" : "border-border bg-muted group-hover:border-primary/30"}
+                        w-10 h-10 md:w-12 md:h-12 border-2 flex items-center justify-center mb-3 md:mb-4 transition-all duration-500
+                        ${isActive 
+                          ? "border-primary bg-primary/20 shadow-[0_0_20px_hsl(50_100%_50%/0.3)]" 
+                          : "border-border bg-muted group-hover:border-primary/30 group-hover:bg-primary/5"
+                        }
                       `}>
-                        <feature.icon className={`w-5 h-5 md:w-6 md:h-6 transition-colors duration-300 ${isActive ? "text-primary" : "text-muted-foreground group-hover:text-primary/70"}`} />
+                        <feature.icon 
+                          className={`
+                            w-5 h-5 md:w-6 md:h-6 transition-all duration-500 
+                            ${isActive ? "text-primary" : "text-muted-foreground group-hover:text-primary/70"}
+                            ${iconAnimated === feature.id ? "scale-110" : "scale-100"}
+                          `} 
+                        />
                       </div>
 
                       {/* Title */}
@@ -122,7 +136,7 @@ const FeatureShowcase = () => {
 
             {/* Video Preview */}
             <StaggeredText delay={400} className="relative order-first lg:order-last">
-              <div className="relative overflow-hidden bg-card border border-border aspect-[4/3] group">
+              <div className="relative overflow-hidden bg-card border-2 border-border aspect-[4/3] group hover:border-primary/50 transition-all duration-500 hover:shadow-[0_0_40px_-10px_hsl(50_100%_50%/0.2)]">
                 <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
                   <video
                     ref={videoRef}
@@ -140,9 +154,9 @@ const FeatureShowcase = () => {
 
                 {/* Feature label overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <div className="bg-background/60 backdrop-blur-md border border-border/50 px-4 py-3 transition-all duration-300">
+                  <div className="bg-background/60 backdrop-blur-md border-2 border-border/50 px-4 py-3 transition-all duration-300">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 border border-primary bg-primary/20 flex items-center justify-center">
+                      <div className="w-8 h-8 border-2 border-primary bg-primary/20 flex items-center justify-center">
                         <activeFeature.icon className="w-4 h-4 text-primary" />
                       </div>
                       <div>
