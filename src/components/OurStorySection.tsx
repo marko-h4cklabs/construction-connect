@@ -7,7 +7,7 @@ const OurStorySection = () => {
     <section className="py-12 md:py-20 scroll-mt-24 our-story-section overflow-hidden">
       <div className="container mx-auto px-4">
         <StaggeredText className="text-center mb-8 md:mb-12">
-          <h2 className="text-2xl md:text-4xl font-black text-foreground mb-3 uppercase tracking-tight">
+          <h2 className="text-xl md:text-2xl font-black text-foreground mb-3 uppercase tracking-tight">
             Naša priča
           </h2>
           <p className="text-muted-foreground text-sm md:text-lg max-w-2xl mx-auto">
@@ -77,7 +77,7 @@ const OurStorySection = () => {
                 </p>
                 
                 {/* Block 2: Quotes - grouped with subtle yellow marker */}
-                <div className="relative mb-6 md:mb-8 py-4">
+                <div className="relative mb-4 md:mb-5 py-3">
                   {/* Subtle yellow vertical line marker */}
                   <div 
                     className="absolute left-0 md:left-4 top-0 bottom-0 w-0.5"
@@ -86,39 +86,42 @@ const OurStorySection = () => {
                     }}
                   />
                   
-                  <div className="space-y-4 md:space-y-5 pl-4 md:pl-10 text-left">
-                    <p className="text-muted-foreground/80 italic leading-[1.8] text-sm md:text-base">
+                  <div className="space-y-3 md:space-y-4 pl-4 md:pl-10 text-left">
+                    <p className="text-muted-foreground/80 italic leading-[1.8] text-base md:text-lg">
                       "Dobivam previše upita, a nemam vremena za sve pohvatati."
                     </p>
-                    <p className="text-muted-foreground/80 italic leading-[1.8] text-sm md:text-base">
+                    <p className="text-muted-foreground/80 italic leading-[1.8] text-base md:text-lg">
                       "Sve je razbacano, ne znam tko mi glavu nosi."
                     </p>
-                    <p className="text-muted-foreground/80 italic leading-[1.8] text-sm md:text-base">
+                    <p className="text-muted-foreground/80 italic leading-[1.8] text-base md:text-lg">
                       "Gubim sate svaki dan ponavljajući isto, da na kraju ne bude ništa."
                     </p>
                   </div>
                 </div>
                 
                 {/* Block 3: Highlighted statement - CAPS, same base font size */}
-                <div className="py-5 md:py-6 mb-6 md:mb-8">
+                <div className="py-3 md:py-4 mb-4 md:mb-5">
                   <p className="text-sm md:text-base font-bold text-primary leading-[1.6] uppercase tracking-wide">
                     I TO S NAMA JEDNOSTAVNO NE STOJI.
                   </p>
                 </div>
                 
                 {/* Block 4: Conclusion + Question */}
-                <div className="space-y-6 md:space-y-8">
+                <div className="space-y-4 md:space-y-5">
                   {/* Conclusion paragraph */}
                   <p className="text-muted-foreground text-sm md:text-base leading-[1.8]">
-                    Marljiv i kvalitetan rad zaslužuje biti nagrađen, a ne kažnjen. Zato smo kreirali Upitomat — kako bi vam poruke prestale uzimati dan, a posao opet imao mir i red.
+                    Marljiv i kvalitetan rad zaslužuje biti nagrađen, a ne kažnjen.
+                  </p>
+                  <p className="text-muted-foreground text-sm md:text-base leading-[1.8]">
+                    Zato smo kreirali Upitomat. Kako bi vam poruke prestale krasti vrijeme, a posao opet imao mir i red.
                   </p>
                   
                   {/* Question block */}
-                  <div className="pt-4 md:pt-6">
-                    <h3 className="text-sm md:text-base font-semibold text-foreground/80 uppercase tracking-wide mb-4">
+                  <div className="pt-3 md:pt-4">
+                    <h3 className="text-sm md:text-base font-semibold text-foreground/80 uppercase tracking-wide mb-3">
                       Jedno pitanje za vas:
                     </h3>
-                    <div className="py-3 md:py-4">
+                    <div className="py-2 md:py-3">
                       <p className="text-muted-foreground text-sm md:text-base leading-[1.8]">
                         Na što biste radije potrošili vrijeme koje će vam danas ukrasti poruke?
                       </p>

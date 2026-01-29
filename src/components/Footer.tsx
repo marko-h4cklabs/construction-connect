@@ -49,7 +49,7 @@ const Footer = () => {
                 <Instagram className="w-5 h-5" />
               </a>
               <a
-                href="https://www.facebook.com/profile.php?id=61586140888256"
+                href="https://www.facebook.com/profile.php?id=61586263463876"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-all duration-300 p-3 border border-border/50 hover:border-primary/50 bg-background/50 hover:bg-primary/5 hover:shadow-[0_0_15px_hsl(50_100%_50%/0.15)]"
@@ -58,7 +58,7 @@ const Footer = () => {
                 <Facebook className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/company/upitomat/about/?viewAsMember=true"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-all duration-300 p-3 border border-border/50 hover:border-primary/50 bg-background/50 hover:bg-primary/5 hover:shadow-[0_0_15px_hsl(50_100%_50%/0.15)]"
@@ -70,7 +70,7 @@ const Footer = () => {
             {/* Second row - 3 icons */}
             <div className="flex items-center justify-center gap-3">
               <a
-                href="#"
+                href="https://www.youtube.com/@Upitomat/shorts"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-all duration-300 p-3 border border-border/50 hover:border-primary/50 bg-background/50 hover:bg-primary/5 hover:shadow-[0_0_15px_hsl(50_100%_50%/0.15)]"
@@ -79,20 +79,16 @@ const Footer = () => {
                 <Youtube className="w-5 h-5" />
               </a>
               <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="mailto:info@upitomat.hr"
                 className="text-muted-foreground hover:text-primary transition-all duration-300 p-3 border border-border/50 hover:border-primary/50 bg-background/50 hover:bg-primary/5 hover:shadow-[0_0_15px_hsl(50_100%_50%/0.15)]"
                 aria-label="Email"
               >
                 <Mail className="w-5 h-5" />
               </a>
               <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="sms:+385992526237"
                 className="text-muted-foreground hover:text-primary transition-all duration-300 p-3 border border-border/50 hover:border-primary/50 bg-background/50 hover:bg-primary/5 hover:shadow-[0_0_15px_hsl(50_100%_50%/0.15)]"
-                aria-label="WhatsApp"
+                aria-label="SMS"
               >
                 <MessageCircle className="w-5 h-5" />
               </a>
