@@ -187,7 +187,7 @@ const VideoCard = ({ testimonial, isActive }: VideoCardProps) => {
 
   return (
     <div className="flex flex-col items-center">
-      {/* Video Container with yellow border */}
+      {/* Video Container with yellow border and equal shadow on all sides */}
       <div
         className={`relative overflow-hidden bg-muted transition-all duration-500 border-2 ${
           isActive
@@ -195,9 +195,9 @@ const VideoCard = ({ testimonial, isActive }: VideoCardProps) => {
             : "w-[180px] h-[320px] md:w-[220px] md:h-[390px] border-border/50"
         }`}
         style={isActive ? {
-          boxShadow: "0 0 40px 6px hsl(50 100% 50% / 0.25), 0 0 80px 15px hsl(50 100% 50% / 0.1)"
-        } : {}}
-      >
+          boxShadow: "0 0 40px 8px hsl(50 100% 50% / 0.2), 0 0 80px 20px hsl(50 100% 50% / 0.08)"
+        } : {}}>
+
         <iframe
           ref={iframeRef}
           key={`${testimonial.id}-${isActive}`}

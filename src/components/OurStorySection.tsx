@@ -19,11 +19,11 @@ const OurStorySection = () => {
           {/* Fan-style photos */}
           <StaggeredText delay={200}>
             <div className="flex justify-center items-end gap-4 md:gap-6 mb-10 md:mb-14">
-              {/* First photo */}
+              {/* First photo - flat, no rotation */}
               <div 
-                className="w-[42%] md:w-[35%] max-w-[220px] bg-card/40 backdrop-blur-sm border-2 border-border p-2 transition-all duration-500 hover:scale-105 hover:border-primary/50 hover:shadow-[0_8px_40px_rgba(255,220,100,0.15)] -rotate-3 origin-bottom"
+                className="w-[42%] md:w-[35%] max-w-[220px] bg-card/40 backdrop-blur-sm border-2 border-border p-2 transition-all duration-500 hover:scale-105 hover:border-primary/50"
               >
-                <div className="w-full aspect-[3/4] overflow-hidden border border-border/50">
+                <div className="w-full overflow-hidden border border-border/50" style={{ aspectRatio: '3/3.4' }}>
                   <img 
                     src={partner1} 
                     alt="Partner 1" 
@@ -38,11 +38,11 @@ const OurStorySection = () => {
                 </div>
               </div>
               
-              {/* Second photo */}
+              {/* Second photo - flat, no rotation */}
               <div 
-                className="w-[42%] md:w-[35%] max-w-[220px] bg-card/40 backdrop-blur-sm border-2 border-border p-2 transition-all duration-500 hover:scale-105 hover:border-primary/50 hover:shadow-[0_8px_40px_rgba(255,220,100,0.15)] rotate-3 origin-bottom"
+                className="w-[42%] md:w-[35%] max-w-[220px] bg-card/40 backdrop-blur-sm border-2 border-border p-2 transition-all duration-500 hover:scale-105 hover:border-primary/50"
               >
-                <div className="w-full aspect-[3/4] overflow-hidden border border-border/50">
+                <div className="w-full overflow-hidden border border-border/50" style={{ aspectRatio: '3/3.4' }}>
                   <img 
                     src={partner2} 
                     alt="Partner 2" 
@@ -72,13 +72,8 @@ const OurStorySection = () => {
                 <p className="text-muted-foreground italic">"Gubim sate svaki dan ponavljajući isto, da na kraju ne bude ništa."</p>
               </div>
               
-              <p className="text-lg md:text-xl font-bold text-foreground relative inline-block">
-                <span className="relative z-10 px-2 py-1" style={{ 
-                  background: 'linear-gradient(90deg, hsl(50 100% 50% / 0.15), hsl(50 100% 50% / 0.25), hsl(50 100% 50% / 0.15))',
-                  boxShadow: '0 0 25px 5px hsl(50 100% 50% / 0.1)' 
-                }}>
-                  I to s nama jednostavno ne stoji.
-                </span>
+              <p className="text-lg md:text-xl font-bold text-foreground">
+                I to s nama jednostavno ne stoji.
               </p>
               
               <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
@@ -86,13 +81,8 @@ const OurStorySection = () => {
               </p>
               
               <div className="pt-4 border-t-2 border-border/60">
-                <p className="font-semibold mb-2 text-foreground relative inline-block">
-                  <span className="relative z-10 px-2 py-1" style={{ 
-                    background: 'linear-gradient(90deg, hsl(50 100% 50% / 0.15), hsl(50 100% 50% / 0.25), hsl(50 100% 50% / 0.15))',
-                    boxShadow: '0 0 25px 5px hsl(50 100% 50% / 0.1)' 
-                  }}>
-                    Jedno pitanje za vas:
-                  </span>
+                <p className="font-semibold mb-2 text-foreground">
+                  Jedno pitanje za vas:
                 </p>
                 <p className="text-muted-foreground mt-2">Na što biste radije potrošili vrijeme koje će vam danas ukrasti poruke?</p>
               </div>
