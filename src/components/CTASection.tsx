@@ -15,7 +15,7 @@ const CTASection = () => {
   }, []);
 
   return (
-    <section className="py-16 md:py-24">
+    <section className="pt-14 pb-14 md:pt-20 md:pb-22">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto text-center">
           <StaggeredText>
