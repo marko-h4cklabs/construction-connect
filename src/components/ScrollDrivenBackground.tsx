@@ -132,7 +132,7 @@ const ScrollDrivenBackground = () => {
       glowRgb: hslToRgb(section.glow[0], section.glow[1], section.glow[2]),
     })), []);
 
-  // Smooth scroll tracking
+  // Optimized scroll tracking with throttling
   const updateScroll = useCallback(() => {
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -147,13 +147,15 @@ const ScrollDrivenBackground = () => {
 
   useEffect(() => {
     let rafId: number;
-    let lastScrollY = window.scrollY;
+    let ticking = false;
     
     const handleScroll = () => {
-      if (Math.abs(window.scrollY - lastScrollY) > 1) {
-        lastScrollY = window.scrollY;
-        cancelAnimationFrame(rafId);
-        rafId = requestAnimationFrame(updateScroll);
+      if (!ticking) {
+        ticking = true;
+        rafId = requestAnimationFrame(() => {
+          updateScroll();
+          ticking = false;
+        });
       }
     };
 
@@ -182,21 +184,26 @@ const ScrollDrivenBackground = () => {
     return () => cancelAnimationFrame(rafId);
   }, []);
 
-  // Fast, active vignette movement (3-5 second cycle) - always moving, never static
+  // Optimized vignette movement with reduced update frequency
   useEffect(() => {
-    let startTime = Date.now();
+    let startTime = performance.now();
     let rafId: number;
+    let lastUpdate = 0;
+    const updateInterval = 50; // Update every 50ms (20fps) instead of every frame
     
-    const animateVignette = () => {
-      const elapsed = Date.now() - startTime;
-      const cycleTime = 4000; // 4 seconds - fast, active
-      const phase = (elapsed % cycleTime) / cycleTime;
-      
-      // Complex multi-directional movement pattern - covers entire screen
-      const x = 50 + Math.sin(phase * Math.PI * 2) * 25 + Math.cos(phase * Math.PI * 3) * 15;
-      const y = 50 + Math.sin(phase * Math.PI * 3) * 20 + Math.cos(phase * Math.PI * 2) * 12;
-      
-      setVignettePosition({ x, y });
+    const animateVignette = (currentTime: number) => {
+      if (currentTime - lastUpdate >= updateInterval) {
+        const elapsed = currentTime - startTime;
+        const cycleTime = 4000;
+        const phase = (elapsed % cycleTime) / cycleTime;
+        
+        // Simplified movement pattern for better performance
+        const x = 50 + Math.sin(phase * Math.PI * 2) * 30;
+        const y = 50 + Math.cos(phase * Math.PI * 2) * 20;
+        
+        setVignettePosition({ x, y });
+        lastUpdate = currentTime;
+      }
       rafId = requestAnimationFrame(animateVignette);
     };
     

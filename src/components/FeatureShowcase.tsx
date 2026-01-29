@@ -149,8 +149,13 @@ const FeatureShowcase = () => {
             <StaggeredText delay={400} className="relative order-first lg:order-last">
               {/* Main video container */}
               <div className="relative">
-                {/* Video box */}
-                <div className="relative overflow-hidden bg-card/60 backdrop-blur-sm aspect-[16/10] group transition-all duration-500 hover:shadow-[0_0_40px_-10px_hsl(50_100%_50%/0.2)]">
+                {/* Video box with yellow border */}
+                <div 
+                  className="relative overflow-hidden bg-card/60 backdrop-blur-sm aspect-[16/10] group transition-all duration-500 border-2 border-primary/60 hover:border-primary hover:shadow-[0_0_40px_-10px_hsl(50_100%_50%/0.3)]"
+                  style={{
+                    boxShadow: '0 0 30px -5px hsl(50 100% 50% / 0.15)',
+                  }}
+                >
                   <div className="absolute inset-0 transition-transform duration-700 will-change-transform group-hover:scale-105">
                     <video
                       ref={videoRef}
