@@ -91,7 +91,7 @@ const SavingsCalculator = () => {
                     <label className="text-muted-foreground font-semibold text-sm md:text-base tracking-tight normal-case">Broj sati dnevno na upite?</label>
                     <span className="text-foreground font-black text-lg md:text-xl tabular-nums">{hoursPerDay}h</span>
                   </div>
-                  <div className={`transition-all duration-300 ${sliderGlow === 'hours' ? 'drop-shadow-[0_0_12px_hsl(50_100%_50%/0.4)]' : ''}`}>
+                  <div className={`transition-all duration-300 ${sliderGlow === 'hours' ? 'drop-shadow-[0_0_16px_hsl(145_70%_42%/0.5)]' : ''}`}>
                     <Slider
                       value={[hoursPerDay]}
                       onValueChange={(value) => setHoursPerDay(value[0])}
@@ -115,7 +115,7 @@ const SavingsCalculator = () => {
                     <label className="text-muted-foreground font-semibold text-sm md:text-base tracking-tight normal-case">Koliko vrijedi vaš jedan sat?</label>
                     <span className="text-foreground font-black text-lg md:text-xl tabular-nums">{hourlyRate}€</span>
                   </div>
-                  <div className={`transition-all duration-300 ${sliderGlow === 'rate' ? 'drop-shadow-[0_0_12px_hsl(50_100%_50%/0.4)]' : ''}`}>
+                  <div className={`transition-all duration-300 ${sliderGlow === 'rate' ? 'drop-shadow-[0_0_16px_hsl(145_70%_42%/0.5)]' : ''}`}>
                     <Slider
                       value={[hourlyRate]}
                       onValueChange={(value) => setHourlyRate(value[0])}
@@ -139,7 +139,7 @@ const SavingsCalculator = () => {
                     <label className="text-muted-foreground font-semibold text-sm md:text-base tracking-tight normal-case">Koliko dana tjedno radite?</label>
                     <span className="text-foreground font-black text-lg md:text-xl tabular-nums">{workDaysPerWeek} dana</span>
                   </div>
-                  <div className={`transition-all duration-300 ${sliderGlow === 'days' ? 'drop-shadow-[0_0_12px_hsl(50_100%_50%/0.4)]' : ''}`}>
+                  <div className={`transition-all duration-300 ${sliderGlow === 'days' ? 'drop-shadow-[0_0_16px_hsl(145_70%_42%/0.5)]' : ''}`}>
                     <Slider
                       value={[workDaysPerWeek]}
                       onValueChange={(value) => setWorkDaysPerWeek(value[0])}
