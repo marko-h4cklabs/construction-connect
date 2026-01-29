@@ -18,7 +18,7 @@ const HeroSection = () => {
           {/* Subheadline */}
           <StaggeredText delay={200}>
             <p
-              className="mt-8 md:mt-12 text-sm md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed"
+              className="mt-8 md:mt-12 text-base md:text-lg text-muted-foreground max-w-[80%] mx-auto leading-relaxed"
             >
               <span className="font-bold text-foreground">Upitomat</span> odgovara na upite u <span className="font-bold text-foreground">vašem stilu</span> te organizira sve razgovore i podatke u{" "}
               <span className="block font-bold text-foreground">jednom inboxu.</span>

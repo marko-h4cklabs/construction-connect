@@ -69,7 +69,7 @@ const FeatureShowcase = () => {
             <span className="block">Što <span className="text-gradient">Upitomat</span> radi</span>
             <span className="block">za vas?</span>
           </h2>
-          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-muted-foreground max-w-[80%] mx-auto">
             Odaberite funkcionalnost i pogledajte kako izgleda u praksi
           </p>
         </StaggeredText>
@@ -147,33 +147,58 @@ const FeatureShowcase = () => {
 
             {/* Video Preview - autoplay, loop, no controls */}
             <StaggeredText delay={400} className="relative order-first lg:order-last">
-              <div className="relative overflow-hidden bg-card border-2 border-border aspect-[16/10] group hover:border-primary/50 transition-all duration-500 hover:shadow-[0_0_40px_-10px_hsl(50_100%_50%/0.2)]">
-                <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
-                  <video
-                    ref={videoRef}
-                    key={activeFeature.id}
-                    src={activeFeature.videoUrl}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-full object-contain"
-                  />
+              {/* Main video container with extended bottom for dock */}
+              <div className="relative pb-14 md:pb-16">
+                {/* Video box */}
+                <div className="relative overflow-hidden bg-card/60 backdrop-blur-sm aspect-[16/10] group transition-all duration-500 hover:shadow-[0_0_40px_-10px_hsl(50_100%_50%/0.2)]">
+                  <div className="absolute inset-0 transition-transform duration-700 will-change-transform group-hover:scale-105">
+                    <video
+                      ref={videoRef}
+                      key={activeFeature.id}
+                      src={activeFeature.videoUrl}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+
+                  {/* Subtle gradient overlay - fades into dock */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-transparent to-transparent pointer-events-none" />
                 </div>
 
-                {/* Subtle gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent pointer-events-none" />
-
-                {/* Feature label overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <div className="bg-background/60 backdrop-blur-md border-2 border-border/50 px-4 py-3 transition-all duration-300">
+                {/* Fused dock - overlaps main container */}
+                <div 
+                  className="absolute left-1/2 -translate-x-1/2 bottom-0 w-[85%] md:w-[75%] z-10 animate-fade-in"
+                  style={{
+                    animationDelay: '200ms',
+                  }}
+                >
+                  {/* Gradient connector - seamless blend from main block */}
+                  <div 
+                    className="absolute -top-6 left-0 right-0 h-8 pointer-events-none"
+                    style={{
+                      background: 'linear-gradient(180deg, transparent 0%, hsl(var(--card) / 0.6) 100%)',
+                      maskImage: 'radial-gradient(ellipse 80% 100% at 50% 100%, black 0%, transparent 100%)',
+                      WebkitMaskImage: 'radial-gradient(ellipse 80% 100% at 50% 100%, black 0%, transparent 100%)',
+                    }}
+                  />
+                  
+                  {/* Dock content */}
+                  <div 
+                    className="relative bg-card/80 backdrop-blur-md rounded-xl px-4 py-3 md:px-5 md:py-4 transition-all duration-500"
+                    style={{
+                      boxShadow: '0 8px 32px -8px hsl(0 0% 0% / 0.4), 0 4px 16px -4px hsl(0 0% 0% / 0.2)',
+                    }}
+                  >
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 border-2 border-primary bg-primary/20 flex items-center justify-center">
-                        <activeFeature.icon className="w-4 h-4 text-primary" />
+                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <activeFeature.icon className="w-4 h-4 md:w-5 md:h-5 text-primary" />
                       </div>
-                      <div>
-                        <h4 className="font-bold text-foreground text-sm uppercase tracking-tight">{activeFeature.title}</h4>
-                        <p className="text-xs text-muted-foreground">{activeFeature.description}</p>
+                      <div className="min-w-0">
+                        <h4 className="font-bold text-foreground text-sm md:text-base uppercase tracking-tight truncate">{activeFeature.title}</h4>
+                        <p className="text-xs md:text-sm text-muted-foreground line-clamp-1">{activeFeature.description}</p>
                       </div>
                     </div>
                   </div>
