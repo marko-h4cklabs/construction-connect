@@ -89,7 +89,7 @@ const VideoTestimonials = () => {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <h2 className="text-2xl md:text-4xl font-black text-foreground mb-4 uppercase tracking-tight">
+          <h2 className="text-xl md:text-2xl font-black text-foreground mb-4 uppercase tracking-tight">
             Što kažu naši <span className="text-gradient">klijenti</span>
           </h2>
           <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -187,7 +187,7 @@ const VideoCard = ({ testimonial, isActive }: VideoCardProps) => {
 
   return (
     <div className="flex flex-col items-center">
-      {/* Video Container with yellow border and equal shadow on ALL 4 sides */}
+      {/* Video Container with yellow border and faded shadow on ALL 4 corners */}
       <div
         className={`relative overflow-hidden bg-muted transition-all duration-500 border-2 ${
           isActive
@@ -196,11 +196,11 @@ const VideoCard = ({ testimonial, isActive }: VideoCardProps) => {
         }`}
         style={isActive ? {
           boxShadow: `
-            0 -30px 50px -10px hsl(50 100% 50% / 0.18),
-            0 30px 50px -10px hsl(50 100% 50% / 0.18),
-            -30px 0 50px -10px hsl(50 100% 50% / 0.18),
-            30px 0 50px -10px hsl(50 100% 50% / 0.18),
-            0 0 60px 15px hsl(50 100% 50% / 0.1)
+            -20px -20px 40px -10px hsl(50 100% 50% / 0.15),
+            20px -20px 40px -10px hsl(50 100% 50% / 0.15),
+            -20px 20px 40px -10px hsl(50 100% 50% / 0.15),
+            20px 20px 40px -10px hsl(50 100% 50% / 0.15),
+            0 0 50px 10px hsl(50 100% 50% / 0.08)
           `
         } : {}}>
 

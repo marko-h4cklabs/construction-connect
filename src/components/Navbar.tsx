@@ -110,7 +110,7 @@ const Navbar = () => {
               onClick={() => setIsOpen(false)}
             />
             {/* Menu Window - 80% width, centered */}
-            <div className="relative w-[80%] max-w-sm bg-background/95 backdrop-blur-md border-2 border-border animate-fade-in">
+            <div className="relative w-[80%] max-w-sm bg-background/95 backdrop-blur-md border-2 border-border/40 animate-fade-in" style={{ boxShadow: '0 0 30px 5px hsl(50 100% 50% / 0.08)' }}>
               <div className="flex flex-col py-5">
                 {navLinks.map((link, index) => (
                   <a
