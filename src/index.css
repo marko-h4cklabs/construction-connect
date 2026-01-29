@@ -18,8 +18,12 @@
     --primary: 50 100% 50%;
     --primary-foreground: 0 0% 5%;
 
-    --secondary: 210 70% 45%;
+    --secondary: 145 70% 42%;
     --secondary-foreground: 0 0% 100%;
+    
+    /* Calculator/Dashboard accent - Green */
+    --calculator-accent: 145 70% 42%;
+    --calculator-accent-foreground: 0 0% 100%;
 
     --muted: 0 0% 14%;
     --muted-foreground: 45 20% 65%;
@@ -83,8 +87,12 @@
     --primary: 50 100% 50%;
     --primary-foreground: 0 0% 5%;
 
-    --secondary: 210 70% 45%;
+    --secondary: 145 70% 42%;
     --secondary-foreground: 0 0% 100%;
+    
+    /* Calculator/Dashboard accent - Green */
+    --calculator-accent: 145 70% 42%;
+    --calculator-accent-foreground: 0 0% 100%;
 
     --muted: 0 0% 14%;
     --muted-foreground: 0 0% 55%;
