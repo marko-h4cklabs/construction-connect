@@ -89,11 +89,13 @@ const VideoTestimonials = () => {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <h2 className="text-xl md:text-2xl font-black text-foreground mb-4 uppercase tracking-tight">
-            Što kažu naši <span className="text-gradient">klijenti</span>
+          <h2 className="text-2xl md:text-4xl font-black text-foreground mb-4 uppercase tracking-tight">
+            <span className="block">Što kažu</span>
+            <span className="block">naši <span className="text-gradient">klijenti</span></span>
           </h2>
-          <p className="text-base md:text-lg text-muted-foreground max-w-[80%] mx-auto">
-            Pogledajte iskustva firmi koje koriste Upitomat
+          <p className="text-base md:text-lg text-muted-foreground max-w-[85%] mx-auto">
+            <span className="block">Pogledajte iskustva firmi</span>
+            <span className="block">koje koriste Upitomat</span>
           </p>
         </div>
 

@@ -20,7 +20,8 @@ const CTASection = () => {
         <div className="max-w-2xl mx-auto text-center">
           <StaggeredText>
             <h2 className="text-2xl md:text-4xl font-black text-foreground mb-6 uppercase tracking-tight">
-              VRATITE SI <span className="text-gradient">VAŠE VRIJEME</span>
+              <span className="block">VRATITE SI</span>
+              <span className="block text-gradient">VAŠE VRIJEME</span>
             </h2>
           </StaggeredText>
           <StaggeredText delay={200} className="flex flex-col items-center gap-3">

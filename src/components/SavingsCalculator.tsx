@@ -71,9 +71,9 @@ const SavingsCalculator = () => {
         {/* Header */}
         <StaggeredText className="text-center mb-8 md:mb-12">
           <h2 className="text-2xl md:text-4xl font-black text-foreground mb-3 uppercase tracking-tight">
-            Koliko bi Upitomat uštedio <span className="text-gradient">vama</span>?
+            Koliko bi <span className="text-gradient">Upitomat</span> uštedio vama?
           </h2>
-          <p className="text-muted-foreground text-base md:text-lg max-w-[80%] mx-auto">
+          <p className="text-muted-foreground text-base md:text-lg max-w-[85%] mx-auto">
             Unesite svoje brojke i odmah vidite uštedu vremena i dodatnu prodaju.
           </p>
         </StaggeredText>
