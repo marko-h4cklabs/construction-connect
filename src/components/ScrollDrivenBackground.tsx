@@ -17,70 +17,70 @@ import { useEffect, useState, useCallback, useMemo } from 'react';
 const sectionConfigs = [
   {
     name: 'hero',
-    bg: [6, 6, 8] as [number, number, number],           // Deepest black
-    accent: [50, 80, 50] as [number, number, number],    // HSL yellow
-    glow: [50, 90, 55] as [number, number, number],      // Brighter yellow
-    gridOpacity: 0.04,                                    // Minimal grid
+    bg: [6, 6, 8] as [number, number, number],
+    accent: [50, 80, 50] as [number, number, number],
+    glow: [50, 90, 55] as [number, number, number],
+    gridOpacity: 0.12,
     vignetteStrength: 0.35,
     ambientLight: 0.12,
     noiseOpacity: 0.015,
   },
   {
     name: 'features',
-    bg: [12, 12, 14] as [number, number, number],        // Dark with slight blue
+    bg: [12, 12, 14] as [number, number, number],
     accent: [48, 75, 48] as [number, number, number],
     glow: [50, 85, 52] as [number, number, number],
-    gridOpacity: 0.08,                                    // Grid appears on scroll
+    gridOpacity: 0.15,
     vignetteStrength: 0.4,
     ambientLight: 0.08,
     noiseOpacity: 0.02,
   },
   {
     name: 'testimonials',
-    bg: [10, 10, 12] as [number, number, number],        // Clean, more "air"
+    bg: [10, 10, 12] as [number, number, number],
     accent: [48, 80, 50] as [number, number, number],
     glow: [50, 90, 55] as [number, number, number],
-    gridOpacity: 0.03,                                    // Very subtle
+    gridOpacity: 0.1,
     vignetteStrength: 0.3,
-    ambientLight: 0.15,                                   // Yellow light wash
+    ambientLight: 0.15,
     noiseOpacity: 0.012,
   },
   {
     name: 'logos',
-    bg: [8, 8, 10] as [number, number, number],          // Calm, static
+    bg: [8, 8, 10] as [number, number, number],
     accent: [45, 70, 45] as [number, number, number],
     glow: [48, 75, 48] as [number, number, number],
-    gridOpacity: 0.02,                                    // Almost invisible
+    gridOpacity: 0.08,
     vignetteStrength: 0.25,
     ambientLight: 0.05,
     noiseOpacity: 0.01,
   },
   {
     name: 'calculator',
-    bg: [8, 10, 12] as [number, number, number],         // Cockpit dark
-    accent: [145, 70, 45] as [number, number, number],   // Green accent for dashboard
-    glow: [50, 85, 55] as [number, number, number],      // Yellow focused glow
-    gridOpacity: 0.06,                                    // Technical grid
-    vignetteStrength: 0.5,                                // Strong focus vignette
+    bg: [8, 10, 12] as [number, number, number],
+    accent: [145, 70, 45] as [number, number, number],
+    glow: [50, 85, 55] as [number, number, number],
+    gridOpacity: 0.12,
+    vignetteStrength: 0.5,
     ambientLight: 0.1,
     noiseOpacity: 0.025,
   },
   {
     name: 'story',
-    bg: [16, 14, 12] as [number, number, number],        // Warmer charcoal
+    bg: [16, 14, 12] as [number, number, number],
     accent: [45, 65, 45] as [number, number, number],
     glow: [48, 75, 50] as [number, number, number],
-    gridOpacity: 0.04,
-    vignetteStrength: 0.55,                               // Strongest vignette
+    gridOpacity: 0.1,
+    vignetteStrength: 0.55,
     ambientLight: 0.08,
     noiseOpacity: 0.02,
   },
   {
     name: 'cta',
-    bg: [5, 5, 6] as [number, number, number],           // Very deep, clean black
+    bg: [5, 5, 6] as [number, number, number],
     accent: [50, 85, 52] as [number, number, number],
     glow: [52, 90, 58] as [number, number, number],
-    gridOpacity: 0.015,                                   // Almost none
+    gridOpacity: 0.06,
     vignetteStrength: 0.3,
     ambientLight: 0.06,
     noiseOpacity: 0.01,
@@ -117,9 +117,11 @@ const easeInOutCubic = (t: number) =>
   t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
 const ScrollDrivenBackground = () => {
+  const [scrollY, setScrollY] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [breathePhase, setBreathePhase] = useState(0);
   const [heroGlowIntensity, setHeroGlowIntensity] = useState(1);
+  const [vignettePosition, setVignettePosition] = useState({ x: 50, y: 50 });
 
   // Memoize section RGB colors
   const sectionColorsRGB = useMemo(() => 
@@ -135,6 +137,7 @@ const ScrollDrivenBackground = () => {
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const progress = Math.max(0, Math.min(1, scrollTop / docHeight));
+    setScrollY(scrollTop);
     setScrollProgress(progress);
     
     // Hero glow fades out as you scroll
@@ -179,6 +182,28 @@ const ScrollDrivenBackground = () => {
     return () => cancelAnimationFrame(rafId);
   }, []);
 
+  // Smooth vignette movement (15-20 second cycle)
+  useEffect(() => {
+    let startTime = Date.now();
+    let rafId: number;
+    
+    const animateVignette = () => {
+      const elapsed = Date.now() - startTime;
+      const cycleTime = 18000; // 18 seconds
+      const phase = (elapsed % cycleTime) / cycleTime;
+      
+      // Smooth figure-8 pattern
+      const x = 50 + Math.sin(phase * Math.PI * 2) * 8;
+      const y = 50 + Math.sin(phase * Math.PI * 4) * 5;
+      
+      setVignettePosition({ x, y });
+      rafId = requestAnimationFrame(animateVignette);
+    };
+    
+    rafId = requestAnimationFrame(animateVignette);
+    return () => cancelAnimationFrame(rafId);
+  }, []);
+
   // Calculate current section interpolation
   const numSections = sectionColorsRGB.length;
   const sectionProgress = scrollProgress * (numSections - 1);
@@ -200,7 +225,6 @@ const ScrollDrivenBackground = () => {
   const next = sectionColorsRGB[nextSectionIdx];
   
   const currentBg = lerpColor(current.bgRgb, next.bgRgb, easedT);
-  const currentAccent = lerpColor(current.accentRgb, next.accentRgb, easedT);
   const currentGlow = lerpColor(current.glowRgb, next.glowRgb, easedT);
   const currentGridOpacity = lerp(current.gridOpacity, next.gridOpacity, easedT);
   const currentVignette = lerp(current.vignetteStrength, next.vignetteStrength, easedT);
@@ -211,8 +235,11 @@ const ScrollDrivenBackground = () => {
   const gridBreath = 1 + Math.sin(breathePhase * Math.PI * 2) * 0.15;
   const finalGridOpacity = currentGridOpacity * gridBreath;
 
-  // Vignette position drift
-  const vignetteDrift = Math.sin(breathePhase * Math.PI * 2) * 3;
+  // Parallax offset for grid (0.5x intensity, opposite direction)
+  const parallaxOffset = scrollY * -0.5;
+
+  // Yellow color for grid lines
+  const yellowGridColor = hslToRgb(50, 90, 50);
 
   return (
     <>
@@ -236,7 +263,7 @@ const ScrollDrivenBackground = () => {
         style={{
           background: `
             radial-gradient(ellipse 80% 60% at 50% 20%, ${rgbToString(currentGlow, currentAmbient * 0.8)} 0%, transparent 55%),
-            radial-gradient(ellipse 60% 40% at 30% 70%, ${rgbToString(currentAccent, currentAmbient * 0.4)} 0%, transparent 50%),
+            radial-gradient(ellipse 60% 40% at 30% 70%, ${rgbToString(currentGlow, currentAmbient * 0.4)} 0%, transparent 50%),
             radial-gradient(ellipse 50% 35% at 75% 60%, ${rgbToString(currentGlow, currentAmbient * 0.3)} 0%, transparent 45%)
           `,
         }}
@@ -257,41 +284,42 @@ const ScrollDrivenBackground = () => {
         }}
       />
 
-      {/* Layer 4: Soft geometric grid (appears in certain sections) */}
+      {/* Layer 4: Main yellow geometric grid with parallax */}
       <div 
         className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-700"
         style={{
           opacity: finalGridOpacity,
           backgroundImage: `
-            linear-gradient(${rgbToString(currentAccent, 0.6)} 1px, transparent 1px),
-            linear-gradient(90deg, ${rgbToString(currentAccent, 0.6)} 1px, transparent 1px)
+            linear-gradient(${rgbToString(yellowGridColor, 0.7)} 1px, transparent 1px),
+            linear-gradient(90deg, ${rgbToString(yellowGridColor, 0.7)} 1px, transparent 1px)
           `,
           backgroundSize: '60px 60px',
-          backgroundPosition: `0 ${scrollProgress * -20}px`,
+          backgroundPosition: `0 ${parallaxOffset}px`,
           maskImage: `
-            radial-gradient(ellipse 70% 60% at 50% 50%, black 0%, transparent 80%)
+            radial-gradient(ellipse 80% 70% at 50% 50%, black 0%, transparent 75%)
           `,
           WebkitMaskImage: `
-            radial-gradient(ellipse 70% 60% at 50% 50%, black 0%, transparent 80%)
+            radial-gradient(ellipse 80% 70% at 50% 50%, black 0%, transparent 75%)
           `,
         }}
       />
 
-      {/* Layer 5: Secondary finer grid (technical detail) */}
+      {/* Layer 5: Secondary finer yellow grid with parallax */}
       <div 
         className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-700"
         style={{
-          opacity: finalGridOpacity * 0.4,
+          opacity: finalGridOpacity * 0.5,
           backgroundImage: `
-            linear-gradient(${rgbToString(currentAccent, 0.3)} 1px, transparent 1px),
-            linear-gradient(90deg, ${rgbToString(currentAccent, 0.3)} 1px, transparent 1px)
+            linear-gradient(${rgbToString(yellowGridColor, 0.4)} 1px, transparent 1px),
+            linear-gradient(90deg, ${rgbToString(yellowGridColor, 0.4)} 1px, transparent 1px)
           `,
           backgroundSize: '15px 15px',
+          backgroundPosition: `0 ${parallaxOffset * 0.7}px`,
           maskImage: `
-            radial-gradient(ellipse 50% 40% at 50% 45%, black 0%, transparent 70%)
+            radial-gradient(ellipse 60% 50% at 50% 45%, black 0%, transparent 65%)
           `,
           WebkitMaskImage: `
-            radial-gradient(ellipse 50% 40% at 50% 45%, black 0%, transparent 70%)
+            radial-gradient(ellipse 60% 50% at 50% 45%, black 0%, transparent 65%)
           `,
         }}
       />
@@ -305,19 +333,20 @@ const ScrollDrivenBackground = () => {
         }}
       />
 
-      {/* Layer 7: Dynamic cinematic vignette */}
+      {/* Layer 7: Dynamic cinematic vignette with smooth movement */}
       <div 
         className="fixed inset-0 pointer-events-none z-0"
         style={{
           background: `
             radial-gradient(
-              ellipse 75% 65% at ${50 + vignetteDrift}% 50%, 
+              ellipse 75% 65% at ${vignettePosition.x}% ${vignettePosition.y}%, 
               transparent 20%, 
               rgba(0, 0, 0, ${currentVignette * 0.4}) 60%,
               rgba(0, 0, 0, ${currentVignette * 0.7}) 80%,
               rgba(0, 0, 0, ${currentVignette * 0.95}) 100%
             )
           `,
+          transition: 'background 0.5s ease-out',
         }}
       />
 

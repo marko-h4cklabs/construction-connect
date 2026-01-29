@@ -20,7 +20,7 @@ const CTASection = () => {
         <div className="max-w-2xl mx-auto text-center">
           <StaggeredText>
             <h2 className="text-2xl md:text-4xl font-black text-foreground mb-6 uppercase tracking-tight">
-              Spremni za automatizaciju <span className="text-gradient">upita</span>?
+              VRATITE SI <span className="text-gradient">VAŠE VRIJEME</span>
             </h2>
           </StaggeredText>
           <StaggeredText delay={200} className="flex flex-col items-center gap-3">
@@ -32,17 +32,17 @@ const CTASection = () => {
               className="px-8 py-4 text-lg bg-primary text-primary-foreground font-bold uppercase tracking-wide border-2 border-foreground focus-brutal transition-all duration-500 hover:translate-y-[-2px]"
               style={{ 
                 boxShadow: isPulsing 
-                  ? '0 0 50px 10px hsl(50 100% 50% / 0.5)' 
-                  : '0 0 30px 4px hsl(50 100% 50% / 0.3)',
+                  ? '0 0 35px 6px hsl(50 100% 50% / 0.35)' 
+                  : '0 0 20px 3px hsl(50 100% 50% / 0.2)',
                 transition: 'box-shadow 0.8s ease-out, transform 0.3s ease-out'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = '0 0 45px 8px hsl(50 100% 50% / 0.5)';
+                e.currentTarget.style.boxShadow = '0 0 30px 5px hsl(50 100% 50% / 0.35)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.boxShadow = isPulsing 
-                  ? '0 0 50px 10px hsl(50 100% 50% / 0.5)' 
-                  : '0 0 30px 4px hsl(50 100% 50% / 0.3)';
+                  ? '0 0 35px 6px hsl(50 100% 50% / 0.35)' 
+                  : '0 0 20px 3px hsl(50 100% 50% / 0.2)';
               }}
             >
               Isprobajte Upitomat
