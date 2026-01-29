@@ -170,19 +170,27 @@ const Navbar = () => {
             >
               <div className="flex flex-col py-5">
                 {navLinks.map((link, index) => (
-                  <a
-                    key={link.id}
-                    href={`#${link.id}`}
-                    onClick={(e) => handleNavClick(e, link.id)}
-                    className="text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all duration-300 font-semibold uppercase text-sm tracking-wide py-3 px-5 text-center"
-                    style={{ 
-                      opacity: isAnimating ? 0 : 1,
-                      transform: isAnimating ? 'translateY(-8px)' : 'translateY(0)',
-                      transition: `opacity 200ms ease-out ${150 + index * 40}ms, transform 200ms ease-out ${150 + index * 40}ms`,
-                    }}
-                  >
-                    {link.label}
-                  </a>
+                  <div key={link.id}>
+                    <a
+                      href={`#${link.id}`}
+                      onClick={(e) => handleNavClick(e, link.id)}
+                      className="text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all duration-300 font-semibold uppercase text-sm tracking-wide py-3 px-5 text-center block"
+                      style={{ 
+                        opacity: isAnimating ? 0 : 1,
+                        transform: isAnimating ? 'translateY(-8px)' : 'translateY(0)',
+                        transition: `opacity 200ms ease-out ${150 + index * 40}ms, transform 200ms ease-out ${150 + index * 40}ms`,
+                      }}
+                    >
+                      {link.label}
+                    </a>
+                    {/* Thin yellow centered separator (30% width) */}
+                    {index < navLinks.length - 1 && (
+                      <div 
+                        className="mx-auto h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent"
+                        style={{ width: '30%' }}
+                      />
+                    )}
+                  </div>
                 ))}
                 <div 
                   className="pt-5 mt-5 border-t border-border/30 px-5"
