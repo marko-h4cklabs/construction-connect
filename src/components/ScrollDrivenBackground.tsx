@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useMemo } from 'react';
+import { useEffect, useState, useCallback, useMemo, useRef } from 'react';
 
 /**
  * PREMIUM MULTI-LAYERED BACKGROUND SYSTEM
@@ -11,6 +11,12 @@ import { useEffect, useState, useCallback, useMemo } from 'react';
  * - Calculator: Cockpit/dashboard style with focused light on results
  * - Our Story: Warmer charcoal, stronger vignette
  * - Final CTA: Very clean, deep black, no distractions
+ * 
+ * BREATHING VIGNETTE: Centered, static position with ultra-slow breathing effect
+ * - No translation movement
+ * - Desynchronized opacity/blur/shape animations
+ * - 30-60s ultra-slow loops with ease-in-out
+ * - Reduced intensity on mobile
  */
 
 // Section-specific background configurations
@@ -112,16 +118,33 @@ const hslToRgb = (h: number, s: number, l: number): [number, number, number] => 
   return [Math.round(f(0) * 255), Math.round(f(8) * 255), Math.round(f(4) * 255)];
 };
 
-// Smooth easing function
+// Premium ease-in-out function for ultra-smooth animations
+const easeInOutSine = (t: number) => -(Math.cos(Math.PI * t) - 1) / 2;
+
+// Smooth easing function for section transitions
 const easeInOutCubic = (t: number) => 
   t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+// Detect mobile for reduced motion
+const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
 const ScrollDrivenBackground = () => {
   const [scrollY, setScrollY] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [breathePhase, setBreathePhase] = useState(0);
   const [heroGlowIntensity, setHeroGlowIntensity] = useState(1);
-  const [vignettePosition, setVignettePosition] = useState({ x: 50, y: 50 });
+  
+  // Breathing vignette state - desynchronized parameters
+  const [vignetteOpacity, setVignetteOpacity] = useState(0.5);
+  const [vignetteBlur, setVignetteBlur] = useState(1);
+  const [vignetteScale, setVignetteScale] = useState(1);
+  
+  // Animation start times for desynchronization
+  const animationRef = useRef({
+    opacityStart: 0,
+    blurStart: 0,
+    scaleStart: 0,
+  });
 
   // Memoize section RGB colors
   const sectionColorsRGB = useMemo(() => 
@@ -168,13 +191,13 @@ const ScrollDrivenBackground = () => {
     };
   }, [updateScroll]);
 
-  // Slow, elegant breathing animation
+  // Slow, elegant breathing animation for grid
   useEffect(() => {
     let startTime = Date.now();
     let rafId: number;
     
     const breathe = () => {
-      const elapsed = (Date.now() - startTime) % 16000; // Very slow cycle
+      const elapsed = (Date.now() - startTime) % 16000;
       const phase = elapsed / 16000;
       setBreathePhase(phase);
       rafId = requestAnimationFrame(breathe);
@@ -184,30 +207,56 @@ const ScrollDrivenBackground = () => {
     return () => cancelAnimationFrame(rafId);
   }, []);
 
-  // Optimized vignette movement with reduced update frequency
+  // PREMIUM BREATHING VIGNETTE - Ultra-slow, desynchronized animations
   useEffect(() => {
-    let startTime = performance.now();
-    let rafId: number;
-    let lastUpdate = 0;
-    const updateInterval = 50; // Update every 50ms (20fps) instead of every frame
-    
-    const animateVignette = (currentTime: number) => {
-      if (currentTime - lastUpdate >= updateInterval) {
-        const elapsed = currentTime - startTime;
-        const cycleTime = 4000;
-        const phase = (elapsed % cycleTime) / cycleTime;
-        
-        // Simplified movement pattern for better performance
-        const x = 50 + Math.sin(phase * Math.PI * 2) * 30;
-        const y = 50 + Math.cos(phase * Math.PI * 2) * 20;
-        
-        setVignettePosition({ x, y });
-        lastUpdate = currentTime;
-      }
-      rafId = requestAnimationFrame(animateVignette);
+    // Initialize with random offsets for desynchronization
+    const now = performance.now();
+    animationRef.current = {
+      opacityStart: now,
+      blurStart: now + 12000, // 12s offset
+      scaleStart: now + 24000, // 24s offset
     };
     
-    rafId = requestAnimationFrame(animateVignette);
+    let rafId: number;
+    let lastUpdate = 0;
+    const updateInterval = isMobile ? 100 : 50; // Slower updates on mobile
+    
+    // Different cycle times for each parameter (desynchronized)
+    const opacityCycle = 45000; // 45 seconds
+    const blurCycle = 38000; // 38 seconds
+    const scaleCycle = 52000; // 52 seconds
+    
+    // Intensity multiplier (reduced on mobile)
+    const intensityMult = isMobile ? 0.4 : 1;
+    
+    const animateBreathing = (currentTime: number) => {
+      if (currentTime - lastUpdate >= updateInterval) {
+        const { opacityStart, blurStart, scaleStart } = animationRef.current;
+        
+        // Opacity animation: 0.35 - 0.65 range
+        const opacityElapsed = currentTime - opacityStart;
+        const opacityPhase = (opacityElapsed % opacityCycle) / opacityCycle;
+        const opacityValue = 0.5 + easeInOutSine(opacityPhase) * 0.15 * intensityMult;
+        setVignetteOpacity(opacityValue);
+        
+        // Blur animation: 0.8 - 1.2 range (affects gradient spread)
+        const blurElapsed = currentTime - blurStart;
+        const blurPhase = (blurElapsed % blurCycle) / blurCycle;
+        const blurValue = 1 + (easeInOutSine(blurPhase) - 0.5) * 0.4 * intensityMult;
+        setVignetteBlur(blurValue);
+        
+        // Scale animation: 0.95 - 1.05 range (subtle organic deformation)
+        const scaleElapsed = currentTime - scaleStart;
+        const scalePhase = (scaleElapsed % scaleCycle) / scaleCycle;
+        const scaleValue = 1 + (easeInOutSine(scalePhase) - 0.5) * 0.1 * intensityMult;
+        setVignetteScale(scaleValue);
+        
+        lastUpdate = currentTime;
+      }
+      rafId = requestAnimationFrame(animateBreathing);
+    };
+    
+    rafId = requestAnimationFrame(animateBreathing);
     return () => cancelAnimationFrame(rafId);
   }, []);
 
@@ -248,8 +297,12 @@ const ScrollDrivenBackground = () => {
   // Yellow color for grid lines
   const yellowGridColor = hslToRgb(50, 90, 50);
 
-  // Vignette spotlight grid brightness multiplier (3-4x brighter in spotlight)
+  // Vignette spotlight grid brightness multiplier
   const spotlightGridMultiplier = 3.5;
+  
+  // Breathing vignette dimensions (centered, organic shape)
+  const vignetteWidth = 75 * vignetteScale;
+  const vignetteHeight = 65 * vignetteBlur;
 
   return (
     <>
@@ -308,11 +361,11 @@ const ScrollDrivenBackground = () => {
         }}
       />
 
-      {/* Layer 5: Vignette-revealed brighter grid (follows spotlight) */}
+      {/* Layer 5: Breathing vignette-revealed brighter grid (centered, static position) */}
       <div 
         className="fixed inset-0 pointer-events-none z-0"
         style={{
-          opacity: finalGridOpacity * spotlightGridMultiplier,
+          opacity: finalGridOpacity * spotlightGridMultiplier * vignetteOpacity,
           backgroundImage: `
             linear-gradient(${rgbToString(yellowGridColor, 0.9)} 1.5px, transparent 1.5px),
             linear-gradient(90deg, ${rgbToString(yellowGridColor, 0.9)} 1.5px, transparent 1.5px)
@@ -320,15 +373,25 @@ const ScrollDrivenBackground = () => {
           backgroundSize: '60px 60px',
           backgroundPosition: `0 ${parallaxOffset}px`,
           maskImage: `
-            radial-gradient(ellipse 50% 45% at ${vignettePosition.x}% ${vignettePosition.y}%, black 0%, transparent 60%)
+            radial-gradient(ellipse ${vignetteWidth}% ${vignetteHeight}% at 50% 50%, black 0%, transparent 70%)
           `,
           WebkitMaskImage: `
-            radial-gradient(ellipse 50% 45% at ${vignettePosition.x}% ${vignettePosition.y}%, black 0%, transparent 60%)
+            radial-gradient(ellipse ${vignetteWidth}% ${vignetteHeight}% at 50% 50%, black 0%, transparent 70%)
           `,
+          willChange: 'opacity, mask-image',
         }}
       />
 
-      {/* Layer 6: Secondary finer yellow grid (always visible base) */}
+      {/* Layer 6: Subtle noise texture */}
+      <div 
+        className="fixed inset-0 pointer-events-none z-0 mix-blend-overlay"
+        style={{
+          opacity: currentNoise,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+        }}
+      />
+
+      {/* Layer 7: Secondary finer yellow grid (always visible base) */}
       <div 
         className="fixed inset-0 pointer-events-none z-0"
         style={{
@@ -342,11 +405,11 @@ const ScrollDrivenBackground = () => {
         }}
       />
 
-      {/* Layer 7: Secondary finer grid (vignette-revealed brighter) */}
+      {/* Layer 8: Secondary finer grid (breathing vignette-revealed brighter) */}
       <div 
         className="fixed inset-0 pointer-events-none z-0"
         style={{
-          opacity: finalGridOpacity * spotlightGridMultiplier * 0.6,
+          opacity: finalGridOpacity * spotlightGridMultiplier * 0.6 * vignetteOpacity,
           backgroundImage: `
             linear-gradient(${rgbToString(yellowGridColor, 0.6)} 1px, transparent 1px),
             linear-gradient(90deg, ${rgbToString(yellowGridColor, 0.6)} 1px, transparent 1px)
@@ -354,37 +417,29 @@ const ScrollDrivenBackground = () => {
           backgroundSize: '15px 15px',
           backgroundPosition: `0 ${parallaxOffset * 0.7}px`,
           maskImage: `
-            radial-gradient(ellipse 45% 40% at ${vignettePosition.x}% ${vignettePosition.y}%, black 0%, transparent 55%)
+            radial-gradient(ellipse ${vignetteWidth * 0.9}% ${vignetteHeight * 0.85}% at 50% 50%, black 0%, transparent 65%)
           `,
           WebkitMaskImage: `
-            radial-gradient(ellipse 45% 40% at ${vignettePosition.x}% ${vignettePosition.y}%, black 0%, transparent 55%)
+            radial-gradient(ellipse ${vignetteWidth * 0.9}% ${vignetteHeight * 0.85}% at 50% 50%, black 0%, transparent 65%)
           `,
+          willChange: 'opacity, mask-image',
         }}
       />
 
-      {/* Layer 6: Subtle noise texture */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-0 mix-blend-overlay"
-        style={{
-          opacity: currentNoise,
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-        }}
-      />
-
-      {/* Layer 7: Dynamic cinematic vignette with smooth movement */}
+      {/* Layer 9: Premium breathing cinematic vignette (centered, static position) */}
       <div 
         className="fixed inset-0 pointer-events-none z-0"
         style={{
           background: `
             radial-gradient(
-              ellipse 75% 65% at ${vignettePosition.x}% ${vignettePosition.y}%, 
-              transparent 20%, 
-              rgba(0, 0, 0, ${currentVignette * 0.4}) 60%,
-              rgba(0, 0, 0, ${currentVignette * 0.7}) 80%,
-              rgba(0, 0, 0, ${currentVignette * 0.95}) 100%
+              ellipse ${vignetteWidth}% ${vignetteHeight}% at 50% 50%, 
+              transparent 25%, 
+              rgba(0, 0, 0, ${currentVignette * 0.35 * vignetteOpacity}) 55%,
+              rgba(0, 0, 0, ${currentVignette * 0.6 * vignetteOpacity}) 75%,
+              rgba(0, 0, 0, ${currentVignette * 0.85}) 100%
             )
           `,
-          transition: 'background 0.5s ease-out',
+          willChange: 'background',
         }}
       />
 
