@@ -29,7 +29,7 @@ const CTASection = () => {
               href="https://app.upitomat.hr/auth"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 text-lg bg-primary text-primary-foreground font-bold uppercase tracking-wide border-2 border-foreground focus-brutal transition-all duration-500 hover:translate-y-[-2px]"
+              className="px-6 py-4 text-lg bg-primary text-primary-foreground font-bold uppercase tracking-wide border-2 border-foreground focus-brutal transition-all duration-500 hover:translate-y-[-2px]"
               style={{ 
                 boxShadow: isPulsing 
                   ? '0 0 35px 6px hsl(50 100% 50% / 0.35)' 

@@ -182,19 +182,19 @@ const ScrollDrivenBackground = () => {
     return () => cancelAnimationFrame(rafId);
   }, []);
 
-  // Smooth vignette movement (15-20 second cycle)
+  // Fast, active vignette movement (3-5 second cycle) - always moving, never static
   useEffect(() => {
     let startTime = Date.now();
     let rafId: number;
     
     const animateVignette = () => {
       const elapsed = Date.now() - startTime;
-      const cycleTime = 18000; // 18 seconds
+      const cycleTime = 4000; // 4 seconds - fast, active
       const phase = (elapsed % cycleTime) / cycleTime;
       
-      // Smooth figure-8 pattern
-      const x = 50 + Math.sin(phase * Math.PI * 2) * 8;
-      const y = 50 + Math.sin(phase * Math.PI * 4) * 5;
+      // Complex multi-directional movement pattern - covers entire screen
+      const x = 50 + Math.sin(phase * Math.PI * 2) * 25 + Math.cos(phase * Math.PI * 3) * 15;
+      const y = 50 + Math.sin(phase * Math.PI * 3) * 20 + Math.cos(phase * Math.PI * 2) * 12;
       
       setVignettePosition({ x, y });
       rafId = requestAnimationFrame(animateVignette);
@@ -241,6 +241,9 @@ const ScrollDrivenBackground = () => {
   // Yellow color for grid lines
   const yellowGridColor = hslToRgb(50, 90, 50);
 
+  // Vignette spotlight grid brightness multiplier (3-4x brighter in spotlight)
+  const spotlightGridMultiplier = 3.5;
+
   return (
     <>
       {/* Layer 1: Base background gradient */}
@@ -284,42 +287,70 @@ const ScrollDrivenBackground = () => {
         }}
       />
 
-      {/* Layer 4: Main yellow geometric grid with parallax */}
+      {/* Layer 4: Base yellow geometric grid (always visible) with parallax */}
       <div 
-        className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-700"
+        className="fixed inset-0 pointer-events-none z-0"
         style={{
-          opacity: finalGridOpacity,
+          opacity: Math.max(finalGridOpacity, 0.06),
           backgroundImage: `
-            linear-gradient(${rgbToString(yellowGridColor, 0.7)} 1px, transparent 1px),
-            linear-gradient(90deg, ${rgbToString(yellowGridColor, 0.7)} 1px, transparent 1px)
+            linear-gradient(${rgbToString(yellowGridColor, 0.5)} 1px, transparent 1px),
+            linear-gradient(90deg, ${rgbToString(yellowGridColor, 0.5)} 1px, transparent 1px)
+          `,
+          backgroundSize: '60px 60px',
+          backgroundPosition: `0 ${parallaxOffset}px`,
+        }}
+      />
+
+      {/* Layer 5: Vignette-revealed brighter grid (follows spotlight) */}
+      <div 
+        className="fixed inset-0 pointer-events-none z-0"
+        style={{
+          opacity: finalGridOpacity * spotlightGridMultiplier,
+          backgroundImage: `
+            linear-gradient(${rgbToString(yellowGridColor, 0.9)} 1.5px, transparent 1.5px),
+            linear-gradient(90deg, ${rgbToString(yellowGridColor, 0.9)} 1.5px, transparent 1.5px)
           `,
           backgroundSize: '60px 60px',
           backgroundPosition: `0 ${parallaxOffset}px`,
           maskImage: `
-            radial-gradient(ellipse 80% 70% at 50% 50%, black 0%, transparent 75%)
+            radial-gradient(ellipse 50% 45% at ${vignettePosition.x}% ${vignettePosition.y}%, black 0%, transparent 60%)
           `,
           WebkitMaskImage: `
-            radial-gradient(ellipse 80% 70% at 50% 50%, black 0%, transparent 75%)
+            radial-gradient(ellipse 50% 45% at ${vignettePosition.x}% ${vignettePosition.y}%, black 0%, transparent 60%)
           `,
         }}
       />
 
-      {/* Layer 5: Secondary finer yellow grid with parallax */}
+      {/* Layer 6: Secondary finer yellow grid (always visible base) */}
       <div 
-        className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-700"
+        className="fixed inset-0 pointer-events-none z-0"
         style={{
-          opacity: finalGridOpacity * 0.5,
+          opacity: Math.max(finalGridOpacity * 0.3, 0.03),
           backgroundImage: `
-            linear-gradient(${rgbToString(yellowGridColor, 0.4)} 1px, transparent 1px),
-            linear-gradient(90deg, ${rgbToString(yellowGridColor, 0.4)} 1px, transparent 1px)
+            linear-gradient(${rgbToString(yellowGridColor, 0.3)} 1px, transparent 1px),
+            linear-gradient(90deg, ${rgbToString(yellowGridColor, 0.3)} 1px, transparent 1px)
+          `,
+          backgroundSize: '15px 15px',
+          backgroundPosition: `0 ${parallaxOffset * 0.7}px`,
+        }}
+      />
+
+      {/* Layer 7: Secondary finer grid (vignette-revealed brighter) */}
+      <div 
+        className="fixed inset-0 pointer-events-none z-0"
+        style={{
+          opacity: finalGridOpacity * spotlightGridMultiplier * 0.6,
+          backgroundImage: `
+            linear-gradient(${rgbToString(yellowGridColor, 0.6)} 1px, transparent 1px),
+            linear-gradient(90deg, ${rgbToString(yellowGridColor, 0.6)} 1px, transparent 1px)
           `,
           backgroundSize: '15px 15px',
           backgroundPosition: `0 ${parallaxOffset * 0.7}px`,
           maskImage: `
-            radial-gradient(ellipse 60% 50% at 50% 45%, black 0%, transparent 65%)
+            radial-gradient(ellipse 45% 40% at ${vignettePosition.x}% ${vignettePosition.y}%, black 0%, transparent 55%)
           `,
           WebkitMaskImage: `
-            radial-gradient(ellipse 60% 50% at 50% 45%, black 0%, transparent 65%)
+            radial-gradient(ellipse 45% 40% at ${vignettePosition.x}% ${vignettePosition.y}%, black 0%, transparent 55%)
           `,
         }}
       />
