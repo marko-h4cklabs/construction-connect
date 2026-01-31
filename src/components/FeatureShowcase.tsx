@@ -164,7 +164,7 @@ const FeatureShowcase = () => {
                     loop
                     muted
                     playsInline
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 will-change-transform group-hover:scale-105"
+                    className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 will-change-transform group-hover:scale-105"
                   />
 
                   {/* Subtle gradient overlay - fades into dock */}
