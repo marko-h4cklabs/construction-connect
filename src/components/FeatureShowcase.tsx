@@ -156,18 +156,16 @@ const FeatureShowcase = () => {
                     boxShadow: '0 0 30px -5px hsl(50 100% 50% / 0.15)',
                   }}
                 >
-                  <div className="absolute inset-0 transition-transform duration-700 will-change-transform group-hover:scale-105">
-                    <video
-                      ref={videoRef}
-                      key={activeFeature.id}
-                      src={activeFeature.videoUrl}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
+                  <video
+                    ref={videoRef}
+                    key={activeFeature.id}
+                    src={activeFeature.videoUrl}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 will-change-transform group-hover:scale-105"
+                  />
 
                   {/* Subtle gradient overlay - fades into dock */}
                   <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-transparent to-transparent pointer-events-none" />
