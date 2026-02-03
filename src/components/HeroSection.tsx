@@ -24,7 +24,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="pt-10 pb-20 md:pt-20 md:pb-28">
+    <section className="pt-6 pb-10 md:pt-16 md:pb-16">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           {/* Headline - one word per line with stagger */}
