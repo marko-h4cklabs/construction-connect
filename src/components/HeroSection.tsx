@@ -24,7 +24,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="py-16 md:py-24">
+    <section className="pt-10 pb-20 md:pt-20 md:pb-28">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           {/* Headline - one word per line with stagger */}
@@ -38,7 +38,7 @@ const HeroSection = () => {
           </StaggeredText>
 
           {/* VSL Video */}
-          <StaggeredText delay={200} className="mt-6 md:mt-10">
+          <StaggeredText delay={200} className="mt-8 md:mt-10">
             <div className="relative w-full max-w-[95%] mx-auto aspect-video rounded-xl overflow-hidden border-2 border-primary/60">
               {/* YouTube Embed */}
               {iframeSrc && (
@@ -72,7 +72,7 @@ const HeroSection = () => {
           </StaggeredText>
 
           {/* CTA Button - premium glow */}
-          <StaggeredText delay={400} className="mt-8 md:mt-10 flex flex-col items-center gap-2">
+          <StaggeredText delay={400} className="mt-10 md:mt-12 flex flex-col items-center gap-3">
             <a
               href="https://app.upitomat.hr/auth"
               target="_blank"
