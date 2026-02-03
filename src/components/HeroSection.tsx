@@ -1,6 +1,28 @@
+import { useState, useRef, useCallback, useEffect } from "react";
+import { Play } from "lucide-react";
 import StaggeredText from "@/components/StaggeredText";
 
+const YOUTUBE_VIDEO_ID = "em9Wk2ZtNb0";
+
 const HeroSection = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [iframeSrc, setIframeSrc] = useState("");
+
+  // Set initial muted autoplay src
+  useEffect(() => {
+    setIframeSrc(
+      `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${YOUTUBE_VIDEO_ID}&controls=0&modestbranding=1&rel=0&showinfo=0`
+    );
+  }, []);
+
+  const handlePlayClick = useCallback(() => {
+    // Reset video to start with sound enabled
+    setIframeSrc(
+      `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&mute=0&loop=0&controls=1&modestbranding=1&rel=0&showinfo=0&start=0`
+    );
+    setIsPlaying(true);
+  }, []);
+
   return (
     <section className="py-16 md:py-24">
       <div className="container mx-auto px-4">
@@ -15,15 +37,38 @@ const HeroSection = () => {
             </h1>
           </StaggeredText>
 
-          {/* Subheadline */}
-          <StaggeredText delay={200}>
-            <p
-              className="mt-8 md:mt-12 text-base md:text-lg text-muted-foreground max-w-[85%] mx-auto leading-relaxed"
-            >
-              <span className="block"><span className="font-bold text-foreground">Upitomat</span> odgovara na upite u</span>
-              <span className="block"><span className="font-bold text-foreground">vašem stilu</span> te organizira sve</span>
-              <span className="block">razgovore i podatke u <span className="font-bold text-foreground">jednom inboxu.</span></span>
-            </p>
+          {/* VSL Video */}
+          <StaggeredText delay={200} className="mt-8 md:mt-12">
+            <div className="relative w-full max-w-[85%] mx-auto aspect-video rounded-xl overflow-hidden border-2 border-foreground/20">
+              {/* YouTube Embed */}
+              {iframeSrc && (
+                <iframe
+                  src={iframeSrc}
+                  className="absolute inset-0 w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title="Upitomat VSL"
+                />
+              )}
+              
+              {/* Dark overlay + Play button (only when not playing) */}
+              {!isPlaying && (
+                <div 
+                  className="absolute inset-0 bg-black/25 flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-black/15"
+                  onClick={handlePlayClick}
+                >
+                  <button
+                    className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-primary flex items-center justify-center transition-transform duration-300 hover:scale-110"
+                    style={{
+                      boxShadow: '0 0 20px 3px hsl(50 100% 50% / 0.3)',
+                    }}
+                    aria-label="Play video"
+                  >
+                    <Play className="w-8 h-8 md:w-10 md:h-10 text-primary-foreground fill-primary-foreground ml-1" />
+                  </button>
+                </div>
+              )}
+            </div>
           </StaggeredText>
 
           {/* CTA Button - premium glow */}
