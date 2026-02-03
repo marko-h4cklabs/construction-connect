@@ -30,16 +30,16 @@ const HeroSection = () => {
           {/* Headline - one word per line with stagger */}
           <StaggeredText>
             <h1
-              className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-foreground leading-[0.85] tracking-tighter"
+              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-foreground leading-[0.85] tracking-tighter"
             >
-              <span className="text-gradient block mb-4 md:mb-6">Nemate</span>
+              <span className="text-gradient block mb-3 md:mb-4">Nemate</span>
               <span className="text-gradient block">vremena.</span>
             </h1>
           </StaggeredText>
 
           {/* VSL Video */}
-          <StaggeredText delay={200} className="mt-8 md:mt-12">
-            <div className="relative w-full max-w-[85%] mx-auto aspect-video rounded-xl overflow-hidden border-2 border-foreground/20">
+          <StaggeredText delay={200} className="mt-6 md:mt-10">
+            <div className="relative w-full max-w-[95%] mx-auto aspect-video rounded-xl overflow-hidden border-2 border-primary/60">
               {/* YouTube Embed */}
               {iframeSrc && (
                 <iframe
@@ -72,12 +72,12 @@ const HeroSection = () => {
           </StaggeredText>
 
           {/* CTA Button - premium glow */}
-          <StaggeredText delay={400} className="mt-10 md:mt-14 flex flex-col items-center gap-3">
+          <StaggeredText delay={400} className="mt-8 md:mt-10 flex flex-col items-center gap-2">
             <a
               href="https://app.upitomat.hr/auth"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block px-8 py-4 text-base md:text-lg bg-primary text-primary-foreground font-black uppercase tracking-wide border-2 border-foreground transition-all duration-300 hover:translate-y-[-2px]"
+              className="inline-block px-6 py-3 text-sm md:text-base bg-primary text-primary-foreground font-black uppercase tracking-wide border-2 border-foreground transition-all duration-300 hover:translate-y-[-2px]"
               style={{ 
                 boxShadow: '0 0 20px 3px hsl(50 100% 50% / 0.2)',
               }}
@@ -90,8 +90,8 @@ const HeroSection = () => {
             >
               ISPROBAJTE UPITOMAT
             </a>
-            <span className="text-sm text-muted-foreground tracking-wide">
-              Besplatno, bez obveze
+            <span className="text-xs text-muted-foreground tracking-wide">
+              besplatno, bez obveze
             </span>
           </StaggeredText>
         </div>
