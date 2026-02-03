@@ -8,17 +8,17 @@ const HeroSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [iframeSrc, setIframeSrc] = useState("");
 
-  // Set initial muted autoplay src
+  // Set initial muted autoplay src with minimal YouTube UI
   useEffect(() => {
     setIframeSrc(
-      `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${YOUTUBE_VIDEO_ID}&controls=0&modestbranding=1&rel=0&showinfo=0`
+      `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&mute=1&playsinline=1&loop=1&playlist=${YOUTUBE_VIDEO_ID}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&fs=0&disablekb=1`
     );
   }, []);
 
   const handlePlayClick = useCallback(() => {
-    // Reset video to start with sound enabled
+    // Reset video to start with sound enabled and minimal UI
     setIframeSrc(
-      `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&mute=0&loop=0&controls=1&modestbranding=1&rel=0&showinfo=0&start=0`
+      `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&mute=0&playsinline=1&loop=0&controls=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&fs=0&start=0`
     );
     setIsPlaying(true);
   }, []);
