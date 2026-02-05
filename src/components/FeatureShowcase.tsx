@@ -2,24 +2,22 @@ import { useState, useRef, useEffect } from "react";
 import { Inbox, Bot, Share2, BarChart3 } from "lucide-react";
 import StaggeredText from "@/components/StaggeredText";
 
-// Import videos
-import inboxVideo from "@/assets/videos/upitomat-inbox.mp4";
+// Import local videos (for features that still use them)
 import chatbotVideo from "@/assets/videos/personalizirani-chatbot.mp4";
 import analyticsVideo from "@/assets/videos/analitika-i-uvid.mp4";
-import platformsVideo from "@/assets/videos/povezane-platforme.mp4";
 
 // New order as requested:
-// 1 - Upitomat Inbox
-// 2 - Personalizirani Chatbot
-// 3 - Analitika i Uvid
-// 4 - Povezane Platforme
+// 1 - Upitomat Inbox (YouTube)
+// 2 - Personalizirani Chatbot (local)
+// 3 - Analitika i Uvid (local)
+// 4 - Povezane Platforme (YouTube)
 const features = [
   {
     id: "inbox",
     icon: Inbox,
     title: "Upitomat Inbox",
     description: "Svi vaši upiti uredno organizirani na jednom mjestu.",
-    videoUrl: inboxVideo,
+    youtubeId: "HQv29wzwStk",
   },
   {
     id: "chatbot",
@@ -40,7 +38,7 @@ const features = [
     icon: Share2,
     title: "Povezane Platforme",
     description: "Instagram, Facebook, WhatsApp i ostali kanali, po vašem odabiru.",
-    videoUrl: platformsVideo,
+    youtubeId: "2KW5VVtC1Wo",
   },
 ];
 
@@ -50,7 +48,8 @@ const FeatureShowcase = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (videoRef.current) {
+    // Only handle local video playback
+    if (videoRef.current && activeFeature.videoUrl) {
       videoRef.current.currentTime = 0;
       videoRef.current.play().catch(() => {});
     }
@@ -156,16 +155,27 @@ const FeatureShowcase = () => {
                     boxShadow: '0 0 30px -5px hsl(50 100% 50% / 0.15)',
                   }}
                 >
-                  <video
-                    ref={videoRef}
-                    key={activeFeature.id}
-                    src={activeFeature.videoUrl}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 will-change-transform group-hover:scale-105"
-                  />
+                  {activeFeature.youtubeId ? (
+                    <iframe
+                      key={activeFeature.id}
+                      src={`https://www.youtube.com/embed/${activeFeature.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${activeFeature.youtubeId}&controls=0&modestbranding=1&rel=0&playsinline=1&showinfo=0&disablekb=1`}
+                      title={activeFeature.title}
+                      className="absolute inset-0 w-full h-full transition-transform duration-700 will-change-transform group-hover:scale-105 pointer-events-none"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      style={{ border: 'none' }}
+                    />
+                  ) : (
+                    <video
+                      ref={videoRef}
+                      key={activeFeature.id}
+                      src={activeFeature.videoUrl}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 will-change-transform group-hover:scale-105"
+                    />
+                  )}
 
                   {/* Subtle gradient overlay - fades into dock */}
                   <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-transparent to-transparent pointer-events-none" />
