@@ -40,6 +40,12 @@ const VideoTestimonials = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  
+  // Touch/swipe state
+  const touchStartX = useRef<number>(0);
+  const touchEndX = useRef<number>(0);
+  const isSwiping = useRef<boolean>(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -70,6 +76,39 @@ const VideoTestimonials = () => {
     setIsTransitioning(true);
     setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
     setTimeout(() => setIsTransitioning(false), 500);
+  };
+
+  // Touch handlers for swipe functionality
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    isSwiping.current = true;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isSwiping.current) return;
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (!isSwiping.current) return;
+    isSwiping.current = false;
+    
+    const swipeDistance = touchStartX.current - touchEndX.current;
+    const minSwipeDistance = 100; // Duži swipe - 100px minimum
+    
+    if (Math.abs(swipeDistance) >= minSwipeDistance) {
+      if (swipeDistance > 0) {
+        // Swipe left -> next
+        handleNext();
+      } else {
+        // Swipe right -> prev
+        handlePrev();
+      }
+    }
+    
+    // Reset values
+    touchStartX.current = 0;
+    touchEndX.current = 0;
   };
 
   const getVisibleIndices = () => {
@@ -114,8 +153,14 @@ const VideoTestimonials = () => {
             <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 transition-transform group-hover:-translate-x-0.5" />
           </button>
 
-          {/* Stories Container */}
-          <div className="flex items-center justify-center gap-3 md:gap-6 overflow-hidden py-4">
+          {/* Stories Container - with touch swipe support */}
+          <div 
+            ref={carouselRef}
+            className="flex items-center justify-center gap-3 md:gap-6 overflow-hidden py-4 touch-pan-y"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
             {/* Previous Video (Left) */}
             <div
               className="hidden md:block flex-shrink-0 transition-all duration-500 opacity-30 scale-[0.75] hover:opacity-50 cursor-pointer"
