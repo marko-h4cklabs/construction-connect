@@ -2,7 +2,7 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import { Play } from "lucide-react";
 import StaggeredText from "@/components/StaggeredText";
 
-const YOUTUBE_VIDEO_ID = "em9Wk2ZtNb0";
+const YOUTUBE_VIDEO_ID = "7jLLOnnpRzM";
 
 const HeroSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
