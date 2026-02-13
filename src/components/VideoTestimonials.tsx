@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Volume2, VolumeX } from "lucide-react";
 
 interface Testimonial {
   id: string;
@@ -39,6 +39,7 @@ const VideoTestimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const sectionRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
   
@@ -166,12 +167,20 @@ const VideoTestimonials = () => {
               className="hidden md:block flex-shrink-0 transition-all duration-500 opacity-30 scale-[0.75] hover:opacity-50 cursor-pointer"
               onClick={handlePrev}
             >
-              <VideoCard testimonial={testimonials[prev]} isActive={false} />
+              <VideoCard testimonial={testimonials[prev]} isActive={false} isMuted={true} />
             </div>
 
             {/* Current Video (Center) */}
-            <div className="flex-shrink-0 transition-all duration-500 z-10">
-              <VideoCard testimonial={testimonials[current]} isActive={true} />
+            <div className="flex-shrink-0 transition-all duration-500 z-10 relative">
+              <VideoCard testimonial={testimonials[current]} isActive={true} isMuted={isMuted} />
+              {/* Mute/Unmute Button */}
+              <button
+                onClick={() => setIsMuted(!isMuted)}
+                className="absolute bottom-16 right-3 z-30 w-9 h-9 md:w-10 md:h-10 border-2 border-border bg-background/90 backdrop-blur-sm flex items-center justify-center text-foreground hover:border-primary hover:bg-muted/80 transition-all duration-300 rounded-full"
+                aria-label={isMuted ? "Uključi zvuk" : "Isključi zvuk"}
+              >
+                {isMuted ? <VolumeX className="w-4 h-4 md:w-5 md:h-5" /> : <Volume2 className="w-4 h-4 md:w-5 md:h-5" />}
+              </button>
             </div>
 
             {/* Next Video (Right) */}
@@ -179,7 +188,7 @@ const VideoTestimonials = () => {
               className="hidden md:block flex-shrink-0 transition-all duration-500 opacity-30 scale-[0.75] hover:opacity-50 cursor-pointer"
               onClick={handleNext}
             >
-              <VideoCard testimonial={testimonials[next]} isActive={false} />
+              <VideoCard testimonial={testimonials[next]} isActive={false} isMuted={true} />
             </div>
           </div>
 
@@ -226,11 +235,12 @@ const VideoTestimonials = () => {
 interface VideoCardProps {
   testimonial: Testimonial;
   isActive: boolean;
+  isMuted: boolean;
 }
 
-const VideoCard = ({ testimonial, isActive }: VideoCardProps) => {
+const VideoCard = ({ testimonial, isActive, isMuted }: VideoCardProps) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const embedUrl = `https://www.youtube.com/embed/${testimonial.youtubeId}?autoplay=${isActive ? 1 : 0}&mute=1&loop=1&playlist=${testimonial.youtubeId}&controls=1&modestbranding=1&rel=0&playsinline=1`;
+  const embedUrl = `https://www.youtube.com/embed/${testimonial.youtubeId}?autoplay=${isActive ? 1 : 0}&mute=${isMuted ? 1 : 0}&loop=1&playlist=${testimonial.youtubeId}&controls=1&modestbranding=1&rel=0&playsinline=1`;
 
   return (
     <div className="flex flex-col items-center">
