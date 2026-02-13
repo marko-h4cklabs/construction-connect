@@ -11,9 +11,9 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     id: "1",
-    youtubeId: "aGUxN86sdYg",
-    clientName: "Mario",
-    clientRole: "Render13",
+    youtubeId: "62wwkhpzCDw",
+    clientName: "Krešo",
+    clientRole: "Ćakule",
   },
   {
     id: "2",
@@ -23,15 +23,15 @@ const testimonials: Testimonial[] = [
   },
   {
     id: "3",
-    youtubeId: "62wwkhpzCDw",
-    clientName: "Krešo",
-    clientRole: "Ćakule",
-  },
-  {
-    id: "4",
     youtubeId: "FisfEq0p2vQ",
     clientName: "Marita",
     clientRole: "Shiatsu Shen",
+  },
+  {
+    id: "4",
+    youtubeId: "aGUxN86sdYg",
+    clientName: "Mario",
+    clientRole: "Render13",
   },
 ];
 
