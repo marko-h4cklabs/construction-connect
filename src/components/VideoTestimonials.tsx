@@ -33,6 +33,12 @@ const testimonials: Testimonial[] = [
     clientName: "Marita",
     clientRole: "Shiatsu Shen",
   },
+  {
+    id: "5",
+    youtubeId: "O5jXtUl9260",
+    clientName: "Šime",
+    clientRole: "SimperTech",
+  },
 ];
 
 const VideoTestimonials = () => {
